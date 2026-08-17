@@ -1,0 +1,195 @@
+// LABMUMA — Prisma Schema (Phase 1: Core Foundation)
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ─── AUTH & USERS ───────────────────────────────────────────────
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  password      String
+  role          String   @default("TOOLMAN") // ADMIN, TOOLMAN, KEPALA_LAB, GURU
+  avatar        String?
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  auditLogs          AuditLog[]
+  initialInventories InitialInventory[]
+  inventoryHistory   InventoryHistory[]
+}
+
+// ─── MASTER DATA ────────────────────────────────────────────────
+model Location {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  rooms Room[]
+}
+
+model Room {
+  id         String   @id @default(cuid())
+  name       String
+  locationId String
+  capacity   Int?
+  note       String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  location Location @relation(fields: [locationId], references: [id])
+
+  inventories        Inventory[]
+  initialInventories InitialInventory[]
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  icon        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  inventories Inventory[]
+}
+
+model Brand {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  inventories Inventory[]
+}
+
+// ─── INVENTARIS ─────────────────────────────────────────────────
+model Inventory {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  name         String
+  categoryId   String
+  brandId      String?
+  type         String?  // Tipe/Model
+  serialNumber String?
+  year         Int?     // Tahun pengadaan
+  source       String?  // Sumber pengadaan
+  price        Float?
+  documentNo   String?  // Nomor dokumen pengadaan
+  roomId       String?
+  position     String?  // Meja/Rak
+  condition    String   @default("BAIK") // BAIK, RUSAK_RINGAN, RUSAK_BERAT, TIDAK_DITEMUKAN
+  status       String   @default("AKTIF") // AKTIF, PERBAIKAN, DIPINJAM, NONAKTIF, DIHAPUS
+  quantity     Int      @default(1)
+  note         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  category Category @relation(fields: [categoryId], references: [id])
+  brand    Brand?   @relation(fields: [brandId], references: [id])
+  room     Room?    @relation(fields: [roomId], references: [id])
+
+  specs                  InventorySpec[]
+  photos                 InventoryPhoto[]
+  history                InventoryHistory[]
+  initialInventoryItems  InitialInventoryItem[]
+}
+
+model InventorySpec {
+  id          String @id @default(cuid())
+  inventoryId String
+  key         String // e.g. "Processor", "RAM", "Storage"
+  value       String
+
+  inventory Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+
+  @@unique([inventoryId, key])
+}
+
+model InventoryPhoto {
+  id          String   @id @default(cuid())
+  inventoryId String
+  url         String
+  label       String?  // "Barang", "Label", "Serial Number"
+  createdAt   DateTime @default(now())
+
+  inventory Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+}
+
+model InventoryHistory {
+  id          String   @id @default(cuid())
+  inventoryId String
+  action      String   // PENDATAAN, MASUK, KELUAR, PERBAIKAN, PEMELIHARAAN, dll
+  description String
+  userId      String?
+  createdAt   DateTime @default(now())
+
+  inventory Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+  user      User?     @relation(fields: [userId], references: [id])
+}
+
+// ─── PENDATAAN AWAL ─────────────────────────────────────────────
+model InitialInventory {
+  id          String   @id @default(cuid())
+  number      String   @unique // Nomor pendataan
+  date        DateTime
+  userId      String   // Petugas
+  roomId      String
+  status      String   @default("DRAFT") // DRAFT, SELESAI, DISAHKAN
+  approvedBy  String?
+  approvedAt  DateTime?
+  note        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user  User @relation(fields: [userId], references: [id])
+  room  Room @relation(fields: [roomId], references: [id])
+  items InitialInventoryItem[]
+}
+
+model InitialInventoryItem {
+  id                   String  @id @default(cuid())
+  initialInventoryId   String
+  inventoryId          String?
+  code                 String
+  name                 String
+  category             String?
+  brand                String?
+  type                 String?
+  serialNumber         String?
+  specification        String?
+  quantity             Int     @default(1)
+  condition            String  // BAIK, RUSAK_RINGAN, RUSAK_BERAT, TIDAK_DITEMUKAN
+  completeness         String? // Kelengkapan
+  functionStatus       String? // Berfungsi/Tidak
+  location             String?
+  checkStatus          String  @default("BELUM_DICEK") // BELUM_DICEK, SUDAH_DICEK, PERLU_PERBAIKAN, TIDAK_DITEMUKAN
+  note                 String?
+
+  initialInventory InitialInventory @relation(fields: [initialInventoryId], references: [id], onDelete: Cascade)
+  inventory        Inventory?       @relation(fields: [inventoryId], references: [id])
+}
+
+// ─── AUDIT LOG ──────────────────────────────────────────────────
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  action      String   // CREATE, UPDATE, DELETE
+  entity      String   // Nama tabel
+  entityId    String   // ID record
+  oldValue    String?  // JSON
+  newValue    String?  // JSON
+  description String?
+  createdAt   DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+}
