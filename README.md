@@ -1,66 +1,45 @@
-# LABMUMA — Sistem Informasi Manajemen Laboratorium RPL Terpadu
+# Sistem Informasi Laboratorium RPL (LABMUMA)
 
-Sistem manajemen laboratorium sekolah (SMK Muhammadiyah Majenang) modern untuk pendataan inventaris aset, penandaan QR Code, sirkulasi peminjaman, tiket servis & perbaikan teknisi, jadwal praktikum, hingga rekapitulasi laporan resmi.
+Aplikasi web manajemen laboratorium RPL SMK Muhammadiyah Majenang. Digunakan untuk pendataan inventaris PC & komponen, jadwal praktikum, peminjaman alat, serta tiket perbaikan teknisi.
 
----
+## Fitur
+- Data inventaris & spesifikasi PC (Lab 1 - 4)
+- Jadwal penggunaan lab praktikum
+- Peminjaman dan pengembalian alat
+- Laporan kerusakan & tiket perbaikan teknisi
+- Rekapitulasi laporan
 
-## 🚀 Fitur Utama
+## Tech Stack
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- Prisma ORM + PostgreSQL
+- NextAuth
 
-- **📦 Manajemen Inventaris & Spesifikasi**: Pendataan aset detail hingga level hardware (RAM, SSD, Processor, OS, Motherboard, BIOS, Posisi Rak/Meja, Kondisi).
-- **📊 Import & Migrasi Spreadsheet**: Dukungan impor data Google Sheets / Excel langsung ke database laboratorium.
-- **🔄 Sirkulasi & Peminjaman Barang**: Manajemen peminjaman alat lab oleh guru/siswa lengkap dengan deteksi tenggat waktu & pengembalian.
-- **🛠️ Kanban Servis & Perbaikan**: Manajemen laporan kerusakan dan tiket teknisi (Diagnosa, Proses, Testing, Selesai).
-- **📅 Jadwal Praktikum Multi-Lab**: Jadwal penggunaan Lab RPL 1, Lab RPL 2, Lab RPL 3, dan Lab RPL 4 dengan tampilan kalender visual & timeline.
-- **📑 Laporan & Rekapitulasi**: Cetak Berita Acara resmi PDF dengan kop surat sekolah dan export data Excel/CSV.
-- **🔐 Hak Akses Berlapis (RBAC)**: 4 Role pengguna (Administrator, Toolman/Teknisi, Kepala Laboratorium, Guru/Siswa).
+## Cara Menjalankan
 
----
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 16 (App Router) + React 19 + TypeScript
-- **Styling**: Tailwind CSS v4 + Stitch Design System
-- **Database & ORM**: PostgreSQL / Supabase + Prisma ORM
-- **Auth**: NextAuth.js (Auth.js)
-- **Icons & UI**: Lucide React + Sonner
-
----
-
-## ⚡ Memulai Project
-
-### 1. Clone Repository & Install Dependencies
+1. Install dependencies:
 ```bash
-git clone https://github.com/saifulohyr/sistem-lab.git
-cd sistem-lab
 npm install
 ```
 
-### 2. Konfigurasi Environment Variable
-Salin file `.env.example` menjadi `.env` dan sesuaikan koneksi database PostgreSQL Anda:
+2. Konfigurasi `.env`:
 ```bash
 cp .env.example .env
 ```
 
-### 3. Setup Database & Prisma
+3. Setup database & seed data:
 ```bash
-npx prisma generate
 npx prisma db push
 npm run seed
 ```
 
-### 4. Jalankan Server Development
+4. Jalankan aplikasi:
 ```bash
 npm run dev
 ```
-Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
 
----
-
-## 👥 Akun Default (Seeding)
-
-| Role | Email | Password |
-|------|-------|----------|
-| **Administrator** | `admin@labmuma.id` | `admin123` |
-| **Toolman (Teknisi)** | `toolman@labmuma.id` | `toolman123` |
-| **Kepala Lab** | `kepalalab@labmuma.id` | `kepalalab123` |
-| **Guru** | `guru@labmuma.id` | `guru123` |
+## Akun Login (Default)
+- **Admin**: `admin@labmuma.id` / `admin123`
+- **Toolman**: `toolman@labmuma.id` / `toolman123`
+- **Kepala Lab**: `kepalalab@labmuma.id` / `kepalalab123`
+- **Guru**: `guru@labmuma.id` / `guru123`
