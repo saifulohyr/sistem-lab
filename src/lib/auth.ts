@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { PrismaClient } from "@/generated/prisma";
 import { prisma } from "@/lib/db";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -45,6 +44,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.role = token.role as string;
         session.user.id = token.id as string;
       }
+      // Shortcut for session?.role access used by client pages
+      session.role = token.role as string;
       return session;
     },
   },

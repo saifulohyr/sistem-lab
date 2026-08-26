@@ -343,6 +343,13 @@ export type InventoryWhereInput = {
   photos?: Prisma.InventoryPhotoListRelationFilter
   history?: Prisma.InventoryHistoryListRelationFilter
   initialInventoryItems?: Prisma.InitialInventoryItemListRelationFilter
+  incomingGoodsItems?: Prisma.IncomingGoodsItemListRelationFilter
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemListRelationFilter
+  borrowingItems?: Prisma.BorrowingItemListRelationFilter
+  damageReports?: Prisma.DamageReportListRelationFilter
+  repairs?: Prisma.RepairListRelationFilter
+  inspectionItems?: Prisma.InspectionItemListRelationFilter
+  softwareInstallations?: Prisma.SoftwareInstallationListRelationFilter
 }
 
 export type InventoryOrderByWithRelationInput = {
@@ -372,6 +379,13 @@ export type InventoryOrderByWithRelationInput = {
   photos?: Prisma.InventoryPhotoOrderByRelationAggregateInput
   history?: Prisma.InventoryHistoryOrderByRelationAggregateInput
   initialInventoryItems?: Prisma.InitialInventoryItemOrderByRelationAggregateInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemOrderByRelationAggregateInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemOrderByRelationAggregateInput
+  borrowingItems?: Prisma.BorrowingItemOrderByRelationAggregateInput
+  damageReports?: Prisma.DamageReportOrderByRelationAggregateInput
+  repairs?: Prisma.RepairOrderByRelationAggregateInput
+  inspectionItems?: Prisma.InspectionItemOrderByRelationAggregateInput
+  softwareInstallations?: Prisma.SoftwareInstallationOrderByRelationAggregateInput
 }
 
 export type InventoryWhereUniqueInput = Prisma.AtLeast<{
@@ -404,6 +418,13 @@ export type InventoryWhereUniqueInput = Prisma.AtLeast<{
   photos?: Prisma.InventoryPhotoListRelationFilter
   history?: Prisma.InventoryHistoryListRelationFilter
   initialInventoryItems?: Prisma.InitialInventoryItemListRelationFilter
+  incomingGoodsItems?: Prisma.IncomingGoodsItemListRelationFilter
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemListRelationFilter
+  borrowingItems?: Prisma.BorrowingItemListRelationFilter
+  damageReports?: Prisma.DamageReportListRelationFilter
+  repairs?: Prisma.RepairListRelationFilter
+  inspectionItems?: Prisma.InspectionItemListRelationFilter
+  softwareInstallations?: Prisma.SoftwareInstallationListRelationFilter
 }, "id" | "code">
 
 export type InventoryOrderByWithAggregationInput = {
@@ -482,6 +503,13 @@ export type InventoryCreateInput = {
   photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryUncheckedCreateInput = {
@@ -508,6 +536,13 @@ export type InventoryUncheckedCreateInput = {
   photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryUpdateInput = {
@@ -534,6 +569,13 @@ export type InventoryUpdateInput = {
   photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateInput = {
@@ -560,6 +602,13 @@ export type InventoryUncheckedUpdateInput = {
   photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryCreateManyInput = {
@@ -907,6 +956,104 @@ export type InventoryUpdateOneRequiredWithoutHistoryNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryUpdateToOneWithWhereWithoutHistoryInput, Prisma.InventoryUpdateWithoutHistoryInput>, Prisma.InventoryUncheckedUpdateWithoutHistoryInput>
 }
 
+export type InventoryCreateNestedOneWithoutIncomingGoodsItemsInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutIncomingGoodsItemsInput, Prisma.InventoryUncheckedCreateWithoutIncomingGoodsItemsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutIncomingGoodsItemsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+}
+
+export type InventoryUpdateOneRequiredWithoutIncomingGoodsItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutIncomingGoodsItemsInput, Prisma.InventoryUncheckedCreateWithoutIncomingGoodsItemsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutIncomingGoodsItemsInput
+  upsert?: Prisma.InventoryUpsertWithoutIncomingGoodsItemsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryUpdateToOneWithWhereWithoutIncomingGoodsItemsInput, Prisma.InventoryUpdateWithoutIncomingGoodsItemsInput>, Prisma.InventoryUncheckedUpdateWithoutIncomingGoodsItemsInput>
+}
+
+export type InventoryCreateNestedOneWithoutOutgoingGoodsItemsInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutOutgoingGoodsItemsInput, Prisma.InventoryUncheckedCreateWithoutOutgoingGoodsItemsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutOutgoingGoodsItemsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+}
+
+export type InventoryUpdateOneRequiredWithoutOutgoingGoodsItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutOutgoingGoodsItemsInput, Prisma.InventoryUncheckedCreateWithoutOutgoingGoodsItemsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutOutgoingGoodsItemsInput
+  upsert?: Prisma.InventoryUpsertWithoutOutgoingGoodsItemsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryUpdateToOneWithWhereWithoutOutgoingGoodsItemsInput, Prisma.InventoryUpdateWithoutOutgoingGoodsItemsInput>, Prisma.InventoryUncheckedUpdateWithoutOutgoingGoodsItemsInput>
+}
+
+export type InventoryCreateNestedOneWithoutBorrowingItemsInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutBorrowingItemsInput, Prisma.InventoryUncheckedCreateWithoutBorrowingItemsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutBorrowingItemsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+}
+
+export type InventoryUpdateOneRequiredWithoutBorrowingItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutBorrowingItemsInput, Prisma.InventoryUncheckedCreateWithoutBorrowingItemsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutBorrowingItemsInput
+  upsert?: Prisma.InventoryUpsertWithoutBorrowingItemsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryUpdateToOneWithWhereWithoutBorrowingItemsInput, Prisma.InventoryUpdateWithoutBorrowingItemsInput>, Prisma.InventoryUncheckedUpdateWithoutBorrowingItemsInput>
+}
+
+export type InventoryCreateNestedOneWithoutDamageReportsInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutDamageReportsInput, Prisma.InventoryUncheckedCreateWithoutDamageReportsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutDamageReportsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+}
+
+export type InventoryUpdateOneRequiredWithoutDamageReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutDamageReportsInput, Prisma.InventoryUncheckedCreateWithoutDamageReportsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutDamageReportsInput
+  upsert?: Prisma.InventoryUpsertWithoutDamageReportsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryUpdateToOneWithWhereWithoutDamageReportsInput, Prisma.InventoryUpdateWithoutDamageReportsInput>, Prisma.InventoryUncheckedUpdateWithoutDamageReportsInput>
+}
+
+export type InventoryCreateNestedOneWithoutRepairsInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutRepairsInput, Prisma.InventoryUncheckedCreateWithoutRepairsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutRepairsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+}
+
+export type InventoryUpdateOneRequiredWithoutRepairsNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutRepairsInput, Prisma.InventoryUncheckedCreateWithoutRepairsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutRepairsInput
+  upsert?: Prisma.InventoryUpsertWithoutRepairsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryUpdateToOneWithWhereWithoutRepairsInput, Prisma.InventoryUpdateWithoutRepairsInput>, Prisma.InventoryUncheckedUpdateWithoutRepairsInput>
+}
+
+export type InventoryCreateNestedOneWithoutInspectionItemsInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutInspectionItemsInput, Prisma.InventoryUncheckedCreateWithoutInspectionItemsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutInspectionItemsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+}
+
+export type InventoryUpdateOneRequiredWithoutInspectionItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutInspectionItemsInput, Prisma.InventoryUncheckedCreateWithoutInspectionItemsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutInspectionItemsInput
+  upsert?: Prisma.InventoryUpsertWithoutInspectionItemsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryUpdateToOneWithWhereWithoutInspectionItemsInput, Prisma.InventoryUpdateWithoutInspectionItemsInput>, Prisma.InventoryUncheckedUpdateWithoutInspectionItemsInput>
+}
+
+export type InventoryCreateNestedOneWithoutSoftwareInstallationsInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutSoftwareInstallationsInput, Prisma.InventoryUncheckedCreateWithoutSoftwareInstallationsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutSoftwareInstallationsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+}
+
+export type InventoryUpdateOneRequiredWithoutSoftwareInstallationsNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryCreateWithoutSoftwareInstallationsInput, Prisma.InventoryUncheckedCreateWithoutSoftwareInstallationsInput>
+  connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutSoftwareInstallationsInput
+  upsert?: Prisma.InventoryUpsertWithoutSoftwareInstallationsInput
+  connect?: Prisma.InventoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryUpdateToOneWithWhereWithoutSoftwareInstallationsInput, Prisma.InventoryUpdateWithoutSoftwareInstallationsInput>, Prisma.InventoryUncheckedUpdateWithoutSoftwareInstallationsInput>
+}
+
 export type InventoryCreateNestedOneWithoutInitialInventoryItemsInput = {
   create?: Prisma.XOR<Prisma.InventoryCreateWithoutInitialInventoryItemsInput, Prisma.InventoryUncheckedCreateWithoutInitialInventoryItemsInput>
   connectOrCreate?: Prisma.InventoryCreateOrConnectWithoutInitialInventoryItemsInput
@@ -946,6 +1093,13 @@ export type InventoryCreateWithoutRoomInput = {
   photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryUncheckedCreateWithoutRoomInput = {
@@ -971,6 +1125,13 @@ export type InventoryUncheckedCreateWithoutRoomInput = {
   photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryCreateOrConnectWithoutRoomInput = {
@@ -980,6 +1141,7 @@ export type InventoryCreateOrConnectWithoutRoomInput = {
 
 export type InventoryCreateManyRoomInputEnvelope = {
   data: Prisma.InventoryCreateManyRoomInput | Prisma.InventoryCreateManyRoomInput[]
+  skipDuplicates?: boolean
 }
 
 export type InventoryUpsertWithWhereUniqueWithoutRoomInput = {
@@ -1046,6 +1208,13 @@ export type InventoryCreateWithoutCategoryInput = {
   photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryUncheckedCreateWithoutCategoryInput = {
@@ -1071,6 +1240,13 @@ export type InventoryUncheckedCreateWithoutCategoryInput = {
   photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryCreateOrConnectWithoutCategoryInput = {
@@ -1080,6 +1256,7 @@ export type InventoryCreateOrConnectWithoutCategoryInput = {
 
 export type InventoryCreateManyCategoryInputEnvelope = {
   data: Prisma.InventoryCreateManyCategoryInput | Prisma.InventoryCreateManyCategoryInput[]
+  skipDuplicates?: boolean
 }
 
 export type InventoryUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -1121,6 +1298,13 @@ export type InventoryCreateWithoutBrandInput = {
   photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryUncheckedCreateWithoutBrandInput = {
@@ -1146,6 +1330,13 @@ export type InventoryUncheckedCreateWithoutBrandInput = {
   photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryCreateOrConnectWithoutBrandInput = {
@@ -1155,6 +1346,7 @@ export type InventoryCreateOrConnectWithoutBrandInput = {
 
 export type InventoryCreateManyBrandInputEnvelope = {
   data: Prisma.InventoryCreateManyBrandInput | Prisma.InventoryCreateManyBrandInput[]
+  skipDuplicates?: boolean
 }
 
 export type InventoryUpsertWithWhereUniqueWithoutBrandInput = {
@@ -1196,6 +1388,13 @@ export type InventoryCreateWithoutSpecsInput = {
   photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryUncheckedCreateWithoutSpecsInput = {
@@ -1221,6 +1420,13 @@ export type InventoryUncheckedCreateWithoutSpecsInput = {
   photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryCreateOrConnectWithoutSpecsInput = {
@@ -1262,6 +1468,13 @@ export type InventoryUpdateWithoutSpecsInput = {
   photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateWithoutSpecsInput = {
@@ -1287,6 +1500,13 @@ export type InventoryUncheckedUpdateWithoutSpecsInput = {
   photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryCreateWithoutPhotosInput = {
@@ -1312,6 +1532,13 @@ export type InventoryCreateWithoutPhotosInput = {
   specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryUncheckedCreateWithoutPhotosInput = {
@@ -1337,6 +1564,13 @@ export type InventoryUncheckedCreateWithoutPhotosInput = {
   specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryCreateOrConnectWithoutPhotosInput = {
@@ -1378,6 +1612,13 @@ export type InventoryUpdateWithoutPhotosInput = {
   specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateWithoutPhotosInput = {
@@ -1403,6 +1644,13 @@ export type InventoryUncheckedUpdateWithoutPhotosInput = {
   specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryCreateWithoutHistoryInput = {
@@ -1428,6 +1676,13 @@ export type InventoryCreateWithoutHistoryInput = {
   specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
   photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryUncheckedCreateWithoutHistoryInput = {
@@ -1453,6 +1708,13 @@ export type InventoryUncheckedCreateWithoutHistoryInput = {
   specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
   photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryCreateOrConnectWithoutHistoryInput = {
@@ -1494,6 +1756,13 @@ export type InventoryUpdateWithoutHistoryInput = {
   specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
   photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateWithoutHistoryInput = {
@@ -1519,6 +1788,1021 @@ export type InventoryUncheckedUpdateWithoutHistoryInput = {
   specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
   photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryCreateWithoutIncomingGoodsItemsInput = {
+  id?: string
+  code: string
+  name: string
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  category: Prisma.CategoryCreateNestedOneWithoutInventoriesInput
+  brand?: Prisma.BrandCreateNestedOneWithoutInventoriesInput
+  room?: Prisma.RoomCreateNestedOneWithoutInventoriesInput
+  specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryUncheckedCreateWithoutIncomingGoodsItemsInput = {
+  id?: string
+  code: string
+  name: string
+  categoryId: string
+  brandId?: string | null
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  roomId?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryCreateOrConnectWithoutIncomingGoodsItemsInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutIncomingGoodsItemsInput, Prisma.InventoryUncheckedCreateWithoutIncomingGoodsItemsInput>
+}
+
+export type InventoryUpsertWithoutIncomingGoodsItemsInput = {
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutIncomingGoodsItemsInput, Prisma.InventoryUncheckedUpdateWithoutIncomingGoodsItemsInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutIncomingGoodsItemsInput, Prisma.InventoryUncheckedCreateWithoutIncomingGoodsItemsInput>
+  where?: Prisma.InventoryWhereInput
+}
+
+export type InventoryUpdateToOneWithWhereWithoutIncomingGoodsItemsInput = {
+  where?: Prisma.InventoryWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutIncomingGoodsItemsInput, Prisma.InventoryUncheckedUpdateWithoutIncomingGoodsItemsInput>
+}
+
+export type InventoryUpdateWithoutIncomingGoodsItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.CategoryUpdateOneRequiredWithoutInventoriesNestedInput
+  brand?: Prisma.BrandUpdateOneWithoutInventoriesNestedInput
+  room?: Prisma.RoomUpdateOneWithoutInventoriesNestedInput
+  specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutIncomingGoodsItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  brandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryCreateWithoutOutgoingGoodsItemsInput = {
+  id?: string
+  code: string
+  name: string
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  category: Prisma.CategoryCreateNestedOneWithoutInventoriesInput
+  brand?: Prisma.BrandCreateNestedOneWithoutInventoriesInput
+  room?: Prisma.RoomCreateNestedOneWithoutInventoriesInput
+  specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryUncheckedCreateWithoutOutgoingGoodsItemsInput = {
+  id?: string
+  code: string
+  name: string
+  categoryId: string
+  brandId?: string | null
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  roomId?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryCreateOrConnectWithoutOutgoingGoodsItemsInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutOutgoingGoodsItemsInput, Prisma.InventoryUncheckedCreateWithoutOutgoingGoodsItemsInput>
+}
+
+export type InventoryUpsertWithoutOutgoingGoodsItemsInput = {
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutOutgoingGoodsItemsInput, Prisma.InventoryUncheckedUpdateWithoutOutgoingGoodsItemsInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutOutgoingGoodsItemsInput, Prisma.InventoryUncheckedCreateWithoutOutgoingGoodsItemsInput>
+  where?: Prisma.InventoryWhereInput
+}
+
+export type InventoryUpdateToOneWithWhereWithoutOutgoingGoodsItemsInput = {
+  where?: Prisma.InventoryWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutOutgoingGoodsItemsInput, Prisma.InventoryUncheckedUpdateWithoutOutgoingGoodsItemsInput>
+}
+
+export type InventoryUpdateWithoutOutgoingGoodsItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.CategoryUpdateOneRequiredWithoutInventoriesNestedInput
+  brand?: Prisma.BrandUpdateOneWithoutInventoriesNestedInput
+  room?: Prisma.RoomUpdateOneWithoutInventoriesNestedInput
+  specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutOutgoingGoodsItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  brandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryCreateWithoutBorrowingItemsInput = {
+  id?: string
+  code: string
+  name: string
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  category: Prisma.CategoryCreateNestedOneWithoutInventoriesInput
+  brand?: Prisma.BrandCreateNestedOneWithoutInventoriesInput
+  room?: Prisma.RoomCreateNestedOneWithoutInventoriesInput
+  specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryUncheckedCreateWithoutBorrowingItemsInput = {
+  id?: string
+  code: string
+  name: string
+  categoryId: string
+  brandId?: string | null
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  roomId?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryCreateOrConnectWithoutBorrowingItemsInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutBorrowingItemsInput, Prisma.InventoryUncheckedCreateWithoutBorrowingItemsInput>
+}
+
+export type InventoryUpsertWithoutBorrowingItemsInput = {
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutBorrowingItemsInput, Prisma.InventoryUncheckedUpdateWithoutBorrowingItemsInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutBorrowingItemsInput, Prisma.InventoryUncheckedCreateWithoutBorrowingItemsInput>
+  where?: Prisma.InventoryWhereInput
+}
+
+export type InventoryUpdateToOneWithWhereWithoutBorrowingItemsInput = {
+  where?: Prisma.InventoryWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutBorrowingItemsInput, Prisma.InventoryUncheckedUpdateWithoutBorrowingItemsInput>
+}
+
+export type InventoryUpdateWithoutBorrowingItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.CategoryUpdateOneRequiredWithoutInventoriesNestedInput
+  brand?: Prisma.BrandUpdateOneWithoutInventoriesNestedInput
+  room?: Prisma.RoomUpdateOneWithoutInventoriesNestedInput
+  specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutBorrowingItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  brandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryCreateWithoutDamageReportsInput = {
+  id?: string
+  code: string
+  name: string
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  category: Prisma.CategoryCreateNestedOneWithoutInventoriesInput
+  brand?: Prisma.BrandCreateNestedOneWithoutInventoriesInput
+  room?: Prisma.RoomCreateNestedOneWithoutInventoriesInput
+  specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryUncheckedCreateWithoutDamageReportsInput = {
+  id?: string
+  code: string
+  name: string
+  categoryId: string
+  brandId?: string | null
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  roomId?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryCreateOrConnectWithoutDamageReportsInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutDamageReportsInput, Prisma.InventoryUncheckedCreateWithoutDamageReportsInput>
+}
+
+export type InventoryUpsertWithoutDamageReportsInput = {
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutDamageReportsInput, Prisma.InventoryUncheckedUpdateWithoutDamageReportsInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutDamageReportsInput, Prisma.InventoryUncheckedCreateWithoutDamageReportsInput>
+  where?: Prisma.InventoryWhereInput
+}
+
+export type InventoryUpdateToOneWithWhereWithoutDamageReportsInput = {
+  where?: Prisma.InventoryWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutDamageReportsInput, Prisma.InventoryUncheckedUpdateWithoutDamageReportsInput>
+}
+
+export type InventoryUpdateWithoutDamageReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.CategoryUpdateOneRequiredWithoutInventoriesNestedInput
+  brand?: Prisma.BrandUpdateOneWithoutInventoriesNestedInput
+  room?: Prisma.RoomUpdateOneWithoutInventoriesNestedInput
+  specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutDamageReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  brandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryCreateWithoutRepairsInput = {
+  id?: string
+  code: string
+  name: string
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  category: Prisma.CategoryCreateNestedOneWithoutInventoriesInput
+  brand?: Prisma.BrandCreateNestedOneWithoutInventoriesInput
+  room?: Prisma.RoomCreateNestedOneWithoutInventoriesInput
+  specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryUncheckedCreateWithoutRepairsInput = {
+  id?: string
+  code: string
+  name: string
+  categoryId: string
+  brandId?: string | null
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  roomId?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryCreateOrConnectWithoutRepairsInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutRepairsInput, Prisma.InventoryUncheckedCreateWithoutRepairsInput>
+}
+
+export type InventoryUpsertWithoutRepairsInput = {
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutRepairsInput, Prisma.InventoryUncheckedUpdateWithoutRepairsInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutRepairsInput, Prisma.InventoryUncheckedCreateWithoutRepairsInput>
+  where?: Prisma.InventoryWhereInput
+}
+
+export type InventoryUpdateToOneWithWhereWithoutRepairsInput = {
+  where?: Prisma.InventoryWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutRepairsInput, Prisma.InventoryUncheckedUpdateWithoutRepairsInput>
+}
+
+export type InventoryUpdateWithoutRepairsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.CategoryUpdateOneRequiredWithoutInventoriesNestedInput
+  brand?: Prisma.BrandUpdateOneWithoutInventoriesNestedInput
+  room?: Prisma.RoomUpdateOneWithoutInventoriesNestedInput
+  specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutRepairsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  brandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryCreateWithoutInspectionItemsInput = {
+  id?: string
+  code: string
+  name: string
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  category: Prisma.CategoryCreateNestedOneWithoutInventoriesInput
+  brand?: Prisma.BrandCreateNestedOneWithoutInventoriesInput
+  room?: Prisma.RoomCreateNestedOneWithoutInventoriesInput
+  specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryUncheckedCreateWithoutInspectionItemsInput = {
+  id?: string
+  code: string
+  name: string
+  categoryId: string
+  brandId?: string | null
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  roomId?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryCreateOrConnectWithoutInspectionItemsInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutInspectionItemsInput, Prisma.InventoryUncheckedCreateWithoutInspectionItemsInput>
+}
+
+export type InventoryUpsertWithoutInspectionItemsInput = {
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutInspectionItemsInput, Prisma.InventoryUncheckedUpdateWithoutInspectionItemsInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutInspectionItemsInput, Prisma.InventoryUncheckedCreateWithoutInspectionItemsInput>
+  where?: Prisma.InventoryWhereInput
+}
+
+export type InventoryUpdateToOneWithWhereWithoutInspectionItemsInput = {
+  where?: Prisma.InventoryWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutInspectionItemsInput, Prisma.InventoryUncheckedUpdateWithoutInspectionItemsInput>
+}
+
+export type InventoryUpdateWithoutInspectionItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.CategoryUpdateOneRequiredWithoutInventoriesNestedInput
+  brand?: Prisma.BrandUpdateOneWithoutInventoriesNestedInput
+  room?: Prisma.RoomUpdateOneWithoutInventoriesNestedInput
+  specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutInspectionItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  brandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryCreateWithoutSoftwareInstallationsInput = {
+  id?: string
+  code: string
+  name: string
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  category: Prisma.CategoryCreateNestedOneWithoutInventoriesInput
+  brand?: Prisma.BrandCreateNestedOneWithoutInventoriesInput
+  room?: Prisma.RoomCreateNestedOneWithoutInventoriesInput
+  specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryUncheckedCreateWithoutSoftwareInstallationsInput = {
+  id?: string
+  code: string
+  name: string
+  categoryId: string
+  brandId?: string | null
+  type?: string | null
+  serialNumber?: string | null
+  year?: number | null
+  source?: string | null
+  price?: number | null
+  documentNo?: string | null
+  roomId?: string | null
+  position?: string | null
+  condition?: string
+  status?: string
+  quantity?: number
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
+  photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
+  history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+}
+
+export type InventoryCreateOrConnectWithoutSoftwareInstallationsInput = {
+  where: Prisma.InventoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutSoftwareInstallationsInput, Prisma.InventoryUncheckedCreateWithoutSoftwareInstallationsInput>
+}
+
+export type InventoryUpsertWithoutSoftwareInstallationsInput = {
+  update: Prisma.XOR<Prisma.InventoryUpdateWithoutSoftwareInstallationsInput, Prisma.InventoryUncheckedUpdateWithoutSoftwareInstallationsInput>
+  create: Prisma.XOR<Prisma.InventoryCreateWithoutSoftwareInstallationsInput, Prisma.InventoryUncheckedCreateWithoutSoftwareInstallationsInput>
+  where?: Prisma.InventoryWhereInput
+}
+
+export type InventoryUpdateToOneWithWhereWithoutSoftwareInstallationsInput = {
+  where?: Prisma.InventoryWhereInput
+  data: Prisma.XOR<Prisma.InventoryUpdateWithoutSoftwareInstallationsInput, Prisma.InventoryUncheckedUpdateWithoutSoftwareInstallationsInput>
+}
+
+export type InventoryUpdateWithoutSoftwareInstallationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  category?: Prisma.CategoryUpdateOneRequiredWithoutInventoriesNestedInput
+  brand?: Prisma.BrandUpdateOneWithoutInventoriesNestedInput
+  room?: Prisma.RoomUpdateOneWithoutInventoriesNestedInput
+  specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+}
+
+export type InventoryUncheckedUpdateWithoutSoftwareInstallationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string
+  brandId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  serialNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  documentNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  position?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  condition?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
+  photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
+  history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
+  initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryCreateWithoutInitialInventoryItemsInput = {
@@ -1544,6 +2828,13 @@ export type InventoryCreateWithoutInitialInventoryItemsInput = {
   specs?: Prisma.InventorySpecCreateNestedManyWithoutInventoryInput
   photos?: Prisma.InventoryPhotoCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryUncheckedCreateWithoutInitialInventoryItemsInput = {
@@ -1569,6 +2860,13 @@ export type InventoryUncheckedCreateWithoutInitialInventoryItemsInput = {
   specs?: Prisma.InventorySpecUncheckedCreateNestedManyWithoutInventoryInput
   photos?: Prisma.InventoryPhotoUncheckedCreateNestedManyWithoutInventoryInput
   history?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutInventoryInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedCreateNestedManyWithoutInventoryInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedCreateNestedManyWithoutInventoryInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutInventoryInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutInventoryInput
+  inspectionItems?: Prisma.InspectionItemUncheckedCreateNestedManyWithoutInventoryInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedCreateNestedManyWithoutInventoryInput
 }
 
 export type InventoryCreateOrConnectWithoutInitialInventoryItemsInput = {
@@ -1610,6 +2908,13 @@ export type InventoryUpdateWithoutInitialInventoryItemsInput = {
   specs?: Prisma.InventorySpecUpdateManyWithoutInventoryNestedInput
   photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateWithoutInitialInventoryItemsInput = {
@@ -1635,6 +2940,13 @@ export type InventoryUncheckedUpdateWithoutInitialInventoryItemsInput = {
   specs?: Prisma.InventorySpecUncheckedUpdateManyWithoutInventoryNestedInput
   photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryCreateManyRoomInput = {
@@ -1681,6 +2993,13 @@ export type InventoryUpdateWithoutRoomInput = {
   photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateWithoutRoomInput = {
@@ -1706,6 +3025,13 @@ export type InventoryUncheckedUpdateWithoutRoomInput = {
   photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateManyWithoutRoomInput = {
@@ -1773,6 +3099,13 @@ export type InventoryUpdateWithoutCategoryInput = {
   photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateWithoutCategoryInput = {
@@ -1798,6 +3131,13 @@ export type InventoryUncheckedUpdateWithoutCategoryInput = {
   photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateManyWithoutCategoryInput = {
@@ -1865,6 +3205,13 @@ export type InventoryUpdateWithoutBrandInput = {
   photos?: Prisma.InventoryPhotoUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateWithoutBrandInput = {
@@ -1890,6 +3237,13 @@ export type InventoryUncheckedUpdateWithoutBrandInput = {
   photos?: Prisma.InventoryPhotoUncheckedUpdateManyWithoutInventoryNestedInput
   history?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutInventoryNestedInput
   initialInventoryItems?: Prisma.InitialInventoryItemUncheckedUpdateManyWithoutInventoryNestedInput
+  incomingGoodsItems?: Prisma.IncomingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  outgoingGoodsItems?: Prisma.OutgoingGoodsItemUncheckedUpdateManyWithoutInventoryNestedInput
+  borrowingItems?: Prisma.BorrowingItemUncheckedUpdateManyWithoutInventoryNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutInventoryNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutInventoryNestedInput
+  inspectionItems?: Prisma.InspectionItemUncheckedUpdateManyWithoutInventoryNestedInput
+  softwareInstallations?: Prisma.SoftwareInstallationUncheckedUpdateManyWithoutInventoryNestedInput
 }
 
 export type InventoryUncheckedUpdateManyWithoutBrandInput = {
@@ -1923,6 +3277,13 @@ export type InventoryCountOutputType = {
   photos: number
   history: number
   initialInventoryItems: number
+  incomingGoodsItems: number
+  outgoingGoodsItems: number
+  borrowingItems: number
+  damageReports: number
+  repairs: number
+  inspectionItems: number
+  softwareInstallations: number
 }
 
 export type InventoryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1930,6 +3291,13 @@ export type InventoryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   photos?: boolean | InventoryCountOutputTypeCountPhotosArgs
   history?: boolean | InventoryCountOutputTypeCountHistoryArgs
   initialInventoryItems?: boolean | InventoryCountOutputTypeCountInitialInventoryItemsArgs
+  incomingGoodsItems?: boolean | InventoryCountOutputTypeCountIncomingGoodsItemsArgs
+  outgoingGoodsItems?: boolean | InventoryCountOutputTypeCountOutgoingGoodsItemsArgs
+  borrowingItems?: boolean | InventoryCountOutputTypeCountBorrowingItemsArgs
+  damageReports?: boolean | InventoryCountOutputTypeCountDamageReportsArgs
+  repairs?: boolean | InventoryCountOutputTypeCountRepairsArgs
+  inspectionItems?: boolean | InventoryCountOutputTypeCountInspectionItemsArgs
+  softwareInstallations?: boolean | InventoryCountOutputTypeCountSoftwareInstallationsArgs
 }
 
 /**
@@ -1970,6 +3338,55 @@ export type InventoryCountOutputTypeCountInitialInventoryItemsArgs<ExtArgs exten
   where?: Prisma.InitialInventoryItemWhereInput
 }
 
+/**
+ * InventoryCountOutputType without action
+ */
+export type InventoryCountOutputTypeCountIncomingGoodsItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IncomingGoodsItemWhereInput
+}
+
+/**
+ * InventoryCountOutputType without action
+ */
+export type InventoryCountOutputTypeCountOutgoingGoodsItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OutgoingGoodsItemWhereInput
+}
+
+/**
+ * InventoryCountOutputType without action
+ */
+export type InventoryCountOutputTypeCountBorrowingItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BorrowingItemWhereInput
+}
+
+/**
+ * InventoryCountOutputType without action
+ */
+export type InventoryCountOutputTypeCountDamageReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DamageReportWhereInput
+}
+
+/**
+ * InventoryCountOutputType without action
+ */
+export type InventoryCountOutputTypeCountRepairsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RepairWhereInput
+}
+
+/**
+ * InventoryCountOutputType without action
+ */
+export type InventoryCountOutputTypeCountInspectionItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InspectionItemWhereInput
+}
+
+/**
+ * InventoryCountOutputType without action
+ */
+export type InventoryCountOutputTypeCountSoftwareInstallationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SoftwareInstallationWhereInput
+}
+
 
 export type InventorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1998,6 +3415,13 @@ export type InventorySelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   photos?: boolean | Prisma.Inventory$photosArgs<ExtArgs>
   history?: boolean | Prisma.Inventory$historyArgs<ExtArgs>
   initialInventoryItems?: boolean | Prisma.Inventory$initialInventoryItemsArgs<ExtArgs>
+  incomingGoodsItems?: boolean | Prisma.Inventory$incomingGoodsItemsArgs<ExtArgs>
+  outgoingGoodsItems?: boolean | Prisma.Inventory$outgoingGoodsItemsArgs<ExtArgs>
+  borrowingItems?: boolean | Prisma.Inventory$borrowingItemsArgs<ExtArgs>
+  damageReports?: boolean | Prisma.Inventory$damageReportsArgs<ExtArgs>
+  repairs?: boolean | Prisma.Inventory$repairsArgs<ExtArgs>
+  inspectionItems?: boolean | Prisma.Inventory$inspectionItemsArgs<ExtArgs>
+  softwareInstallations?: boolean | Prisma.Inventory$softwareInstallationsArgs<ExtArgs>
   _count?: boolean | Prisma.InventoryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["inventory"]>
 
@@ -2082,6 +3506,13 @@ export type InventoryInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   photos?: boolean | Prisma.Inventory$photosArgs<ExtArgs>
   history?: boolean | Prisma.Inventory$historyArgs<ExtArgs>
   initialInventoryItems?: boolean | Prisma.Inventory$initialInventoryItemsArgs<ExtArgs>
+  incomingGoodsItems?: boolean | Prisma.Inventory$incomingGoodsItemsArgs<ExtArgs>
+  outgoingGoodsItems?: boolean | Prisma.Inventory$outgoingGoodsItemsArgs<ExtArgs>
+  borrowingItems?: boolean | Prisma.Inventory$borrowingItemsArgs<ExtArgs>
+  damageReports?: boolean | Prisma.Inventory$damageReportsArgs<ExtArgs>
+  repairs?: boolean | Prisma.Inventory$repairsArgs<ExtArgs>
+  inspectionItems?: boolean | Prisma.Inventory$inspectionItemsArgs<ExtArgs>
+  softwareInstallations?: boolean | Prisma.Inventory$softwareInstallationsArgs<ExtArgs>
   _count?: boolean | Prisma.InventoryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type InventoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2105,6 +3536,13 @@ export type $InventoryPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     photos: Prisma.$InventoryPhotoPayload<ExtArgs>[]
     history: Prisma.$InventoryHistoryPayload<ExtArgs>[]
     initialInventoryItems: Prisma.$InitialInventoryItemPayload<ExtArgs>[]
+    incomingGoodsItems: Prisma.$IncomingGoodsItemPayload<ExtArgs>[]
+    outgoingGoodsItems: Prisma.$OutgoingGoodsItemPayload<ExtArgs>[]
+    borrowingItems: Prisma.$BorrowingItemPayload<ExtArgs>[]
+    damageReports: Prisma.$DamageReportPayload<ExtArgs>[]
+    repairs: Prisma.$RepairPayload<ExtArgs>[]
+    inspectionItems: Prisma.$InspectionItemPayload<ExtArgs>[]
+    softwareInstallations: Prisma.$SoftwareInstallationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2527,6 +3965,13 @@ export interface Prisma__InventoryClient<T, Null = never, ExtArgs extends runtim
   photos<T extends Prisma.Inventory$photosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$photosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryPhotoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   history<T extends Prisma.Inventory$historyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$historyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   initialInventoryItems<T extends Prisma.Inventory$initialInventoryItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$initialInventoryItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InitialInventoryItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  incomingGoodsItems<T extends Prisma.Inventory$incomingGoodsItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$incomingGoodsItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IncomingGoodsItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  outgoingGoodsItems<T extends Prisma.Inventory$outgoingGoodsItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$outgoingGoodsItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OutgoingGoodsItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  borrowingItems<T extends Prisma.Inventory$borrowingItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$borrowingItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BorrowingItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  damageReports<T extends Prisma.Inventory$damageReportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$damageReportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  repairs<T extends Prisma.Inventory$repairsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$repairsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RepairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  inspectionItems<T extends Prisma.Inventory$inspectionItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$inspectionItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InspectionItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  softwareInstallations<T extends Prisma.Inventory$softwareInstallationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Inventory$softwareInstallationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SoftwareInstallationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2809,6 +4254,7 @@ export type InventoryCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * The data used to create many Inventories.
    */
   data: Prisma.InventoryCreateManyInput | Prisma.InventoryCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -2827,6 +4273,7 @@ export type InventoryCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * The data used to create many Inventories.
    */
   data: Prisma.InventoryCreateManyInput | Prisma.InventoryCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
@@ -3105,6 +4552,174 @@ export type Inventory$initialInventoryItemsArgs<ExtArgs extends runtime.Types.Ex
   take?: number
   skip?: number
   distinct?: Prisma.InitialInventoryItemScalarFieldEnum | Prisma.InitialInventoryItemScalarFieldEnum[]
+}
+
+/**
+ * Inventory.incomingGoodsItems
+ */
+export type Inventory$incomingGoodsItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the IncomingGoodsItem
+   */
+  select?: Prisma.IncomingGoodsItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the IncomingGoodsItem
+   */
+  omit?: Prisma.IncomingGoodsItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IncomingGoodsItemInclude<ExtArgs> | null
+  where?: Prisma.IncomingGoodsItemWhereInput
+  orderBy?: Prisma.IncomingGoodsItemOrderByWithRelationInput | Prisma.IncomingGoodsItemOrderByWithRelationInput[]
+  cursor?: Prisma.IncomingGoodsItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IncomingGoodsItemScalarFieldEnum | Prisma.IncomingGoodsItemScalarFieldEnum[]
+}
+
+/**
+ * Inventory.outgoingGoodsItems
+ */
+export type Inventory$outgoingGoodsItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OutgoingGoodsItem
+   */
+  select?: Prisma.OutgoingGoodsItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OutgoingGoodsItem
+   */
+  omit?: Prisma.OutgoingGoodsItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OutgoingGoodsItemInclude<ExtArgs> | null
+  where?: Prisma.OutgoingGoodsItemWhereInput
+  orderBy?: Prisma.OutgoingGoodsItemOrderByWithRelationInput | Prisma.OutgoingGoodsItemOrderByWithRelationInput[]
+  cursor?: Prisma.OutgoingGoodsItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OutgoingGoodsItemScalarFieldEnum | Prisma.OutgoingGoodsItemScalarFieldEnum[]
+}
+
+/**
+ * Inventory.borrowingItems
+ */
+export type Inventory$borrowingItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BorrowingItem
+   */
+  select?: Prisma.BorrowingItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BorrowingItem
+   */
+  omit?: Prisma.BorrowingItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BorrowingItemInclude<ExtArgs> | null
+  where?: Prisma.BorrowingItemWhereInput
+  orderBy?: Prisma.BorrowingItemOrderByWithRelationInput | Prisma.BorrowingItemOrderByWithRelationInput[]
+  cursor?: Prisma.BorrowingItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BorrowingItemScalarFieldEnum | Prisma.BorrowingItemScalarFieldEnum[]
+}
+
+/**
+ * Inventory.damageReports
+ */
+export type Inventory$damageReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DamageReport
+   */
+  select?: Prisma.DamageReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DamageReport
+   */
+  omit?: Prisma.DamageReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DamageReportInclude<ExtArgs> | null
+  where?: Prisma.DamageReportWhereInput
+  orderBy?: Prisma.DamageReportOrderByWithRelationInput | Prisma.DamageReportOrderByWithRelationInput[]
+  cursor?: Prisma.DamageReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DamageReportScalarFieldEnum | Prisma.DamageReportScalarFieldEnum[]
+}
+
+/**
+ * Inventory.repairs
+ */
+export type Inventory$repairsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Repair
+   */
+  select?: Prisma.RepairSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Repair
+   */
+  omit?: Prisma.RepairOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RepairInclude<ExtArgs> | null
+  where?: Prisma.RepairWhereInput
+  orderBy?: Prisma.RepairOrderByWithRelationInput | Prisma.RepairOrderByWithRelationInput[]
+  cursor?: Prisma.RepairWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RepairScalarFieldEnum | Prisma.RepairScalarFieldEnum[]
+}
+
+/**
+ * Inventory.inspectionItems
+ */
+export type Inventory$inspectionItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InspectionItem
+   */
+  select?: Prisma.InspectionItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InspectionItem
+   */
+  omit?: Prisma.InspectionItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InspectionItemInclude<ExtArgs> | null
+  where?: Prisma.InspectionItemWhereInput
+  orderBy?: Prisma.InspectionItemOrderByWithRelationInput | Prisma.InspectionItemOrderByWithRelationInput[]
+  cursor?: Prisma.InspectionItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InspectionItemScalarFieldEnum | Prisma.InspectionItemScalarFieldEnum[]
+}
+
+/**
+ * Inventory.softwareInstallations
+ */
+export type Inventory$softwareInstallationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SoftwareInstallation
+   */
+  select?: Prisma.SoftwareInstallationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SoftwareInstallation
+   */
+  omit?: Prisma.SoftwareInstallationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SoftwareInstallationInclude<ExtArgs> | null
+  where?: Prisma.SoftwareInstallationWhereInput
+  orderBy?: Prisma.SoftwareInstallationOrderByWithRelationInput | Prisma.SoftwareInstallationOrderByWithRelationInput[]
+  cursor?: Prisma.SoftwareInstallationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SoftwareInstallationScalarFieldEnum | Prisma.SoftwareInstallationScalarFieldEnum[]
 }
 
 /**

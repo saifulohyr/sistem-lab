@@ -1126,6 +1126,7 @@ export type LocationCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * The data used to create many Locations.
    */
   data: Prisma.LocationCreateManyInput | Prisma.LocationCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1144,6 +1145,7 @@ export type LocationCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * The data used to create many Locations.
    */
   data: Prisma.LocationCreateManyInput | Prisma.LocationCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

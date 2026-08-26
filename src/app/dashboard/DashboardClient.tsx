@@ -1,27 +1,22 @@
 "use client";
 
+import Link from "next/link";
 import {
   Package,
-  CheckCircle2,
+  Wrench,
+  PackagePlus,
+  PackageMinus,
+  Calendar,
   AlertTriangle,
-  XCircle,
-  HelpCircle,
-  Clock,
+  QrCode,
+  ArrowRight,
   TrendingUp,
+  ArrowUpRight,
+  ShieldCheck,
+  History,
+  Building2,
+  Tag,
 } from "lucide-react";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
 
 interface DashboardProps {
   stats: {
@@ -30,9 +25,24 @@ interface DashboardProps {
     rusakRingan: number;
     rusakBerat: number;
     tidakDitemukan: number;
+    activeRepairs: number;
+    outgoingCount: number;
+    scheduleCount: number;
+    repairWaiting: number;
+    repairInProgress: number;
+    repairCompleted: number;
   };
   categoryData: { name: string; count: number }[];
   roomData: { name: string; count: number }[];
+  schedules: {
+    id: string;
+    subject: string;
+    teacher: string;
+    className: string;
+    startTime: string;
+    endTime: string;
+    roomName: string;
+  }[];
   recentHistory: {
     id: string;
     action: string;
@@ -45,289 +55,342 @@ interface DashboardProps {
   userName: string;
 }
 
-const CONDITION_COLORS = ["#10b981", "#f59e0b", "#ef4444", "#94a3b8"];
-const CHART_COLORS = ["#3b82f6", "#8b5cf6", "#06b6d4", "#f59e0b", "#ef4444", "#10b981", "#ec4899", "#6366f1", "#14b8a6", "#f97316", "#84cc16", "#a855f7"];
-
-function getActionIcon(action: string) {
-  switch (action) {
-    case "PENDATAAN": return "📋";
-    case "MASUK": return "📦";
-    case "KELUAR": return "📤";
-    case "PERBAIKAN": return "🔧";
-    case "PEMELIHARAAN": return "🛠️";
-    default: return "📝";
-  }
-}
-
-function formatTimeAgo(dateStr: string) {
-  const date = new Date(dateStr);
+function timeAgo(dateStr: string) {
   const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffMins = Math.floor(diffMs / 60000);
-  const diffHours = Math.floor(diffMs / 3600000);
-  const diffDays = Math.floor(diffMs / 86400000);
-
-  if (diffMins < 1) return "Baru saja";
-  if (diffMins < 60) return `${diffMins} menit lalu`;
-  if (diffHours < 24) return `${diffHours} jam lalu`;
-  if (diffDays < 7) return `${diffDays} hari lalu`;
-  return date.toLocaleDateString("id-ID", { day: "2-digit", month: "short", year: "numeric" });
+  const date = new Date(dateStr);
+  const diffSec = Math.floor((now.getTime() - date.getTime()) / 1000);
+  if (diffSec < 60) return "Baru saja";
+  const diffMin = Math.floor(diffSec / 60);
+  if (diffMin < 60) return `${diffMin} menit lalu`;
+  const diffHour = Math.floor(diffMin / 60);
+  if (diffHour < 24) return `${diffHour} jam lalu`;
+  const diffDay = Math.floor(diffHour / 24);
+  return `${diffDay} hari lalu`;
 }
 
 export default function DashboardClient({
   stats,
   categoryData,
   roomData,
+  schedules,
   recentHistory,
   userName,
 }: DashboardProps) {
-  const conditionData = [
-    { name: "Baik", value: stats.baik, color: "#10b981" },
-    { name: "Rusak Ringan", value: stats.rusakRingan, color: "#f59e0b" },
-    { name: "Rusak Berat", value: stats.rusakBerat, color: "#ef4444" },
-    { name: "Tidak Ditemukan", value: stats.tidakDitemukan, color: "#94a3b8" },
-  ].filter((d) => d.value > 0);
+  const totalTickets = (stats.repairWaiting + stats.repairInProgress + stats.repairCompleted) || 1;
+  const waitingPct = Math.round((stats.repairWaiting / totalTickets) * 100);
+  const inProgressPct = Math.round((stats.repairInProgress / totalTickets) * 100);
 
-  const cards = [
-    { label: "Total Inventaris", value: stats.total, icon: Package, color: "from-blue-500 to-blue-600", bgLight: "bg-blue-50", textColor: "text-blue-600" },
-    { label: "Kondisi Baik", value: stats.baik, icon: CheckCircle2, color: "from-emerald-500 to-emerald-600", bgLight: "bg-emerald-50", textColor: "text-emerald-600" },
-    { label: "Rusak Ringan", value: stats.rusakRingan, icon: AlertTriangle, color: "from-amber-500 to-amber-600", bgLight: "bg-amber-50", textColor: "text-amber-600" },
-    { label: "Rusak Berat", value: stats.rusakBerat, icon: XCircle, color: "from-red-500 to-red-600", bgLight: "bg-red-50", textColor: "text-red-600" },
-    { label: "Tidak Ditemukan", value: stats.tidakDitemukan, icon: HelpCircle, color: "from-slate-500 to-slate-600", bgLight: "bg-slate-50", textColor: "text-slate-600" },
-  ];
-
-  // Greeting based on time
-  const hour = new Date().getHours();
-  const greeting = hour < 12 ? "Selamat Pagi" : hour < 17 ? "Selamat Siang" : "Selamat Malam";
+  const todayFormatted = new Intl.DateTimeFormat("id-ID", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(new Date());
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="animate-fade-in">
-        <h1 className="text-2xl font-bold text-foreground">{greeting}, {userName}! 👋</h1>
-        <p className="text-muted-foreground mt-1">Berikut ringkasan kondisi laboratorium hari ini.</p>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {cards.map((card, i) => (
-          <div
-            key={card.label}
-            className={`animate-fade-in stagger-${i + 1} bg-card border border-border rounded-2xl p-5 hover:shadow-lg hover:border-primary/20 transition-all duration-300 group`}
+    <div className="flex flex-col w-full gap-6 animate-fade-in pb-10">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-black text-[#131b2e] tracking-tight">
+            Ringkasan Laboratorium
+          </h1>
+          <p className="text-xs sm:text-sm text-[#505f76] mt-1">
+            Selamat datang, <span className="font-semibold text-[#131b2e]">{userName}</span>. Pantau status inventaris, aktivitas, dan pemeliharaan hari ini.
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 w-full md:w-auto">
+          <Link
+            href="/dashboard/inventaris/qrcode"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-3.5 py-2.5 bg-white hover:bg-[#f2f3ff] text-[#131b2e] text-xs sm:text-sm font-semibold rounded-lg border border-[#eaedff] shadow-sm transition-all group"
           >
-            <div className="flex items-start justify-between mb-3">
-              <div className={`w-10 h-10 rounded-xl ${card.bgLight} flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                <card.icon className={`w-5 h-5 ${card.textColor}`} />
-              </div>
-              <TrendingUp className="w-4 h-4 text-muted-foreground/30" />
-            </div>
-            <p className="text-3xl font-bold text-foreground">{card.value}</p>
-            <p className="text-xs text-muted-foreground mt-1">{card.label}</p>
-          </div>
-        ))}
+            <QrCode className="w-4 h-4 text-[#0058be] group-hover:scale-110 transition-transform" />
+            Cetak QR Code
+          </Link>
+          <Link
+            href="/dashboard/inventaris/tambah"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-3.5 py-2.5 bg-white hover:bg-[#f2f3ff] text-[#131b2e] text-xs sm:text-sm font-semibold rounded-lg border border-[#eaedff] shadow-sm transition-all group"
+          >
+            <PackagePlus className="w-4 h-4 text-[#0058be] group-hover:scale-110 transition-transform" />
+            Input Barang
+          </Link>
+          <Link
+            href="/dashboard/perbaikan/tiket-baru"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#0058be] hover:bg-[#2170e4] text-white text-xs sm:text-sm font-semibold rounded-lg shadow-sm hover:shadow transition-all group"
+          >
+            <Wrench className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            Buat Tiket
+          </Link>
+        </div>
       </div>
 
-      {/* Charts Row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div className="bg-white rounded-xl p-5 sm:p-6 border border-[#eaedff] shadow-[0_1px_3px_rgba(0,0,0,0.02)] relative overflow-hidden group hover:shadow-md transition-all">
+          <div className="absolute -right-6 -top-6 w-28 h-28 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors" />
+          <div className="flex justify-between items-start mb-4 relative z-10">
+            <div className="w-10 h-10 rounded-full bg-[#0058be]/10 flex items-center justify-center text-[#0058be]">
+              <Package className="w-5 h-5" />
+            </div>
+            <div className="flex items-center gap-1 bg-[#f2f3ff] text-[#0058be] px-2.5 py-0.5 rounded-full text-xs font-semibold">
+              <TrendingUp className="w-3.5 h-3.5" />
+              <span>Total</span>
+            </div>
+          </div>
+          <div className="relative z-10">
+            <h3 className="text-3xl font-black text-[#131b2e] mb-1 font-mono tracking-tight">{stats.total}</h3>
+            <p className="text-[11px] font-bold text-[#505f76] uppercase tracking-wider">Total Inventaris</p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-xl p-5 sm:p-6 border border-[#eaedff] shadow-[0_1px_3px_rgba(0,0,0,0.02)] relative overflow-hidden group hover:shadow-md transition-all">
+          <div className="absolute -right-6 -top-6 w-28 h-28 bg-red-500/5 rounded-full blur-2xl group-hover:bg-red-500/10 transition-colors" />
+          <div className="flex justify-between items-start mb-4 relative z-10">
+            <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600">
+              <Wrench className="w-5 h-5" />
+            </div>
+            <div className="flex items-center gap-1 bg-red-50 text-red-600 px-2.5 py-0.5 rounded-full text-xs font-semibold border border-red-100">
+              <AlertTriangle className="w-3 h-3" />
+              <span>{stats.activeRepairs} Aktif</span>
+            </div>
+          </div>
+          <div className="relative z-10">
+            <h3 className="text-3xl font-black text-[#131b2e] mb-1 font-mono tracking-tight">{stats.activeRepairs}</h3>
+            <p className="text-[11px] font-bold text-[#505f76] uppercase tracking-wider">Tiket Perbaikan Aktif</p>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-xl p-5 sm:p-6 border border-[#eaedff] shadow-[0_1px_3px_rgba(0,0,0,0.02)] relative overflow-hidden group hover:shadow-md transition-all">
+          <div className="absolute -right-6 -top-6 w-28 h-28 bg-indigo-500/5 rounded-full blur-2xl group-hover:bg-indigo-500/10 transition-colors" />
+          <div className="flex justify-between items-start mb-4 relative z-10">
+            <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
+              <PackageMinus className="w-5 h-5" />
+            </div>
+            <div className="flex items-center gap-1 bg-[#f2f3ff] text-[#0058be] px-2.5 py-0.5 rounded-full text-xs font-semibold">
+              <ArrowUpRight className="w-3.5 h-3.5" />
+              <span>Keluar</span>
+            </div>
+          </div>
+          <div className="relative z-10">
+            <h3 className="text-3xl font-black text-[#131b2e] mb-1 font-mono tracking-tight">{stats.outgoingCount}</h3>
+            <p className="text-[11px] font-bold text-[#505f76] uppercase tracking-wider">Barang Keluar (Bulan Ini)</p>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-[#0058be] to-[#2170e4] text-white rounded-xl p-5 sm:p-6 shadow-md relative overflow-hidden group hover:shadow-lg transition-all">
+          <svg className="absolute -right-6 -bottom-6 w-36 h-36 text-white/10 group-hover:scale-110 transition-transform duration-700 ease-out animate-[spin_12s_linear_infinite]" fill="currentColor" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" fill="none" r="38" stroke="currentColor" strokeDasharray="4 4" strokeWidth="2" />
+            <circle cx="50" cy="50" fill="none" opacity="0.4" r="22" stroke="currentColor" strokeWidth="8" />
+          </svg>
+          <div className="flex justify-between items-start mb-4 relative z-10">
+            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-md text-white">
+              <Calendar className="w-5 h-5" />
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-0.5 rounded-full text-white/90">
+              Hari Ini
+            </span>
+          </div>
+          <div className="relative z-10">
+            <h3 className="text-3xl font-black text-white mb-1 font-mono tracking-tight">{stats.scheduleCount}</h3>
+            <p className="text-[11px] font-bold text-blue-100 uppercase tracking-wider">Sesi Penggunaan Lab</p>
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Condition Pie Chart */}
-        <div className="bg-card border border-border rounded-2xl p-6 animate-fade-in stagger-6">
-          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-blue-500" />
-            Kondisi Inventaris
-          </h3>
-          {conditionData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={240}>
-              <PieChart>
-                <Pie
-                  data={conditionData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={55}
-                  outerRadius={85}
-                  paddingAngle={4}
-                  dataKey="value"
-                  stroke="none"
-                >
-                  {conditionData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{
-                    background: "var(--card)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "12px",
-                    fontSize: "13px",
-                    boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)",
-                  }}
-                />
-                <Legend
-                  iconType="circle"
-                  iconSize={8}
-                  wrapperStyle={{ fontSize: "12px" }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="h-[240px] flex items-center justify-center text-muted-foreground text-sm">
-              Belum ada data
+        <div className="lg:col-span-2 flex flex-col gap-6">
+          <div className="bg-white rounded-xl p-5 sm:p-6 border border-[#eaedff] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-base sm:text-lg font-bold text-[#131b2e] flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-[#0058be]" />
+                Status Pemeliharaan & Tiket
+              </h2>
+              <Link href="/dashboard/perbaikan" className="text-xs font-bold text-[#0058be] hover:underline flex items-center gap-1">
+                Lihat Semua Tiket <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
-          )}
+
+            <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
+              <div className="relative w-36 h-36 sm:w-40 sm:h-40 shrink-0">
+                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                  <path
+                    className="text-[#eaedff]"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeDasharray="100, 100"
+                    strokeWidth="3.5"
+                  />
+                  <path
+                    className="text-[#0058be]"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeDasharray={`${waitingPct}, 100`}
+                    strokeWidth="3.5"
+                  />
+                  <path
+                    className="text-red-500"
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeDasharray={`${inProgressPct}, 100`}
+                    strokeDashoffset={`-${waitingPct}`}
+                    strokeWidth="3.5"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                  <span className="text-2xl font-black text-[#131b2e] leading-none">
+                    {stats.repairWaiting + stats.repairInProgress + stats.repairCompleted}
+                  </span>
+                  <span className="text-[10px] font-semibold text-[#505f76] uppercase tracking-wider mt-0.5">Total Tiket</span>
+                </div>
+              </div>
+
+              <div className="flex-1 w-full space-y-2.5">
+                <div className="flex justify-between items-center bg-[#f2f3ff] px-4 py-2.5 rounded-lg border-l-4 border-[#0058be]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#0058be]" />
+                    <span className="text-xs sm:text-sm font-medium text-[#131b2e]">Menunggu Penanganan</span>
+                  </div>
+                  <span className="text-sm font-bold text-[#131b2e] font-mono">{stats.repairWaiting}</span>
+                </div>
+
+                <div className="flex justify-between items-center bg-[#f2f3ff] px-4 py-2.5 rounded-lg border-l-4 border-red-500">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                    <span className="text-xs sm:text-sm font-medium text-[#131b2e]">Sedang Dikerjakan</span>
+                  </div>
+                  <span className="text-sm font-bold text-[#131b2e] font-mono">{stats.repairInProgress}</span>
+                </div>
+
+                <div className="flex justify-between items-center bg-[#f2f3ff] px-4 py-2.5 rounded-lg border-l-4 border-emerald-500">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                    <span className="text-xs sm:text-sm font-medium text-[#131b2e]">Selesai Diperbaiki</span>
+                  </div>
+                  <span className="text-sm font-bold text-[#131b2e] font-mono">{stats.repairCompleted}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl p-5 sm:p-6 border border-[#eaedff] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-base sm:text-lg font-bold text-[#131b2e] flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-[#0058be]" />
+                Jadwal Laboratorium
+              </h2>
+              <div className="text-xs font-bold bg-[#f2f3ff] text-[#0058be] px-3 py-1 rounded-full border border-[#eaedff]">
+                {todayFormatted}
+              </div>
+            </div>
+
+            {schedules.length > 0 ? (
+              <div className="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#eaedff]">
+                {schedules.map((s, idx) => (
+                  <div key={s.id || idx} className="relative group">
+                    <div className="absolute -left-6 top-1.5 w-3.5 h-3.5 rounded-full border-2 border-white bg-[#0058be] shadow-sm" />
+                    <div className="bg-[#f2f3ff] hover:bg-[#eaedff] p-3.5 sm:p-4 rounded-xl border border-[#eaedff] transition-colors">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                        <span className="text-xs font-mono font-bold text-[#0058be]">{s.startTime} - {s.endTime} WIB</span>
+                        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-white text-[#505f76] self-start sm:self-auto border border-[#eaedff]">
+                          {s.roomName}
+                        </span>
+                      </div>
+                      <h4 className="text-sm font-bold text-[#131b2e]">{s.subject}</h4>
+                      <p className="text-xs text-[#505f76] mt-0.5 flex items-center gap-2">
+                        <span>Kelas: <strong className="text-[#131b2e]">{s.className}</strong></span>
+                        <span>•</span>
+                        <span>Guru: <strong className="text-[#131b2e]">{s.teacher}</strong></span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="py-8 text-center bg-[#f2f3ff] rounded-xl border border-dashed border-[#c2c6d6]">
+                <Calendar className="w-8 h-8 text-[#505f76] mx-auto mb-2 opacity-50" />
+                <p className="text-xs font-semibold text-[#131b2e]">Belum ada jadwal sesi hari ini</p>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Category Bar Chart */}
-        <div className="bg-card border border-border rounded-2xl p-6 animate-fade-in stagger-6">
-          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-purple-500" />
-            Inventaris per Kategori
-          </h3>
-          {categoryData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={240}>
-              <BarChart data={categoryData} layout="vertical" margin={{ left: 0, right: 12 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={false} />
-                <XAxis type="number" tick={{ fontSize: 11 }} stroke="var(--muted-foreground)" />
-                <YAxis
-                  dataKey="name"
-                  type="category"
-                  width={80}
-                  tick={{ fontSize: 11 }}
-                  stroke="var(--muted-foreground)"
-                />
-                <Tooltip
-                  contentStyle={{
-                    background: "var(--card)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "12px",
-                    fontSize: "13px",
-                    boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)",
-                  }}
-                />
-                <Bar dataKey="count" name="Jumlah" radius={[0, 6, 6, 0]} maxBarSize={24}>
-                  {categoryData.map((_, index) => (
-                    <Cell key={`bar-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="h-[240px] flex items-center justify-center text-muted-foreground text-sm">
-              Belum ada data
+        <div className="flex flex-col">
+          <div className="bg-white rounded-xl p-5 sm:p-6 border border-[#eaedff] shadow-[0_1px_3px_rgba(0,0,0,0.02)] h-full flex flex-col justify-between">
+            <div>
+              <div className="flex justify-between items-center mb-5">
+                <h2 className="text-base sm:text-lg font-bold text-[#131b2e] flex items-center gap-2">
+                  <History className="w-5 h-5 text-[#0058be]" />
+                  Aktivitas Terbaru
+                </h2>
+              </div>
+              <div className="space-y-3.5">
+                {recentHistory.map((item, idx) => (
+                  <div key={item.id || idx} className="flex gap-3 items-start p-2.5 rounded-lg hover:bg-[#f2f3ff] transition-colors">
+                    <div className="w-8 h-8 rounded-full bg-[#0058be]/10 text-[#0058be] flex items-center justify-center shrink-0 mt-0.5">
+                      <Package className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-bold text-[#131b2e] truncate">{item.inventoryCode || item.action}</p>
+                      <p className="text-xs text-[#505f76] line-clamp-2 mt-0.5 leading-relaxed">{item.description || item.action}</p>
+                      <p className="text-[10px] text-[#727785] mt-1 font-mono">{timeAgo(item.createdAt)}</p>
+                    </div>
+                  </div>
+                ))}
+                {recentHistory.length === 0 && (
+                  <div className="text-center py-8 text-xs text-[#727785]">Belum ada riwayat tercatat.</div>
+                )}
+              </div>
             </div>
-          )}
+            <Link href="/dashboard/laporan" className="w-full mt-6 py-2.5 border border-[#eaedff] hover:bg-[#f2f3ff] rounded-lg text-xs font-bold text-[#0058be] text-center transition-colors block">
+              Tampilkan Riwayat Lengkap
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div className="bg-white rounded-xl p-5 sm:p-6 border border-[#eaedff] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+          <h3 className="text-sm font-bold text-[#131b2e] mb-4 flex items-center gap-2">
+            <Tag className="w-4 h-4 text-[#0058be]" />
+            Distribusi Kondisi Inventaris
+          </h3>
+          <div className="grid grid-cols-2 gap-2 text-center mb-4">
+            <div className="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+              <span className="text-xl font-black text-emerald-700">{stats.baik}</span>
+              <p className="text-[10px] uppercase font-bold text-emerald-800">Baik</p>
+            </div>
+            <div className="p-3 bg-amber-50 rounded-lg border border-amber-100">
+              <span className="text-xl font-black text-amber-700">{stats.rusakRingan}</span>
+              <p className="text-[10px] uppercase font-bold text-amber-800">Rusak Ringan</p>
+            </div>
+            <div className="p-3 bg-red-50 rounded-lg border border-red-100">
+              <span className="text-xl font-black text-red-700">{stats.rusakBerat}</span>
+              <p className="text-[10px] uppercase font-bold text-red-800">Rusak Berat</p>
+            </div>
+            <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
+              <span className="text-xl font-black text-slate-700">{stats.tidakDitemukan}</span>
+              <p className="text-[10px] uppercase font-bold text-slate-800">Hilang</p>
+            </div>
+          </div>
         </div>
 
-        {/* Room Bar Chart */}
-        <div className="bg-card border border-border rounded-2xl p-6 animate-fade-in stagger-6">
-          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-cyan-500" />
-            Inventaris per Ruangan
+        <div className="bg-white rounded-xl p-5 sm:p-6 border border-[#eaedff] shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+          <h3 className="text-sm font-bold text-[#131b2e] mb-4 flex items-center gap-2">
+            <Building2 className="w-4 h-4 text-[#0058be]" />
+            Inventaris Per Ruangan
           </h3>
           {roomData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={240}>
-              <BarChart data={roomData} margin={{ left: 0, right: 12 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                <XAxis
-                  dataKey="name"
-                  tick={{ fontSize: 11 }}
-                  stroke="var(--muted-foreground)"
-                />
-                <YAxis tick={{ fontSize: 11 }} stroke="var(--muted-foreground)" />
-                <Tooltip
-                  contentStyle={{
-                    background: "var(--card)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "12px",
-                    fontSize: "13px",
-                    boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1)",
-                  }}
-                />
-                <Bar dataKey="count" name="Jumlah" fill="#06b6d4" radius={[6, 6, 0, 0]} maxBarSize={40} />
-              </BarChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="h-[240px] flex items-center justify-center text-muted-foreground text-sm">
-              Belum ada data
+            <div className="space-y-2.5">
+              {roomData.slice(0, 4).map((r, idx) => (
+                <div key={idx} className="flex items-center justify-between p-2.5 bg-[#f2f3ff] rounded-lg text-xs">
+                  <span className="font-semibold text-[#131b2e]">{r.name}</span>
+                  <span className="font-bold font-mono px-2 py-0.5 rounded bg-white text-[#0058be] border border-[#eaedff]">{r.count}</span>
+                </div>
+              ))}
             </div>
+          ) : (
+            <div className="text-center py-8 text-xs text-[#727785]">Belum ada data ruangan.</div>
           )}
-        </div>
-      </div>
-
-      {/* Bottom Row: Alerts & Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Alerts */}
-        <div className="bg-card border border-border rounded-2xl p-6">
-          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-            Peringatan
-          </h3>
-          <div className="space-y-3">
-            {stats.rusakBerat > 0 && (
-              <div className="flex items-start gap-3 p-3 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900">
-                <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-red-700 dark:text-red-300">{stats.rusakBerat} barang rusak berat</p>
-                  <p className="text-xs text-red-600/70 dark:text-red-400/70">Perlu evaluasi untuk perbaikan atau penghapusan</p>
-                </div>
-              </div>
-            )}
-            {stats.rusakRingan > 0 && (
-              <div className="flex items-start gap-3 p-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900">
-                <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-amber-700 dark:text-amber-300">{stats.rusakRingan} barang rusak ringan</p>
-                  <p className="text-xs text-amber-600/70 dark:text-amber-400/70">Jadwalkan perbaikan segera</p>
-                </div>
-              </div>
-            )}
-            {stats.tidakDitemukan > 0 && (
-              <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-950/30 border border-slate-200 dark:border-slate-800">
-                <HelpCircle className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-slate-700 dark:text-slate-300">{stats.tidakDitemukan} barang tidak ditemukan</p>
-                  <p className="text-xs text-slate-600/70 dark:text-slate-400/70">Lakukan pencarian dan verifikasi</p>
-                </div>
-              </div>
-            )}
-            {stats.rusakBerat === 0 && stats.rusakRingan === 0 && stats.tidakDitemukan === 0 && (
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900">
-                <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
-                <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300">Semua barang dalam kondisi baik! 🎉</p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Recent Activity */}
-        <div className="bg-card border border-border rounded-2xl p-6">
-          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-            <Clock className="w-4 h-4 text-muted-foreground" />
-            Aktivitas Terbaru
-          </h3>
-          <div className="space-y-1">
-            {recentHistory.length > 0 ? (
-              recentHistory.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-muted/50 transition-colors"
-                >
-                  <span className="text-lg mt-0.5">{getActionIcon(item.action)}</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm text-foreground">
-                      <span className="font-medium">{item.inventoryCode}</span>{" "}
-                      <span className="text-muted-foreground">— {item.description}</span>
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-0.5">
-                      {item.userName} • {formatTimeAgo(item.createdAt)}
-                    </p>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="text-center py-8 text-muted-foreground text-sm">
-                Belum ada aktivitas
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </div>

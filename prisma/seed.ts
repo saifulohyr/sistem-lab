@@ -1,11 +1,12 @@
 import { PrismaClient } from "../src/generated/prisma/client.js";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
-import path from "path";
-import { fileURLToPath } from "url";
+import { Pool } from "pg";
+import { PrismaPg } from "@prisma/adapter-pg";
+import "dotenv/config";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.join(__dirname, "..", "dev.db"); // root/dev.db
-const adapter = new PrismaBetterSqlite3({ url: `file:${dbPath}` });
+const connectionString = process.env.DATABASE_URL;
+const pool = new Pool({ connectionString });
+const adapter = new PrismaPg(pool);
+
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
@@ -75,6 +76,7 @@ async function main() {
     { name: "Lab RPL 1", capacity: 36 },
     { name: "Lab RPL 2", capacity: 36 },
     { name: "Lab RPL 3", capacity: 36 },
+    { name: "Lab RPL 4", capacity: 36 },
     { name: "Gudang Lab", capacity: null },
   ];
 

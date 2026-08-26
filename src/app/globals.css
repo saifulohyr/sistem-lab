@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme inline {
+  /* Default Next.js UI Variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
+  --color-primary-old: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -15,73 +17,138 @@
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-hover: var(--sidebar-hover);
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Override default fonts */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Geist", "Inter", sans-serif;
+
+  /* --- STITCH DESIGN SYSTEM TOKENS --- */
+  
+  /* Colors */
+  --color-surface: #faf8ff;
+  --color-surface-dim: #d2d9f4;
+  --color-surface-bright: #faf8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f3ff;
+  --color-surface-container: #eaedff;
+  --color-surface-container-high: #e2e7ff;
+  --color-surface-container-highest: #dae2fd;
+  --color-on-surface: #131b2e;
+  --color-on-surface-variant: #424754;
+  --color-inverse-surface: #283044;
+  --color-inverse-on-surface: #eef0ff;
+  
+  --color-outline: #727785;
+  --color-outline-variant: #c2c6d6;
+  
+  --color-primary: #0058be;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #2170e4;
+  --color-on-primary-container: #fefcff;
+  
+  --color-secondary: #505f76;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d0e1fb;
+  --color-on-secondary-container: #54647a;
+  
+  --color-tertiary: #595c5e;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #727577;
+  --color-on-tertiary-container: #fbfdff;
+  
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Spacing */
+  --spacing-margin-page: 32px;
+  --spacing-stack-sm: 8px;
+  --spacing-stack-md: 16px;
+  --spacing-stack-lg: 32px;
+  --spacing-gutter-md: 24px;
+
+  /* Custom Font Families for Stitch */
+  --font-headline-xl: "Geist", sans-serif;
+  --font-headline-lg: "Geist", sans-serif;
+  --font-headline-md: "Geist", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-label-md: "Geist", sans-serif;
+  --font-code: "Geist", monospace;
+
+  /* Text Sizes & Typography for Stitch */
+  --text-headline-xl: 40px;
+  --text-headline-xl--line-height: 48px;
+  --text-headline-xl--letter-spacing: -0.02em;
+  --text-headline-xl--font-weight: 700;
+  
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 600;
+
+  --text-headline-md: 20px;
+  --text-headline-md--line-height: 28px;
+  --text-headline-md--font-weight: 600;
+
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 24px;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 14px;
+  --text-body-md--line-height: 20px;
+  --text-body-md--font-weight: 400;
+
+  --text-label-md: 12px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.05em;
+  --text-label-md--font-weight: 500;
+
+  --text-code: 13px;
+  --text-code--line-height: 18px;
 }
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
+  /* Default Next.js root variables to prevent breaking UI outside dashboard */
+  --background: #ffffff;
+  --foreground: #171717;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #020817;
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
   --border: #e2e8f0;
-  --accent: #3b82f6;
-  --accent-foreground: #ffffff;
-  --sidebar: #0f172a;
-  --sidebar-foreground: #cbd5e1;
-  --sidebar-hover: #1e293b;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --primary: #0f172a;
+  --primary-foreground: #f8fafc;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0b1120;
-    --foreground: #e2e8f0;
-    --primary: #3b82f6;
-    --primary-foreground: #ffffff;
-    --card: #111827;
-    --card-foreground: #e2e8f0;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --border: #1e293b;
-    --accent: #3b82f6;
-    --accent-foreground: #ffffff;
-    --sidebar: #0b1120;
-    --sidebar-foreground: #94a3b8;
-    --sidebar-hover: #1e293b;
-  }
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --card: #020817;
+  --card-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #1e293b;
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+  --primary: #f8fafc;
+  --primary-foreground: #0f172a;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--muted-foreground);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--foreground);
+/* Premium Utilities from Stitch */
+.glass-panel {
+  background: #ffffff;
+  border: 1px solid #eaedff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
 }
 
 /* Animations */
@@ -111,11 +178,3 @@ body {
 .animate-scale-in {
   animation: scaleIn 0.3s ease-out forwards;
 }
-
-/* Stagger animations */
-.stagger-1 { animation-delay: 0.05s; opacity: 0; }
-.stagger-2 { animation-delay: 0.1s; opacity: 0; }
-.stagger-3 { animation-delay: 0.15s; opacity: 0; }
-.stagger-4 { animation-delay: 0.2s; opacity: 0; }
-.stagger-5 { animation-delay: 0.25s; opacity: 0; }
-.stagger-6 { animation-delay: 0.3s; opacity: 0; }

@@ -756,6 +756,7 @@ export type InitialInventoryItemCreateOrConnectWithoutInventoryInput = {
 
 export type InitialInventoryItemCreateManyInventoryInputEnvelope = {
   data: Prisma.InitialInventoryItemCreateManyInventoryInput | Prisma.InitialInventoryItemCreateManyInventoryInput[]
+  skipDuplicates?: boolean
 }
 
 export type InitialInventoryItemUpsertWithWhereUniqueWithoutInventoryInput = {
@@ -842,6 +843,7 @@ export type InitialInventoryItemCreateOrConnectWithoutInitialInventoryInput = {
 
 export type InitialInventoryItemCreateManyInitialInventoryInputEnvelope = {
   data: Prisma.InitialInventoryItemCreateManyInitialInventoryInput | Prisma.InitialInventoryItemCreateManyInitialInventoryInput[]
+  skipDuplicates?: boolean
 }
 
 export type InitialInventoryItemUpsertWithWhereUniqueWithoutInitialInventoryInput = {
@@ -1814,6 +1816,7 @@ export type InitialInventoryItemCreateManyArgs<ExtArgs extends runtime.Types.Ext
    * The data used to create many InitialInventoryItems.
    */
   data: Prisma.InitialInventoryItemCreateManyInput | Prisma.InitialInventoryItemCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1832,6 +1835,7 @@ export type InitialInventoryItemCreateManyAndReturnArgs<ExtArgs extends runtime.
    * The data used to create many InitialInventoryItems.
    */
   data: Prisma.InitialInventoryItemCreateManyInput | Prisma.InitialInventoryItemCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

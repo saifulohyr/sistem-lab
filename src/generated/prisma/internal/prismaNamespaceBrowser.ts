@@ -56,10 +56,28 @@ export const ModelName = {
   Room: 'Room',
   Category: 'Category',
   Brand: 'Brand',
+  Supplier: 'Supplier',
   Inventory: 'Inventory',
   InventorySpec: 'InventorySpec',
   InventoryPhoto: 'InventoryPhoto',
   InventoryHistory: 'InventoryHistory',
+  IncomingGoods: 'IncomingGoods',
+  IncomingGoodsItem: 'IncomingGoodsItem',
+  OutgoingGoods: 'OutgoingGoods',
+  OutgoingGoodsItem: 'OutgoingGoodsItem',
+  Borrowing: 'Borrowing',
+  BorrowingItem: 'BorrowingItem',
+  DamageReport: 'DamageReport',
+  Repair: 'Repair',
+  RepairPart: 'RepairPart',
+  Maintenance: 'Maintenance',
+  MaintenanceSchedule: 'MaintenanceSchedule',
+  Inspection: 'Inspection',
+  InspectionItem: 'InspectionItem',
+  PracticumSchedule: 'PracticumSchedule',
+  Software: 'Software',
+  SoftwareInstallation: 'SoftwareInstallation',
+  LabAssistant: 'LabAssistant',
   InitialInventory: 'InitialInventory',
   InitialInventoryItem: 'InitialInventoryItem',
   AuditLog: 'AuditLog'
@@ -72,6 +90,9 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
  */
 
 export const TransactionIsolationLevel = runtime.makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 } as const)
 
@@ -139,6 +160,20 @@ export const BrandScalarFieldEnum = {
 export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof BrandScalarFieldEnum]
 
 
+export const SupplierScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  contactName: 'contactName',
+  phone: 'phone',
+  email: 'email',
+  address: 'address',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SupplierScalarFieldEnum = (typeof SupplierScalarFieldEnum)[keyof typeof SupplierScalarFieldEnum]
+
+
 export const InventoryScalarFieldEnum = {
   id: 'id',
   code: 'code',
@@ -195,6 +230,256 @@ export const InventoryHistoryScalarFieldEnum = {
 } as const
 
 export type InventoryHistoryScalarFieldEnum = (typeof InventoryHistoryScalarFieldEnum)[keyof typeof InventoryHistoryScalarFieldEnum]
+
+
+export const IncomingGoodsScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  date: 'date',
+  supplierId: 'supplierId',
+  source: 'source',
+  documentNo: 'documentNo',
+  note: 'note',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type IncomingGoodsScalarFieldEnum = (typeof IncomingGoodsScalarFieldEnum)[keyof typeof IncomingGoodsScalarFieldEnum]
+
+
+export const IncomingGoodsItemScalarFieldEnum = {
+  id: 'id',
+  incomingGoodsId: 'incomingGoodsId',
+  inventoryId: 'inventoryId',
+  quantity: 'quantity',
+  price: 'price',
+  note: 'note'
+} as const
+
+export type IncomingGoodsItemScalarFieldEnum = (typeof IncomingGoodsItemScalarFieldEnum)[keyof typeof IncomingGoodsItemScalarFieldEnum]
+
+
+export const OutgoingGoodsScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  date: 'date',
+  type: 'type',
+  destination: 'destination',
+  note: 'note',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OutgoingGoodsScalarFieldEnum = (typeof OutgoingGoodsScalarFieldEnum)[keyof typeof OutgoingGoodsScalarFieldEnum]
+
+
+export const OutgoingGoodsItemScalarFieldEnum = {
+  id: 'id',
+  outgoingGoodsId: 'outgoingGoodsId',
+  inventoryId: 'inventoryId',
+  quantity: 'quantity',
+  reason: 'reason',
+  note: 'note'
+} as const
+
+export type OutgoingGoodsItemScalarFieldEnum = (typeof OutgoingGoodsItemScalarFieldEnum)[keyof typeof OutgoingGoodsItemScalarFieldEnum]
+
+
+export const BorrowingScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  date: 'date',
+  borrower: 'borrower',
+  role: 'role',
+  purpose: 'purpose',
+  expectedReturn: 'expectedReturn',
+  actualReturn: 'actualReturn',
+  status: 'status',
+  note: 'note',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BorrowingScalarFieldEnum = (typeof BorrowingScalarFieldEnum)[keyof typeof BorrowingScalarFieldEnum]
+
+
+export const BorrowingItemScalarFieldEnum = {
+  id: 'id',
+  borrowingId: 'borrowingId',
+  inventoryId: 'inventoryId',
+  quantity: 'quantity',
+  returnCondition: 'returnCondition',
+  note: 'note'
+} as const
+
+export type BorrowingItemScalarFieldEnum = (typeof BorrowingItemScalarFieldEnum)[keyof typeof BorrowingItemScalarFieldEnum]
+
+
+export const DamageReportScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  date: 'date',
+  reporter: 'reporter',
+  inventoryId: 'inventoryId',
+  issue: 'issue',
+  photoUrl: 'photoUrl',
+  status: 'status',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DamageReportScalarFieldEnum = (typeof DamageReportScalarFieldEnum)[keyof typeof DamageReportScalarFieldEnum]
+
+
+export const RepairScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  date: 'date',
+  damageReportId: 'damageReportId',
+  inventoryId: 'inventoryId',
+  diagnosis: 'diagnosis',
+  damageType: 'damageType',
+  severity: 'severity',
+  action: 'action',
+  result: 'result',
+  status: 'status',
+  technicianId: 'technicianId',
+  cost: 'cost',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RepairScalarFieldEnum = (typeof RepairScalarFieldEnum)[keyof typeof RepairScalarFieldEnum]
+
+
+export const RepairPartScalarFieldEnum = {
+  id: 'id',
+  repairId: 'repairId',
+  partName: 'partName',
+  quantity: 'quantity',
+  cost: 'cost'
+} as const
+
+export type RepairPartScalarFieldEnum = (typeof RepairPartScalarFieldEnum)[keyof typeof RepairPartScalarFieldEnum]
+
+
+export const MaintenanceScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  date: 'date',
+  type: 'type',
+  title: 'title',
+  description: 'description',
+  result: 'result',
+  technicianId: 'technicianId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MaintenanceScalarFieldEnum = (typeof MaintenanceScalarFieldEnum)[keyof typeof MaintenanceScalarFieldEnum]
+
+
+export const MaintenanceScheduleScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  frequency: 'frequency',
+  lastRun: 'lastRun',
+  nextRun: 'nextRun',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MaintenanceScheduleScalarFieldEnum = (typeof MaintenanceScheduleScalarFieldEnum)[keyof typeof MaintenanceScheduleScalarFieldEnum]
+
+
+export const InspectionScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  date: 'date',
+  roomId: 'roomId',
+  inspectorId: 'inspectorId',
+  note: 'note',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InspectionScalarFieldEnum = (typeof InspectionScalarFieldEnum)[keyof typeof InspectionScalarFieldEnum]
+
+
+export const InspectionItemScalarFieldEnum = {
+  id: 'id',
+  inspectionId: 'inspectionId',
+  inventoryId: 'inventoryId',
+  status: 'status',
+  note: 'note'
+} as const
+
+export type InspectionItemScalarFieldEnum = (typeof InspectionItemScalarFieldEnum)[keyof typeof InspectionItemScalarFieldEnum]
+
+
+export const PracticumScheduleScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  subject: 'subject',
+  teacher: 'teacher',
+  className: 'className',
+  dayOfWeek: 'dayOfWeek',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  academicYear: 'academicYear',
+  semester: 'semester',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PracticumScheduleScalarFieldEnum = (typeof PracticumScheduleScalarFieldEnum)[keyof typeof PracticumScheduleScalarFieldEnum]
+
+
+export const SoftwareScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  version: 'version',
+  license: 'license',
+  description: 'description',
+  category: 'category',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SoftwareScalarFieldEnum = (typeof SoftwareScalarFieldEnum)[keyof typeof SoftwareScalarFieldEnum]
+
+
+export const SoftwareInstallationScalarFieldEnum = {
+  id: 'id',
+  softwareId: 'softwareId',
+  inventoryId: 'inventoryId',
+  installDate: 'installDate',
+  note: 'note'
+} as const
+
+export type SoftwareInstallationScalarFieldEnum = (typeof SoftwareInstallationScalarFieldEnum)[keyof typeof SoftwareInstallationScalarFieldEnum]
+
+
+export const LabAssistantScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  nis: 'nis',
+  className: 'className',
+  phone: 'phone',
+  active: 'active',
+  joinDate: 'joinDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LabAssistantScalarFieldEnum = (typeof LabAssistantScalarFieldEnum)[keyof typeof LabAssistantScalarFieldEnum]
 
 
 export const InitialInventoryScalarFieldEnum = {
@@ -258,6 +543,14 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
 export const NullsOrder = {

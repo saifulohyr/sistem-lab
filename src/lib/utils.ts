@@ -62,3 +62,8 @@ export function getStatusLabel(value: string): string {
 export function getRoleLabel(value: string): string {
   return ROLES.find((r) => r.value === value)?.label ?? value;
 }
+
+export function formatCurrency(amount: number | null | undefined): string {
+  if (amount == null) return "-";
+  return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(amount);
+}

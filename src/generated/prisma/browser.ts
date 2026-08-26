@@ -43,6 +43,11 @@ export type Category = Prisma.CategoryModel
  */
 export type Brand = Prisma.BrandModel
 /**
+ * Model Supplier
+ * 
+ */
+export type Supplier = Prisma.SupplierModel
+/**
  * Model Inventory
  * 
  */
@@ -62,6 +67,91 @@ export type InventoryPhoto = Prisma.InventoryPhotoModel
  * 
  */
 export type InventoryHistory = Prisma.InventoryHistoryModel
+/**
+ * Model IncomingGoods
+ * 
+ */
+export type IncomingGoods = Prisma.IncomingGoodsModel
+/**
+ * Model IncomingGoodsItem
+ * 
+ */
+export type IncomingGoodsItem = Prisma.IncomingGoodsItemModel
+/**
+ * Model OutgoingGoods
+ * 
+ */
+export type OutgoingGoods = Prisma.OutgoingGoodsModel
+/**
+ * Model OutgoingGoodsItem
+ * 
+ */
+export type OutgoingGoodsItem = Prisma.OutgoingGoodsItemModel
+/**
+ * Model Borrowing
+ * 
+ */
+export type Borrowing = Prisma.BorrowingModel
+/**
+ * Model BorrowingItem
+ * 
+ */
+export type BorrowingItem = Prisma.BorrowingItemModel
+/**
+ * Model DamageReport
+ * 
+ */
+export type DamageReport = Prisma.DamageReportModel
+/**
+ * Model Repair
+ * 
+ */
+export type Repair = Prisma.RepairModel
+/**
+ * Model RepairPart
+ * 
+ */
+export type RepairPart = Prisma.RepairPartModel
+/**
+ * Model Maintenance
+ * 
+ */
+export type Maintenance = Prisma.MaintenanceModel
+/**
+ * Model MaintenanceSchedule
+ * 
+ */
+export type MaintenanceSchedule = Prisma.MaintenanceScheduleModel
+/**
+ * Model Inspection
+ * 
+ */
+export type Inspection = Prisma.InspectionModel
+/**
+ * Model InspectionItem
+ * 
+ */
+export type InspectionItem = Prisma.InspectionItemModel
+/**
+ * Model PracticumSchedule
+ * 
+ */
+export type PracticumSchedule = Prisma.PracticumScheduleModel
+/**
+ * Model Software
+ * 
+ */
+export type Software = Prisma.SoftwareModel
+/**
+ * Model SoftwareInstallation
+ * 
+ */
+export type SoftwareInstallation = Prisma.SoftwareInstallationModel
+/**
+ * Model LabAssistant
+ * 
+ */
+export type LabAssistant = Prisma.LabAssistantModel
 /**
  * Model InitialInventory
  * 

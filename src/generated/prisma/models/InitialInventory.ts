@@ -547,10 +547,6 @@ export type InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput = {
   deleteMany?: Prisma.InitialInventoryScalarWhereInput | Prisma.InitialInventoryScalarWhereInput[]
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type InitialInventoryCreateNestedOneWithoutItemsInput = {
   create?: Prisma.XOR<Prisma.InitialInventoryCreateWithoutItemsInput, Prisma.InitialInventoryUncheckedCreateWithoutItemsInput>
   connectOrCreate?: Prisma.InitialInventoryCreateOrConnectWithoutItemsInput
@@ -600,6 +596,7 @@ export type InitialInventoryCreateOrConnectWithoutUserInput = {
 
 export type InitialInventoryCreateManyUserInputEnvelope = {
   data: Prisma.InitialInventoryCreateManyUserInput | Prisma.InitialInventoryCreateManyUserInput[]
+  skipDuplicates?: boolean
 }
 
 export type InitialInventoryUpsertWithWhereUniqueWithoutUserInput = {
@@ -670,6 +667,7 @@ export type InitialInventoryCreateOrConnectWithoutRoomInput = {
 
 export type InitialInventoryCreateManyRoomInputEnvelope = {
   data: Prisma.InitialInventoryCreateManyRoomInput | Prisma.InitialInventoryCreateManyRoomInput[]
+  skipDuplicates?: boolean
 }
 
 export type InitialInventoryUpsertWithWhereUniqueWithoutRoomInput = {
@@ -1669,6 +1667,7 @@ export type InitialInventoryCreateManyArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many InitialInventories.
    */
   data: Prisma.InitialInventoryCreateManyInput | Prisma.InitialInventoryCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1687,6 +1686,7 @@ export type InitialInventoryCreateManyAndReturnArgs<ExtArgs extends runtime.Type
    * The data used to create many InitialInventories.
    */
   data: Prisma.InitialInventoryCreateManyInput | Prisma.InitialInventoryCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

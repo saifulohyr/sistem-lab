@@ -2,6 +2,8 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
 import Sidebar, { Navbar } from "@/components/layout/Sidebar";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardLayout({
   children,
 }: {
@@ -18,7 +20,7 @@ export default async function DashboardLayout({
       <Sidebar user={user} />
       <div className="flex-1 flex flex-col min-w-0">
         <Navbar user={user} />
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-3 sm:p-4 lg:p-6">
           {children}
         </main>
       </div>

@@ -362,6 +362,7 @@ export type InventorySpecCreateOrConnectWithoutInventoryInput = {
 
 export type InventorySpecCreateManyInventoryInputEnvelope = {
   data: Prisma.InventorySpecCreateManyInventoryInput | Prisma.InventorySpecCreateManyInventoryInput[]
+  skipDuplicates?: boolean
 }
 
 export type InventorySpecUpsertWithWhereUniqueWithoutInventoryInput = {
@@ -1130,6 +1131,7 @@ export type InventorySpecCreateManyArgs<ExtArgs extends runtime.Types.Extensions
    * The data used to create many InventorySpecs.
    */
   data: Prisma.InventorySpecCreateManyInput | Prisma.InventorySpecCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1148,6 +1150,7 @@ export type InventorySpecCreateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    * The data used to create many InventorySpecs.
    */
   data: Prisma.InventorySpecCreateManyInput | Prisma.InventorySpecCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

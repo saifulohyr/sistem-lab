@@ -448,6 +448,7 @@ export type InventoryHistoryCreateOrConnectWithoutUserInput = {
 
 export type InventoryHistoryCreateManyUserInputEnvelope = {
   data: Prisma.InventoryHistoryCreateManyUserInput | Prisma.InventoryHistoryCreateManyUserInput[]
+  skipDuplicates?: boolean
 }
 
 export type InventoryHistoryUpsertWithWhereUniqueWithoutUserInput = {
@@ -501,6 +502,7 @@ export type InventoryHistoryCreateOrConnectWithoutInventoryInput = {
 
 export type InventoryHistoryCreateManyInventoryInputEnvelope = {
   data: Prisma.InventoryHistoryCreateManyInventoryInput | Prisma.InventoryHistoryCreateManyInventoryInput[]
+  skipDuplicates?: boolean
 }
 
 export type InventoryHistoryUpsertWithWhereUniqueWithoutInventoryInput = {
@@ -1319,6 +1321,7 @@ export type InventoryHistoryCreateManyArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many InventoryHistories.
    */
   data: Prisma.InventoryHistoryCreateManyInput | Prisma.InventoryHistoryCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1337,6 +1340,7 @@ export type InventoryHistoryCreateManyAndReturnArgs<ExtArgs extends runtime.Type
    * The data used to create many InventoryHistories.
    */
   data: Prisma.InventoryHistoryCreateManyInput | Prisma.InventoryHistoryCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

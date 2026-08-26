@@ -1,11 +1,11 @@
-// LABMUMA — Prisma Schema (Phase 1: Core Foundation)
+// LABMUMA — Prisma Schema (Phase 1, 2, 3, & 4)
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 // ─── AUTH & USERS ───────────────────────────────────────────────
@@ -24,6 +24,13 @@ model User {
   auditLogs          AuditLog[]
   initialInventories InitialInventory[]
   inventoryHistory   InventoryHistory[]
+  incomingGoods      IncomingGoods[]
+  outgoingGoods      OutgoingGoods[]
+  borrowings         Borrowing[]
+  damageReports      DamageReport[]
+  repairs            Repair[]
+  maintenances       Maintenance[]
+  inspections        Inspection[]
 }
 
 // ─── MASTER DATA ────────────────────────────────────────────────
@@ -50,6 +57,8 @@ model Room {
 
   inventories        Inventory[]
   initialInventories InitialInventory[]
+  inspections        Inspection[]
+  practicumSchedules PracticumSchedule[]
 }
 
 model Category {
@@ -70,6 +79,19 @@ model Brand {
   updatedAt DateTime @updatedAt
 
   inventories Inventory[]
+}
+
+model Supplier {
+  id          String   @id @default(cuid())
+  name        String
+  contactName String?
+  phone       String?
+  email       String?
+  address     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  incomingGoods IncomingGoods[]
 }
 
 // ─── INVENTARIS ─────────────────────────────────────────────────
@@ -102,6 +124,13 @@ model Inventory {
   photos                 InventoryPhoto[]
   history                InventoryHistory[]
   initialInventoryItems  InitialInventoryItem[]
+  incomingGoodsItems     IncomingGoodsItem[]
+  outgoingGoodsItems     OutgoingGoodsItem[]
+  borrowingItems         BorrowingItem[]
+  damageReports          DamageReport[]
+  repairs                Repair[]
+  inspectionItems        InspectionItem[]
+  softwareInstallations  SoftwareInstallation[]
 }
 
 model InventorySpec {
@@ -128,13 +157,263 @@ model InventoryPhoto {
 model InventoryHistory {
   id          String   @id @default(cuid())
   inventoryId String
-  action      String   // PENDATAAN, MASUK, KELUAR, PERBAIKAN, PEMELIHARAAN, dll
+  action      String   // PENDATAAN, MASUK, KELUAR, PINJAM, PERBAIKAN, PEMELIHARAAN, dll
   description String
   userId      String?
   createdAt   DateTime @default(now())
 
   inventory Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
   user      User?     @relation(fields: [userId], references: [id])
+}
+
+// ─── TRANSAKSI (PHASE 2) ────────────────────────────────────────
+model IncomingGoods {
+  id          String   @id @default(cuid())
+  number      String   @unique
+  date        DateTime
+  supplierId  String?
+  source      String?  
+  documentNo  String?  
+  note        String?
+  userId      String   
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  supplier    Supplier? @relation(fields: [supplierId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
+  items       IncomingGoodsItem[]
+}
+
+model IncomingGoodsItem {
+  id              String   @id @default(cuid())
+  incomingGoodsId String
+  inventoryId     String
+  quantity        Int
+  price           Float?
+  note            String?
+
+  incomingGoods   IncomingGoods @relation(fields: [incomingGoodsId], references: [id], onDelete: Cascade)
+  inventory       Inventory     @relation(fields: [inventoryId], references: [id])
+}
+
+model OutgoingGoods {
+  id          String   @id @default(cuid())
+  number      String   @unique
+  date        DateTime
+  type        String   
+  destination String?  
+  note        String?
+  userId      String   
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id])
+  items       OutgoingGoodsItem[]
+}
+
+model OutgoingGoodsItem {
+  id              String   @id @default(cuid())
+  outgoingGoodsId String
+  inventoryId     String
+  quantity        Int
+  reason          String?
+  note            String?
+
+  outgoingGoods   OutgoingGoods @relation(fields: [outgoingGoodsId], references: [id], onDelete: Cascade)
+  inventory       Inventory     @relation(fields: [inventoryId], references: [id])
+}
+
+model Borrowing {
+  id          String   @id @default(cuid())
+  number      String   @unique
+  date        DateTime
+  borrower    String   
+  role        String?  
+  purpose     String
+  expectedReturn DateTime?
+  actualReturn   DateTime?
+  status      String   @default("DIPINJAM")
+  note        String?
+  userId      String   
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id])
+  items       BorrowingItem[]
+}
+
+model BorrowingItem {
+  id              String   @id @default(cuid())
+  borrowingId     String
+  inventoryId     String
+  quantity        Int
+  returnCondition String?  
+  note            String?
+
+  borrowing       Borrowing @relation(fields: [borrowingId], references: [id], onDelete: Cascade)
+  inventory       Inventory @relation(fields: [inventoryId], references: [id])
+}
+
+// ─── TEKNISI & MAINTENANCE (PHASE 3) ─────────────────────────────
+model DamageReport {
+  id          String   @id @default(cuid())
+  number      String   @unique // Nomor laporan
+  date        DateTime
+  reporter    String   // Nama Pelapor
+  inventoryId String
+  issue       String   // Keluhan kerusakan
+  photoUrl    String?  // Foto kerusakan
+  status      String   @default("MENUNGGU") // MENUNGGU, DIPROSES, SELESAI, DITOLAK
+  userId      String   // Penerima laporan
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  inventory Inventory @relation(fields: [inventoryId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
+  repairs   Repair[]
+}
+
+model Repair {
+  id             String   @id @default(cuid())
+  number         String   @unique // Tiket perbaikan
+  date           DateTime
+  damageReportId String?
+  inventoryId    String
+  diagnosis      String?  // Diagnosa teknisi
+  damageType     String?  // SOFTWARE, HARDWARE, JARINGAN
+  severity       String?  // RINGAN, SEDANG, BERAT
+  action         String?  // Tindakan yang dilakukan
+  result         String?  // Hasil perbaikan (Berhasil, Gagal, Tunggu Part)
+  status         String   @default("DIAGNOSA") // DIAGNOSA, PROSES, TESTING, SELESAI
+  technicianId   String   // Teknisi (User ID)
+  cost           Float?   // Estimasi biaya (opsional)
+  completedAt    DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  damageReport DamageReport? @relation(fields: [damageReportId], references: [id])
+  inventory    Inventory     @relation(fields: [inventoryId], references: [id])
+  technician   User          @relation(fields: [technicianId], references: [id])
+  parts        RepairPart[]
+}
+
+model RepairPart {
+  id          String   @id @default(cuid())
+  repairId    String
+  partName    String
+  quantity    Int
+  cost        Float?
+
+  repair      Repair   @relation(fields: [repairId], references: [id], onDelete: Cascade)
+}
+
+model Maintenance {
+  id          String   @id @default(cuid())
+  number      String   @unique
+  date        DateTime
+  type        String   // PREVENTIVE, CORRECTIVE
+  title       String
+  description String
+  result      String?
+  technicianId String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  technician  User     @relation(fields: [technicianId], references: [id])
+}
+
+model MaintenanceSchedule {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  frequency   String   // HARIAN, MINGGUAN, BULANAN, SEMESTERAN
+  lastRun     DateTime?
+  nextRun     DateTime
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Inspection {
+  id          String   @id @default(cuid())
+  number      String   @unique
+  date        DateTime
+  roomId      String
+  inspectorId String
+  note        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  room        Room     @relation(fields: [roomId], references: [id])
+  inspector   User     @relation(fields: [inspectorId], references: [id])
+  items       InspectionItem[]
+}
+
+model InspectionItem {
+  id            String   @id @default(cuid())
+  inspectionId  String
+  inventoryId   String
+  status        String   // ADA_BAIK, ADA_RUSAK, TIDAK_ADA
+  note          String?
+
+  inspection    Inspection @relation(fields: [inspectionId], references: [id], onDelete: Cascade)
+  inventory     Inventory  @relation(fields: [inventoryId], references: [id])
+}
+
+// ─── TEKNIS RPL (PHASE 4) ───────────────────────────────────────
+model PracticumSchedule {
+  id           String   @id @default(cuid())
+  roomId       String
+  subject      String   // Mata Pelajaran
+  teacher      String   // Nama Guru
+  className    String   // Kelas
+  dayOfWeek    Int      // 1 (Senin) - 7 (Minggu)
+  startTime    String   // "07:30"
+  endTime      String   // "10:00"
+  academicYear String   // "2026/2027"
+  semester     String   // "GANJIL" / "GENAP"
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  room Room @relation(fields: [roomId], references: [id])
+}
+
+model Software {
+  id          String   @id @default(cuid())
+  name        String   // VSCode, XAMPP, Android Studio
+  version     String?
+  license     String?  // FREE, OPEN_SOURCE, COMMERCIAL
+  description String?
+  category    String?  // IDE, Database, Design
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  installations SoftwareInstallation[]
+}
+
+model SoftwareInstallation {
+  id          String   @id @default(cuid())
+  softwareId  String
+  inventoryId String
+  installDate DateTime @default(now())
+  note        String?
+
+  software    Software  @relation(fields: [softwareId], references: [id], onDelete: Cascade)
+  inventory   Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+
+  @@unique([softwareId, inventoryId])
+}
+
+model LabAssistant {
+  id        String   @id @default(cuid())
+  name      String
+  nis       String   @unique
+  className String
+  phone     String?
+  active    Boolean  @default(true)
+  joinDate  DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 // ─── PENDATAAN AWAL ─────────────────────────────────────────────

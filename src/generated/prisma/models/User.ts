@@ -217,6 +217,13 @@ export type UserWhereInput = {
   auditLogs?: Prisma.AuditLogListRelationFilter
   initialInventories?: Prisma.InitialInventoryListRelationFilter
   inventoryHistory?: Prisma.InventoryHistoryListRelationFilter
+  incomingGoods?: Prisma.IncomingGoodsListRelationFilter
+  outgoingGoods?: Prisma.OutgoingGoodsListRelationFilter
+  borrowings?: Prisma.BorrowingListRelationFilter
+  damageReports?: Prisma.DamageReportListRelationFilter
+  repairs?: Prisma.RepairListRelationFilter
+  maintenances?: Prisma.MaintenanceListRelationFilter
+  inspections?: Prisma.InspectionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -232,6 +239,13 @@ export type UserOrderByWithRelationInput = {
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   initialInventories?: Prisma.InitialInventoryOrderByRelationAggregateInput
   inventoryHistory?: Prisma.InventoryHistoryOrderByRelationAggregateInput
+  incomingGoods?: Prisma.IncomingGoodsOrderByRelationAggregateInput
+  outgoingGoods?: Prisma.OutgoingGoodsOrderByRelationAggregateInput
+  borrowings?: Prisma.BorrowingOrderByRelationAggregateInput
+  damageReports?: Prisma.DamageReportOrderByRelationAggregateInput
+  repairs?: Prisma.RepairOrderByRelationAggregateInput
+  maintenances?: Prisma.MaintenanceOrderByRelationAggregateInput
+  inspections?: Prisma.InspectionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -250,6 +264,13 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   auditLogs?: Prisma.AuditLogListRelationFilter
   initialInventories?: Prisma.InitialInventoryListRelationFilter
   inventoryHistory?: Prisma.InventoryHistoryListRelationFilter
+  incomingGoods?: Prisma.IncomingGoodsListRelationFilter
+  outgoingGoods?: Prisma.OutgoingGoodsListRelationFilter
+  borrowings?: Prisma.BorrowingListRelationFilter
+  damageReports?: Prisma.DamageReportListRelationFilter
+  repairs?: Prisma.RepairListRelationFilter
+  maintenances?: Prisma.MaintenanceListRelationFilter
+  inspections?: Prisma.InspectionListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -295,6 +316,13 @@ export type UserCreateInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
   inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -310,6 +338,13 @@ export type UserUncheckedCreateInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
   inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
 }
 
 export type UserUpdateInput = {
@@ -325,6 +360,13 @@ export type UserUpdateInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
   inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -340,6 +382,13 @@ export type UserUncheckedUpdateInput = {
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
   inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -456,6 +505,104 @@ export type UserUpdateOneWithoutInventoryHistoryNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInventoryHistoryInput, Prisma.UserUpdateWithoutInventoryHistoryInput>, Prisma.UserUncheckedUpdateWithoutInventoryHistoryInput>
 }
 
+export type UserCreateNestedOneWithoutIncomingGoodsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutIncomingGoodsInput, Prisma.UserUncheckedCreateWithoutIncomingGoodsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutIncomingGoodsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutIncomingGoodsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutIncomingGoodsInput, Prisma.UserUncheckedCreateWithoutIncomingGoodsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutIncomingGoodsInput
+  upsert?: Prisma.UserUpsertWithoutIncomingGoodsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutIncomingGoodsInput, Prisma.UserUpdateWithoutIncomingGoodsInput>, Prisma.UserUncheckedUpdateWithoutIncomingGoodsInput>
+}
+
+export type UserCreateNestedOneWithoutOutgoingGoodsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOutgoingGoodsInput, Prisma.UserUncheckedCreateWithoutOutgoingGoodsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOutgoingGoodsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutOutgoingGoodsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOutgoingGoodsInput, Prisma.UserUncheckedCreateWithoutOutgoingGoodsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOutgoingGoodsInput
+  upsert?: Prisma.UserUpsertWithoutOutgoingGoodsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOutgoingGoodsInput, Prisma.UserUpdateWithoutOutgoingGoodsInput>, Prisma.UserUncheckedUpdateWithoutOutgoingGoodsInput>
+}
+
+export type UserCreateNestedOneWithoutBorrowingsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBorrowingsInput, Prisma.UserUncheckedCreateWithoutBorrowingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBorrowingsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBorrowingsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBorrowingsInput, Prisma.UserUncheckedCreateWithoutBorrowingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBorrowingsInput
+  upsert?: Prisma.UserUpsertWithoutBorrowingsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBorrowingsInput, Prisma.UserUpdateWithoutBorrowingsInput>, Prisma.UserUncheckedUpdateWithoutBorrowingsInput>
+}
+
+export type UserCreateNestedOneWithoutDamageReportsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDamageReportsInput, Prisma.UserUncheckedCreateWithoutDamageReportsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDamageReportsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDamageReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDamageReportsInput, Prisma.UserUncheckedCreateWithoutDamageReportsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDamageReportsInput
+  upsert?: Prisma.UserUpsertWithoutDamageReportsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDamageReportsInput, Prisma.UserUpdateWithoutDamageReportsInput>, Prisma.UserUncheckedUpdateWithoutDamageReportsInput>
+}
+
+export type UserCreateNestedOneWithoutRepairsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRepairsInput, Prisma.UserUncheckedCreateWithoutRepairsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRepairsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutRepairsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRepairsInput, Prisma.UserUncheckedCreateWithoutRepairsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRepairsInput
+  upsert?: Prisma.UserUpsertWithoutRepairsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRepairsInput, Prisma.UserUpdateWithoutRepairsInput>, Prisma.UserUncheckedUpdateWithoutRepairsInput>
+}
+
+export type UserCreateNestedOneWithoutMaintenancesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMaintenancesInput, Prisma.UserUncheckedCreateWithoutMaintenancesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMaintenancesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMaintenancesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMaintenancesInput, Prisma.UserUncheckedCreateWithoutMaintenancesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMaintenancesInput
+  upsert?: Prisma.UserUpsertWithoutMaintenancesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMaintenancesInput, Prisma.UserUpdateWithoutMaintenancesInput>, Prisma.UserUncheckedUpdateWithoutMaintenancesInput>
+}
+
+export type UserCreateNestedOneWithoutInspectionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInspectionsInput, Prisma.UserUncheckedCreateWithoutInspectionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInspectionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutInspectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInspectionsInput, Prisma.UserUncheckedCreateWithoutInspectionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInspectionsInput
+  upsert?: Prisma.UserUpsertWithoutInspectionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInspectionsInput, Prisma.UserUpdateWithoutInspectionsInput>, Prisma.UserUncheckedUpdateWithoutInspectionsInput>
+}
+
 export type UserCreateNestedOneWithoutInitialInventoriesInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutInitialInventoriesInput, Prisma.UserUncheckedCreateWithoutInitialInventoriesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutInitialInventoriesInput
@@ -498,6 +645,13 @@ export type UserCreateWithoutInventoryHistoryInput = {
   updatedAt?: Date | string
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
 }
 
 export type UserUncheckedCreateWithoutInventoryHistoryInput = {
@@ -512,6 +666,13 @@ export type UserUncheckedCreateWithoutInventoryHistoryInput = {
   updatedAt?: Date | string
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
 }
 
 export type UserCreateOrConnectWithoutInventoryHistoryInput = {
@@ -542,6 +703,13 @@ export type UserUpdateWithoutInventoryHistoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInventoryHistoryInput = {
@@ -556,6 +724,713 @@ export type UserUncheckedUpdateWithoutInventoryHistoryInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserCreateWithoutIncomingGoodsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+}
+
+export type UserUncheckedCreateWithoutIncomingGoodsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+}
+
+export type UserCreateOrConnectWithoutIncomingGoodsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutIncomingGoodsInput, Prisma.UserUncheckedCreateWithoutIncomingGoodsInput>
+}
+
+export type UserUpsertWithoutIncomingGoodsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutIncomingGoodsInput, Prisma.UserUncheckedUpdateWithoutIncomingGoodsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutIncomingGoodsInput, Prisma.UserUncheckedCreateWithoutIncomingGoodsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutIncomingGoodsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutIncomingGoodsInput, Prisma.UserUncheckedUpdateWithoutIncomingGoodsInput>
+}
+
+export type UserUpdateWithoutIncomingGoodsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutIncomingGoodsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserCreateWithoutOutgoingGoodsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+}
+
+export type UserUncheckedCreateWithoutOutgoingGoodsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+}
+
+export type UserCreateOrConnectWithoutOutgoingGoodsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOutgoingGoodsInput, Prisma.UserUncheckedCreateWithoutOutgoingGoodsInput>
+}
+
+export type UserUpsertWithoutOutgoingGoodsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOutgoingGoodsInput, Prisma.UserUncheckedUpdateWithoutOutgoingGoodsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOutgoingGoodsInput, Prisma.UserUncheckedCreateWithoutOutgoingGoodsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOutgoingGoodsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOutgoingGoodsInput, Prisma.UserUncheckedUpdateWithoutOutgoingGoodsInput>
+}
+
+export type UserUpdateWithoutOutgoingGoodsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOutgoingGoodsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserCreateWithoutBorrowingsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+}
+
+export type UserUncheckedCreateWithoutBorrowingsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+}
+
+export type UserCreateOrConnectWithoutBorrowingsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBorrowingsInput, Prisma.UserUncheckedCreateWithoutBorrowingsInput>
+}
+
+export type UserUpsertWithoutBorrowingsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBorrowingsInput, Prisma.UserUncheckedUpdateWithoutBorrowingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBorrowingsInput, Prisma.UserUncheckedCreateWithoutBorrowingsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBorrowingsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBorrowingsInput, Prisma.UserUncheckedUpdateWithoutBorrowingsInput>
+}
+
+export type UserUpdateWithoutBorrowingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBorrowingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserCreateWithoutDamageReportsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+}
+
+export type UserUncheckedCreateWithoutDamageReportsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+}
+
+export type UserCreateOrConnectWithoutDamageReportsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDamageReportsInput, Prisma.UserUncheckedCreateWithoutDamageReportsInput>
+}
+
+export type UserUpsertWithoutDamageReportsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDamageReportsInput, Prisma.UserUncheckedUpdateWithoutDamageReportsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDamageReportsInput, Prisma.UserUncheckedCreateWithoutDamageReportsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDamageReportsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDamageReportsInput, Prisma.UserUncheckedUpdateWithoutDamageReportsInput>
+}
+
+export type UserUpdateWithoutDamageReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDamageReportsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserCreateWithoutRepairsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+}
+
+export type UserUncheckedCreateWithoutRepairsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+}
+
+export type UserCreateOrConnectWithoutRepairsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRepairsInput, Prisma.UserUncheckedCreateWithoutRepairsInput>
+}
+
+export type UserUpsertWithoutRepairsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRepairsInput, Prisma.UserUncheckedUpdateWithoutRepairsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRepairsInput, Prisma.UserUncheckedCreateWithoutRepairsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRepairsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRepairsInput, Prisma.UserUncheckedUpdateWithoutRepairsInput>
+}
+
+export type UserUpdateWithoutRepairsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRepairsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserCreateWithoutMaintenancesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+}
+
+export type UserUncheckedCreateWithoutMaintenancesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+}
+
+export type UserCreateOrConnectWithoutMaintenancesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMaintenancesInput, Prisma.UserUncheckedCreateWithoutMaintenancesInput>
+}
+
+export type UserUpsertWithoutMaintenancesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMaintenancesInput, Prisma.UserUncheckedUpdateWithoutMaintenancesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMaintenancesInput, Prisma.UserUncheckedCreateWithoutMaintenancesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMaintenancesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMaintenancesInput, Prisma.UserUncheckedUpdateWithoutMaintenancesInput>
+}
+
+export type UserUpdateWithoutMaintenancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMaintenancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserCreateWithoutInspectionsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+}
+
+export type UserUncheckedCreateWithoutInspectionsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+}
+
+export type UserCreateOrConnectWithoutInspectionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutInspectionsInput, Prisma.UserUncheckedCreateWithoutInspectionsInput>
+}
+
+export type UserUpsertWithoutInspectionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutInspectionsInput, Prisma.UserUncheckedUpdateWithoutInspectionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutInspectionsInput, Prisma.UserUncheckedCreateWithoutInspectionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutInspectionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutInspectionsInput, Prisma.UserUncheckedUpdateWithoutInspectionsInput>
+}
+
+export type UserUpdateWithoutInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+}
+
+export type UserUncheckedUpdateWithoutInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
 }
 
 export type UserCreateWithoutInitialInventoriesInput = {
@@ -570,6 +1445,13 @@ export type UserCreateWithoutInitialInventoriesInput = {
   updatedAt?: Date | string
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
 }
 
 export type UserUncheckedCreateWithoutInitialInventoriesInput = {
@@ -584,6 +1466,13 @@ export type UserUncheckedCreateWithoutInitialInventoriesInput = {
   updatedAt?: Date | string
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
 }
 
 export type UserCreateOrConnectWithoutInitialInventoriesInput = {
@@ -614,6 +1503,13 @@ export type UserUpdateWithoutInitialInventoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInitialInventoriesInput = {
@@ -628,6 +1524,13 @@ export type UserUncheckedUpdateWithoutInitialInventoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -642,6 +1545,13 @@ export type UserCreateWithoutAuditLogsInput = {
   updatedAt?: Date | string
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
   inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -656,6 +1566,13 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   updatedAt?: Date | string
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
   inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -686,6 +1603,13 @@ export type UserUpdateWithoutAuditLogsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
   inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -700,6 +1624,13 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
   inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
 }
 
 
@@ -711,12 +1642,26 @@ export type UserCountOutputType = {
   auditLogs: number
   initialInventories: number
   inventoryHistory: number
+  incomingGoods: number
+  outgoingGoods: number
+  borrowings: number
+  damageReports: number
+  repairs: number
+  maintenances: number
+  inspections: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
   initialInventories?: boolean | UserCountOutputTypeCountInitialInventoriesArgs
   inventoryHistory?: boolean | UserCountOutputTypeCountInventoryHistoryArgs
+  incomingGoods?: boolean | UserCountOutputTypeCountIncomingGoodsArgs
+  outgoingGoods?: boolean | UserCountOutputTypeCountOutgoingGoodsArgs
+  borrowings?: boolean | UserCountOutputTypeCountBorrowingsArgs
+  damageReports?: boolean | UserCountOutputTypeCountDamageReportsArgs
+  repairs?: boolean | UserCountOutputTypeCountRepairsArgs
+  maintenances?: boolean | UserCountOutputTypeCountMaintenancesArgs
+  inspections?: boolean | UserCountOutputTypeCountInspectionsArgs
 }
 
 /**
@@ -750,6 +1695,55 @@ export type UserCountOutputTypeCountInventoryHistoryArgs<ExtArgs extends runtime
   where?: Prisma.InventoryHistoryWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountIncomingGoodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.IncomingGoodsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOutgoingGoodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OutgoingGoodsWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBorrowingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BorrowingWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDamageReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DamageReportWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRepairsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RepairWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMaintenancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MaintenanceWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InspectionWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -764,6 +1758,13 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   initialInventories?: boolean | Prisma.User$initialInventoriesArgs<ExtArgs>
   inventoryHistory?: boolean | Prisma.User$inventoryHistoryArgs<ExtArgs>
+  incomingGoods?: boolean | Prisma.User$incomingGoodsArgs<ExtArgs>
+  outgoingGoods?: boolean | Prisma.User$outgoingGoodsArgs<ExtArgs>
+  borrowings?: boolean | Prisma.User$borrowingsArgs<ExtArgs>
+  damageReports?: boolean | Prisma.User$damageReportsArgs<ExtArgs>
+  repairs?: boolean | Prisma.User$repairsArgs<ExtArgs>
+  maintenances?: boolean | Prisma.User$maintenancesArgs<ExtArgs>
+  inspections?: boolean | Prisma.User$inspectionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -808,6 +1809,13 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   initialInventories?: boolean | Prisma.User$initialInventoriesArgs<ExtArgs>
   inventoryHistory?: boolean | Prisma.User$inventoryHistoryArgs<ExtArgs>
+  incomingGoods?: boolean | Prisma.User$incomingGoodsArgs<ExtArgs>
+  outgoingGoods?: boolean | Prisma.User$outgoingGoodsArgs<ExtArgs>
+  borrowings?: boolean | Prisma.User$borrowingsArgs<ExtArgs>
+  damageReports?: boolean | Prisma.User$damageReportsArgs<ExtArgs>
+  repairs?: boolean | Prisma.User$repairsArgs<ExtArgs>
+  maintenances?: boolean | Prisma.User$maintenancesArgs<ExtArgs>
+  inspections?: boolean | Prisma.User$inspectionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -819,6 +1827,13 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     initialInventories: Prisma.$InitialInventoryPayload<ExtArgs>[]
     inventoryHistory: Prisma.$InventoryHistoryPayload<ExtArgs>[]
+    incomingGoods: Prisma.$IncomingGoodsPayload<ExtArgs>[]
+    outgoingGoods: Prisma.$OutgoingGoodsPayload<ExtArgs>[]
+    borrowings: Prisma.$BorrowingPayload<ExtArgs>[]
+    damageReports: Prisma.$DamageReportPayload<ExtArgs>[]
+    repairs: Prisma.$RepairPayload<ExtArgs>[]
+    maintenances: Prisma.$MaintenancePayload<ExtArgs>[]
+    inspections: Prisma.$InspectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1227,6 +2242,13 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   initialInventories<T extends Prisma.User$initialInventoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$initialInventoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InitialInventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inventoryHistory<T extends Prisma.User$inventoryHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$inventoryHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  incomingGoods<T extends Prisma.User$incomingGoodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$incomingGoodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IncomingGoodsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  outgoingGoods<T extends Prisma.User$outgoingGoodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$outgoingGoodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OutgoingGoodsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  borrowings<T extends Prisma.User$borrowingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$borrowingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BorrowingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  damageReports<T extends Prisma.User$damageReportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$damageReportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  repairs<T extends Prisma.User$repairsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$repairsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RepairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  maintenances<T extends Prisma.User$maintenancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$maintenancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaintenancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  inspections<T extends Prisma.User$inspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$inspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1499,6 +2521,7 @@ export type UserCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * The data used to create many Users.
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1517,6 +2540,7 @@ export type UserCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * The data used to create many Users.
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1725,6 +2749,174 @@ export type User$inventoryHistoryArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.InventoryHistoryScalarFieldEnum | Prisma.InventoryHistoryScalarFieldEnum[]
+}
+
+/**
+ * User.incomingGoods
+ */
+export type User$incomingGoodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the IncomingGoods
+   */
+  select?: Prisma.IncomingGoodsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the IncomingGoods
+   */
+  omit?: Prisma.IncomingGoodsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.IncomingGoodsInclude<ExtArgs> | null
+  where?: Prisma.IncomingGoodsWhereInput
+  orderBy?: Prisma.IncomingGoodsOrderByWithRelationInput | Prisma.IncomingGoodsOrderByWithRelationInput[]
+  cursor?: Prisma.IncomingGoodsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.IncomingGoodsScalarFieldEnum | Prisma.IncomingGoodsScalarFieldEnum[]
+}
+
+/**
+ * User.outgoingGoods
+ */
+export type User$outgoingGoodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OutgoingGoods
+   */
+  select?: Prisma.OutgoingGoodsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OutgoingGoods
+   */
+  omit?: Prisma.OutgoingGoodsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OutgoingGoodsInclude<ExtArgs> | null
+  where?: Prisma.OutgoingGoodsWhereInput
+  orderBy?: Prisma.OutgoingGoodsOrderByWithRelationInput | Prisma.OutgoingGoodsOrderByWithRelationInput[]
+  cursor?: Prisma.OutgoingGoodsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OutgoingGoodsScalarFieldEnum | Prisma.OutgoingGoodsScalarFieldEnum[]
+}
+
+/**
+ * User.borrowings
+ */
+export type User$borrowingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Borrowing
+   */
+  select?: Prisma.BorrowingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Borrowing
+   */
+  omit?: Prisma.BorrowingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BorrowingInclude<ExtArgs> | null
+  where?: Prisma.BorrowingWhereInput
+  orderBy?: Prisma.BorrowingOrderByWithRelationInput | Prisma.BorrowingOrderByWithRelationInput[]
+  cursor?: Prisma.BorrowingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BorrowingScalarFieldEnum | Prisma.BorrowingScalarFieldEnum[]
+}
+
+/**
+ * User.damageReports
+ */
+export type User$damageReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DamageReport
+   */
+  select?: Prisma.DamageReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DamageReport
+   */
+  omit?: Prisma.DamageReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DamageReportInclude<ExtArgs> | null
+  where?: Prisma.DamageReportWhereInput
+  orderBy?: Prisma.DamageReportOrderByWithRelationInput | Prisma.DamageReportOrderByWithRelationInput[]
+  cursor?: Prisma.DamageReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DamageReportScalarFieldEnum | Prisma.DamageReportScalarFieldEnum[]
+}
+
+/**
+ * User.repairs
+ */
+export type User$repairsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Repair
+   */
+  select?: Prisma.RepairSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Repair
+   */
+  omit?: Prisma.RepairOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RepairInclude<ExtArgs> | null
+  where?: Prisma.RepairWhereInput
+  orderBy?: Prisma.RepairOrderByWithRelationInput | Prisma.RepairOrderByWithRelationInput[]
+  cursor?: Prisma.RepairWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RepairScalarFieldEnum | Prisma.RepairScalarFieldEnum[]
+}
+
+/**
+ * User.maintenances
+ */
+export type User$maintenancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Maintenance
+   */
+  select?: Prisma.MaintenanceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Maintenance
+   */
+  omit?: Prisma.MaintenanceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaintenanceInclude<ExtArgs> | null
+  where?: Prisma.MaintenanceWhereInput
+  orderBy?: Prisma.MaintenanceOrderByWithRelationInput | Prisma.MaintenanceOrderByWithRelationInput[]
+  cursor?: Prisma.MaintenanceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MaintenanceScalarFieldEnum | Prisma.MaintenanceScalarFieldEnum[]
+}
+
+/**
+ * User.inspections
+ */
+export type User$inspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Inspection
+   */
+  select?: Prisma.InspectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Inspection
+   */
+  omit?: Prisma.InspectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InspectionInclude<ExtArgs> | null
+  where?: Prisma.InspectionWhereInput
+  orderBy?: Prisma.InspectionOrderByWithRelationInput | Prisma.InspectionOrderByWithRelationInput[]
+  cursor?: Prisma.InspectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InspectionScalarFieldEnum | Prisma.InspectionScalarFieldEnum[]
 }
 
 /**

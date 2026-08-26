@@ -235,6 +235,8 @@ export type RoomWhereInput = {
   location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   inventories?: Prisma.InventoryListRelationFilter
   initialInventories?: Prisma.InitialInventoryListRelationFilter
+  inspections?: Prisma.InspectionListRelationFilter
+  practicumSchedules?: Prisma.PracticumScheduleListRelationFilter
 }
 
 export type RoomOrderByWithRelationInput = {
@@ -248,6 +250,8 @@ export type RoomOrderByWithRelationInput = {
   location?: Prisma.LocationOrderByWithRelationInput
   inventories?: Prisma.InventoryOrderByRelationAggregateInput
   initialInventories?: Prisma.InitialInventoryOrderByRelationAggregateInput
+  inspections?: Prisma.InspectionOrderByRelationAggregateInput
+  practicumSchedules?: Prisma.PracticumScheduleOrderByRelationAggregateInput
 }
 
 export type RoomWhereUniqueInput = Prisma.AtLeast<{
@@ -264,6 +268,8 @@ export type RoomWhereUniqueInput = Prisma.AtLeast<{
   location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
   inventories?: Prisma.InventoryListRelationFilter
   initialInventories?: Prisma.InitialInventoryListRelationFilter
+  inspections?: Prisma.InspectionListRelationFilter
+  practicumSchedules?: Prisma.PracticumScheduleListRelationFilter
 }, "id">
 
 export type RoomOrderByWithAggregationInput = {
@@ -304,6 +310,8 @@ export type RoomCreateInput = {
   location: Prisma.LocationCreateNestedOneWithoutRoomsInput
   inventories?: Prisma.InventoryCreateNestedManyWithoutRoomInput
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateInput = {
@@ -316,6 +324,8 @@ export type RoomUncheckedCreateInput = {
   updatedAt?: Date | string
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutRoomInput
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUpdateInput = {
@@ -328,6 +338,8 @@ export type RoomUpdateInput = {
   location?: Prisma.LocationUpdateOneRequiredWithoutRoomsNestedInput
   inventories?: Prisma.InventoryUpdateManyWithoutRoomNestedInput
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateInput = {
@@ -340,6 +352,8 @@ export type RoomUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutRoomNestedInput
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomCreateManyInput = {
@@ -495,6 +509,34 @@ export type RoomUpdateOneWithoutInventoriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RoomUpdateToOneWithWhereWithoutInventoriesInput, Prisma.RoomUpdateWithoutInventoriesInput>, Prisma.RoomUncheckedUpdateWithoutInventoriesInput>
 }
 
+export type RoomCreateNestedOneWithoutInspectionsInput = {
+  create?: Prisma.XOR<Prisma.RoomCreateWithoutInspectionsInput, Prisma.RoomUncheckedCreateWithoutInspectionsInput>
+  connectOrCreate?: Prisma.RoomCreateOrConnectWithoutInspectionsInput
+  connect?: Prisma.RoomWhereUniqueInput
+}
+
+export type RoomUpdateOneRequiredWithoutInspectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.RoomCreateWithoutInspectionsInput, Prisma.RoomUncheckedCreateWithoutInspectionsInput>
+  connectOrCreate?: Prisma.RoomCreateOrConnectWithoutInspectionsInput
+  upsert?: Prisma.RoomUpsertWithoutInspectionsInput
+  connect?: Prisma.RoomWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RoomUpdateToOneWithWhereWithoutInspectionsInput, Prisma.RoomUpdateWithoutInspectionsInput>, Prisma.RoomUncheckedUpdateWithoutInspectionsInput>
+}
+
+export type RoomCreateNestedOneWithoutPracticumSchedulesInput = {
+  create?: Prisma.XOR<Prisma.RoomCreateWithoutPracticumSchedulesInput, Prisma.RoomUncheckedCreateWithoutPracticumSchedulesInput>
+  connectOrCreate?: Prisma.RoomCreateOrConnectWithoutPracticumSchedulesInput
+  connect?: Prisma.RoomWhereUniqueInput
+}
+
+export type RoomUpdateOneRequiredWithoutPracticumSchedulesNestedInput = {
+  create?: Prisma.XOR<Prisma.RoomCreateWithoutPracticumSchedulesInput, Prisma.RoomUncheckedCreateWithoutPracticumSchedulesInput>
+  connectOrCreate?: Prisma.RoomCreateOrConnectWithoutPracticumSchedulesInput
+  upsert?: Prisma.RoomUpsertWithoutPracticumSchedulesInput
+  connect?: Prisma.RoomWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RoomUpdateToOneWithWhereWithoutPracticumSchedulesInput, Prisma.RoomUpdateWithoutPracticumSchedulesInput>, Prisma.RoomUncheckedUpdateWithoutPracticumSchedulesInput>
+}
+
 export type RoomCreateNestedOneWithoutInitialInventoriesInput = {
   create?: Prisma.XOR<Prisma.RoomCreateWithoutInitialInventoriesInput, Prisma.RoomUncheckedCreateWithoutInitialInventoriesInput>
   connectOrCreate?: Prisma.RoomCreateOrConnectWithoutInitialInventoriesInput
@@ -518,6 +560,8 @@ export type RoomCreateWithoutLocationInput = {
   updatedAt?: Date | string
   inventories?: Prisma.InventoryCreateNestedManyWithoutRoomInput
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateWithoutLocationInput = {
@@ -529,6 +573,8 @@ export type RoomUncheckedCreateWithoutLocationInput = {
   updatedAt?: Date | string
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutRoomInput
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomCreateOrConnectWithoutLocationInput = {
@@ -538,6 +584,7 @@ export type RoomCreateOrConnectWithoutLocationInput = {
 
 export type RoomCreateManyLocationInputEnvelope = {
   data: Prisma.RoomCreateManyLocationInput | Prisma.RoomCreateManyLocationInput[]
+  skipDuplicates?: boolean
 }
 
 export type RoomUpsertWithWhereUniqueWithoutLocationInput = {
@@ -578,6 +625,8 @@ export type RoomCreateWithoutInventoriesInput = {
   updatedAt?: Date | string
   location: Prisma.LocationCreateNestedOneWithoutRoomsInput
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateWithoutInventoriesInput = {
@@ -589,6 +638,8 @@ export type RoomUncheckedCreateWithoutInventoriesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomCreateOrConnectWithoutInventoriesInput = {
@@ -616,6 +667,8 @@ export type RoomUpdateWithoutInventoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   location?: Prisma.LocationUpdateOneRequiredWithoutRoomsNestedInput
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutInventoriesInput = {
@@ -627,6 +680,144 @@ export type RoomUncheckedUpdateWithoutInventoriesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
+}
+
+export type RoomCreateWithoutInspectionsInput = {
+  id?: string
+  name: string
+  capacity?: number | null
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  location: Prisma.LocationCreateNestedOneWithoutRoomsInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutRoomInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
+}
+
+export type RoomUncheckedCreateWithoutInspectionsInput = {
+  id?: string
+  name: string
+  locationId: string
+  capacity?: number | null
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutRoomInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
+}
+
+export type RoomCreateOrConnectWithoutInspectionsInput = {
+  where: Prisma.RoomWhereUniqueInput
+  create: Prisma.XOR<Prisma.RoomCreateWithoutInspectionsInput, Prisma.RoomUncheckedCreateWithoutInspectionsInput>
+}
+
+export type RoomUpsertWithoutInspectionsInput = {
+  update: Prisma.XOR<Prisma.RoomUpdateWithoutInspectionsInput, Prisma.RoomUncheckedUpdateWithoutInspectionsInput>
+  create: Prisma.XOR<Prisma.RoomCreateWithoutInspectionsInput, Prisma.RoomUncheckedCreateWithoutInspectionsInput>
+  where?: Prisma.RoomWhereInput
+}
+
+export type RoomUpdateToOneWithWhereWithoutInspectionsInput = {
+  where?: Prisma.RoomWhereInput
+  data: Prisma.XOR<Prisma.RoomUpdateWithoutInspectionsInput, Prisma.RoomUncheckedUpdateWithoutInspectionsInput>
+}
+
+export type RoomUpdateWithoutInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  location?: Prisma.LocationUpdateOneRequiredWithoutRoomsNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutRoomNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
+}
+
+export type RoomUncheckedUpdateWithoutInspectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutRoomNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
+}
+
+export type RoomCreateWithoutPracticumSchedulesInput = {
+  id?: string
+  name: string
+  capacity?: number | null
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  location: Prisma.LocationCreateNestedOneWithoutRoomsInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutRoomInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
+}
+
+export type RoomUncheckedCreateWithoutPracticumSchedulesInput = {
+  id?: string
+  name: string
+  locationId: string
+  capacity?: number | null
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutRoomInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
+}
+
+export type RoomCreateOrConnectWithoutPracticumSchedulesInput = {
+  where: Prisma.RoomWhereUniqueInput
+  create: Prisma.XOR<Prisma.RoomCreateWithoutPracticumSchedulesInput, Prisma.RoomUncheckedCreateWithoutPracticumSchedulesInput>
+}
+
+export type RoomUpsertWithoutPracticumSchedulesInput = {
+  update: Prisma.XOR<Prisma.RoomUpdateWithoutPracticumSchedulesInput, Prisma.RoomUncheckedUpdateWithoutPracticumSchedulesInput>
+  create: Prisma.XOR<Prisma.RoomCreateWithoutPracticumSchedulesInput, Prisma.RoomUncheckedCreateWithoutPracticumSchedulesInput>
+  where?: Prisma.RoomWhereInput
+}
+
+export type RoomUpdateToOneWithWhereWithoutPracticumSchedulesInput = {
+  where?: Prisma.RoomWhereInput
+  data: Prisma.XOR<Prisma.RoomUpdateWithoutPracticumSchedulesInput, Prisma.RoomUncheckedUpdateWithoutPracticumSchedulesInput>
+}
+
+export type RoomUpdateWithoutPracticumSchedulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  location?: Prisma.LocationUpdateOneRequiredWithoutRoomsNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutRoomNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
+}
+
+export type RoomUncheckedUpdateWithoutPracticumSchedulesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutRoomNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomCreateWithoutInitialInventoriesInput = {
@@ -638,6 +829,8 @@ export type RoomCreateWithoutInitialInventoriesInput = {
   updatedAt?: Date | string
   location: Prisma.LocationCreateNestedOneWithoutRoomsInput
   inventories?: Prisma.InventoryCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateWithoutInitialInventoriesInput = {
@@ -649,6 +842,8 @@ export type RoomUncheckedCreateWithoutInitialInventoriesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomCreateOrConnectWithoutInitialInventoriesInput = {
@@ -676,6 +871,8 @@ export type RoomUpdateWithoutInitialInventoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   location?: Prisma.LocationUpdateOneRequiredWithoutRoomsNestedInput
   inventories?: Prisma.InventoryUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutInitialInventoriesInput = {
@@ -687,6 +884,8 @@ export type RoomUncheckedUpdateWithoutInitialInventoriesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomCreateManyLocationInput = {
@@ -707,6 +906,8 @@ export type RoomUpdateWithoutLocationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUpdateManyWithoutRoomNestedInput
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutLocationInput = {
@@ -718,6 +919,8 @@ export type RoomUncheckedUpdateWithoutLocationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutRoomNestedInput
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateManyWithoutLocationInput = {
@@ -737,11 +940,15 @@ export type RoomUncheckedUpdateManyWithoutLocationInput = {
 export type RoomCountOutputType = {
   inventories: number
   initialInventories: number
+  inspections: number
+  practicumSchedules: number
 }
 
 export type RoomCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   inventories?: boolean | RoomCountOutputTypeCountInventoriesArgs
   initialInventories?: boolean | RoomCountOutputTypeCountInitialInventoriesArgs
+  inspections?: boolean | RoomCountOutputTypeCountInspectionsArgs
+  practicumSchedules?: boolean | RoomCountOutputTypeCountPracticumSchedulesArgs
 }
 
 /**
@@ -768,6 +975,20 @@ export type RoomCountOutputTypeCountInitialInventoriesArgs<ExtArgs extends runti
   where?: Prisma.InitialInventoryWhereInput
 }
 
+/**
+ * RoomCountOutputType without action
+ */
+export type RoomCountOutputTypeCountInspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InspectionWhereInput
+}
+
+/**
+ * RoomCountOutputType without action
+ */
+export type RoomCountOutputTypeCountPracticumSchedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PracticumScheduleWhereInput
+}
+
 
 export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -780,6 +1001,8 @@ export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   inventories?: boolean | Prisma.Room$inventoriesArgs<ExtArgs>
   initialInventories?: boolean | Prisma.Room$initialInventoriesArgs<ExtArgs>
+  inspections?: boolean | Prisma.Room$inspectionsArgs<ExtArgs>
+  practicumSchedules?: boolean | Prisma.Room$practicumSchedulesArgs<ExtArgs>
   _count?: boolean | Prisma.RoomCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["room"]>
 
@@ -820,6 +1043,8 @@ export type RoomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
   inventories?: boolean | Prisma.Room$inventoriesArgs<ExtArgs>
   initialInventories?: boolean | Prisma.Room$initialInventoriesArgs<ExtArgs>
+  inspections?: boolean | Prisma.Room$inspectionsArgs<ExtArgs>
+  practicumSchedules?: boolean | Prisma.Room$practicumSchedulesArgs<ExtArgs>
   _count?: boolean | Prisma.RoomCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RoomIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -835,6 +1060,8 @@ export type $RoomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     location: Prisma.$LocationPayload<ExtArgs>
     inventories: Prisma.$InventoryPayload<ExtArgs>[]
     initialInventories: Prisma.$InitialInventoryPayload<ExtArgs>[]
+    inspections: Prisma.$InspectionPayload<ExtArgs>[]
+    practicumSchedules: Prisma.$PracticumSchedulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1241,6 +1468,8 @@ export interface Prisma__RoomClient<T, Null = never, ExtArgs extends runtime.Typ
   location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   inventories<T extends Prisma.Room$inventoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$inventoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   initialInventories<T extends Prisma.Room$initialInventoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$initialInventoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InitialInventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  inspections<T extends Prisma.Room$inspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$inspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  practicumSchedules<T extends Prisma.Room$practicumSchedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$practicumSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticumSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1511,6 +1740,7 @@ export type RoomCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * The data used to create many Rooms.
    */
   data: Prisma.RoomCreateManyInput | Prisma.RoomCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1529,6 +1759,7 @@ export type RoomCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * The data used to create many Rooms.
    */
   data: Prisma.RoomCreateManyInput | Prisma.RoomCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
@@ -1721,6 +1952,54 @@ export type Room$initialInventoriesArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.InitialInventoryScalarFieldEnum | Prisma.InitialInventoryScalarFieldEnum[]
+}
+
+/**
+ * Room.inspections
+ */
+export type Room$inspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Inspection
+   */
+  select?: Prisma.InspectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Inspection
+   */
+  omit?: Prisma.InspectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InspectionInclude<ExtArgs> | null
+  where?: Prisma.InspectionWhereInput
+  orderBy?: Prisma.InspectionOrderByWithRelationInput | Prisma.InspectionOrderByWithRelationInput[]
+  cursor?: Prisma.InspectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InspectionScalarFieldEnum | Prisma.InspectionScalarFieldEnum[]
+}
+
+/**
+ * Room.practicumSchedules
+ */
+export type Room$practicumSchedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PracticumSchedule
+   */
+  select?: Prisma.PracticumScheduleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PracticumSchedule
+   */
+  omit?: Prisma.PracticumScheduleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticumScheduleInclude<ExtArgs> | null
+  where?: Prisma.PracticumScheduleWhereInput
+  orderBy?: Prisma.PracticumScheduleOrderByWithRelationInput | Prisma.PracticumScheduleOrderByWithRelationInput[]
+  cursor?: Prisma.PracticumScheduleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PracticumScheduleScalarFieldEnum | Prisma.PracticumScheduleScalarFieldEnum[]
 }
 
 /**

@@ -380,6 +380,7 @@ export type InventoryPhotoCreateOrConnectWithoutInventoryInput = {
 
 export type InventoryPhotoCreateManyInventoryInputEnvelope = {
   data: Prisma.InventoryPhotoCreateManyInventoryInput | Prisma.InventoryPhotoCreateManyInventoryInput[]
+  skipDuplicates?: boolean
 }
 
 export type InventoryPhotoUpsertWithWhereUniqueWithoutInventoryInput = {
@@ -1159,6 +1160,7 @@ export type InventoryPhotoCreateManyArgs<ExtArgs extends runtime.Types.Extension
    * The data used to create many InventoryPhotos.
    */
   data: Prisma.InventoryPhotoCreateManyInput | Prisma.InventoryPhotoCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1177,6 +1179,7 @@ export type InventoryPhotoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.
    * The data used to create many InventoryPhotos.
    */
   data: Prisma.InventoryPhotoCreateManyInput | Prisma.InventoryPhotoCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
