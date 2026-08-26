@@ -112,7 +112,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-xs sm:text-base md:text-lg text-slate-400 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed font-normal">
-            Platform modern untuk pendataan aset, label QR Code, sirkulasi peminjaman, perbaikan teknisi, jadwal praktikum, hingga cetak Berita Acara resmi dalam hitungan detik.
+            Platform modern untuk pendataan aset spesifikasi detail hardware & software, sirkulasi peminjaman, perbaikan teknisi, jadwal praktikum, hingga cetak Berita Acara resmi.
           </p>
 
           {/* Hero CTAs */}
@@ -190,10 +190,10 @@ export default function HomePage() {
               <div className="p-2.5 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
                 <div className="flex items-center gap-2.5 min-w-0">
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold shrink-0">
-                    <QrCode className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <Laptop className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-bold text-slate-200 text-xs truncate">PC-LAB1-024 • Label QR Code Dicetak</p>
+                    <p className="font-bold text-slate-200 text-xs truncate">PC-RPL1-024 • Spesifikasi Diperbarui</p>
                     <p className="text-slate-500 text-[10px] sm:text-[11px] truncate">Lab Rekayasa Perangkat Lunak 1 • Toolman</p>
                   </div>
                 </div>
@@ -216,8 +216,8 @@ export default function HomePage() {
               <p className="text-xs sm:text-sm text-slate-400 font-medium">Tracking Aset Digital Terintegrasi</p>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-blue-400 mb-1">&lt; 1 Detik</div>
-              <p className="text-xs sm:text-sm text-slate-400 font-medium">Generasi & Cetak Label QR Code</p>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-blue-400 mb-1">94+ PC</div>
+              <p className="text-xs sm:text-sm text-slate-400 font-medium">Spesifikasi Hardware & Software Detail</p>
             </div>
             <div>
               <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-1">4 Role</div>
@@ -248,15 +248,15 @@ export default function HomePage() {
             {/* Card 1 */}
             <div className="p-5 sm:p-7 rounded-2xl sm:rounded-3xl bg-white/[0.02] border border-white/5 hover:border-blue-500/30 hover:bg-white/[0.04] transition-all group">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-5 sm:mb-6 group-hover:scale-110 transition-transform">
-                <QrCode className="w-6 h-6 sm:w-7 sm:h-7" />
+                <Laptop className="w-6 h-6 sm:w-7 sm:h-7" />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Labeling QR Code Multi-Barang</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Spesifikasi Hardware & Software Detail</h3>
               <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
-                Buat kode unik otomatis per barang, cetak puluhan label QR Code sekaligus dalam ukuran stiker siap tempel di unit PC atau perangkat lab.
+                Catat spesifikasi teknis lengkap per unit PC: RAM, SSD, Processor, Motherboard, BIOS, OS, hingga posisi meja di setiap ruangan lab.
               </p>
               <ul className="space-y-2 text-xs text-slate-300">
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" /> Cetak multi-item terpilih</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" /> Format stiker rapi & hemat kertas</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" /> Riwayat hardware & riwayat servis per unit</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" /> Filter & pencarian cepat per lab</li>
               </ul>
             </div>
 

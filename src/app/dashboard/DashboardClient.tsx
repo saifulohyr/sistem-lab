@@ -99,11 +99,11 @@ export default function DashboardClient({
         </div>
         <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 w-full md:w-auto">
           <Link
-            href="/dashboard/inventaris/qrcode"
+            href="/dashboard/laporan"
             className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-3.5 py-2.5 bg-white hover:bg-[#f2f3ff] text-[#131b2e] text-xs sm:text-sm font-semibold rounded-lg border border-[#eaedff] shadow-sm transition-all group"
           >
-            <QrCode className="w-4 h-4 text-[#0058be] group-hover:scale-110 transition-transform" />
-            Cetak QR Code
+            <Package className="w-4 h-4 text-[#0058be] group-hover:scale-110 transition-transform" />
+            Rekap Laporan
           </Link>
           <Link
             href="/dashboard/inventaris/tambah"

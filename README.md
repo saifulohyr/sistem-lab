@@ -7,7 +7,7 @@ Sistem manajemen laboratorium sekolah (SMK Muhammadiyah Majenang) modern untuk p
 ## 🚀 Fitur Utama
 
 - **📦 Manajemen Inventaris & Spesifikasi**: Pendataan aset detail hingga level hardware (RAM, SSD, Processor, OS, Motherboard, BIOS, Posisi Rak/Meja, Kondisi).
-- **🏷️ Multi-Label QR Code Generator**: Cetak puluhan label stiker QR code siap potong untuk penandaan fisik aset lab.
+- **📊 Import & Migrasi Spreadsheet**: Dukungan impor data Google Sheets / Excel langsung ke database laboratorium.
 - **🔄 Sirkulasi & Peminjaman Barang**: Manajemen peminjaman alat lab oleh guru/siswa lengkap dengan deteksi tenggat waktu & pengembalian.
 - **🛠️ Kanban Servis & Perbaikan**: Manajemen laporan kerusakan dan tiket teknisi (Diagnosa, Proses, Testing, Selesai).
 - **📅 Jadwal Praktikum Multi-Lab**: Jadwal penggunaan Lab RPL 1, Lab RPL 2, Lab RPL 3, dan Lab RPL 4 dengan tampilan kalender visual & timeline.

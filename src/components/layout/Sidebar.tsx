@@ -81,7 +81,6 @@ const menuGroups = [
       { href: "/dashboard/perbaikan", label: "Tiket Perbaikan", icon: Wrench },
       { href: "/dashboard/pemeliharaan", label: "Pemeliharaan", icon: Calendar },
       { href: "/dashboard/laporan", label: "Laporan & Rekap", icon: ClipboardList },
-      { href: "/dashboard/inventaris/qrcode", label: "Cetak Label QR", icon: Layers },
       { href: "/dashboard/pengaturan", label: "Pengaturan Sistem", icon: Settings },
     ],
   },
