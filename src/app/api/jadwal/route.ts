@@ -26,11 +26,42 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const schedule = await prisma.practicumSchedule.create({ data: body });
+    const {
+      roomId,
+      subject,
+      teacher,
+      className,
+      dayOfWeek,
+      startTime,
+      endTime,
+      academicYear = "2026/2027",
+      semester = "GANJIL",
+    } = body;
+
+    if (!roomId || !subject || !teacher || !className || !dayOfWeek || !startTime || !endTime) {
+      return NextResponse.json({ error: "Kolom Lab, Mapel, Guru, Kelas, Hari, dan Jam wajib diisi" }, { status: 400 });
+    }
+
+    const schedule = await prisma.practicumSchedule.create({
+      data: {
+        roomId,
+        subject,
+        teacher,
+        className,
+        dayOfWeek: parseInt(dayOfWeek),
+        startTime,
+        endTime,
+        academicYear,
+        semester,
+      },
+      include: {
+        room: true,
+      },
+    });
 
     return NextResponse.json({ success: true, data: schedule });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error creating schedule:", error);
-    return NextResponse.json({ error: "Gagal menyimpan jadwal" }, { status: 500 });
+    return NextResponse.json({ error: error.message || "Gagal menyimpan jadwal" }, { status: 500 });
   }
 }
