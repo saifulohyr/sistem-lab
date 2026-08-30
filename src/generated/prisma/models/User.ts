@@ -224,6 +224,7 @@ export type UserWhereInput = {
   repairs?: Prisma.RepairListRelationFilter
   maintenances?: Prisma.MaintenanceListRelationFilter
   inspections?: Prisma.InspectionListRelationFilter
+  scheduleRequests?: Prisma.PracticumScheduleListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -246,6 +247,7 @@ export type UserOrderByWithRelationInput = {
   repairs?: Prisma.RepairOrderByRelationAggregateInput
   maintenances?: Prisma.MaintenanceOrderByRelationAggregateInput
   inspections?: Prisma.InspectionOrderByRelationAggregateInput
+  scheduleRequests?: Prisma.PracticumScheduleOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -271,6 +273,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   repairs?: Prisma.RepairListRelationFilter
   maintenances?: Prisma.MaintenanceListRelationFilter
   inspections?: Prisma.InspectionListRelationFilter
+  scheduleRequests?: Prisma.PracticumScheduleListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -323,6 +326,7 @@ export type UserCreateInput = {
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -345,6 +349,7 @@ export type UserUncheckedCreateInput = {
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUpdateInput = {
@@ -367,6 +372,7 @@ export type UserUpdateInput = {
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -389,6 +395,7 @@ export type UserUncheckedUpdateInput = {
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -603,6 +610,22 @@ export type UserUpdateOneRequiredWithoutInspectionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInspectionsInput, Prisma.UserUpdateWithoutInspectionsInput>, Prisma.UserUncheckedUpdateWithoutInspectionsInput>
 }
 
+export type UserCreateNestedOneWithoutScheduleRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutScheduleRequestsInput, Prisma.UserUncheckedCreateWithoutScheduleRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutScheduleRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutScheduleRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutScheduleRequestsInput, Prisma.UserUncheckedCreateWithoutScheduleRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutScheduleRequestsInput
+  upsert?: Prisma.UserUpsertWithoutScheduleRequestsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutScheduleRequestsInput, Prisma.UserUpdateWithoutScheduleRequestsInput>, Prisma.UserUncheckedUpdateWithoutScheduleRequestsInput>
+}
+
 export type UserCreateNestedOneWithoutInitialInventoriesInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutInitialInventoriesInput, Prisma.UserUncheckedCreateWithoutInitialInventoriesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutInitialInventoriesInput
@@ -652,6 +675,7 @@ export type UserCreateWithoutInventoryHistoryInput = {
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutInventoryHistoryInput = {
@@ -673,6 +697,7 @@ export type UserUncheckedCreateWithoutInventoryHistoryInput = {
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutInventoryHistoryInput = {
@@ -710,6 +735,7 @@ export type UserUpdateWithoutInventoryHistoryInput = {
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInventoryHistoryInput = {
@@ -731,6 +757,7 @@ export type UserUncheckedUpdateWithoutInventoryHistoryInput = {
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutIncomingGoodsInput = {
@@ -752,6 +779,7 @@ export type UserCreateWithoutIncomingGoodsInput = {
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutIncomingGoodsInput = {
@@ -773,6 +801,7 @@ export type UserUncheckedCreateWithoutIncomingGoodsInput = {
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutIncomingGoodsInput = {
@@ -810,6 +839,7 @@ export type UserUpdateWithoutIncomingGoodsInput = {
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutIncomingGoodsInput = {
@@ -831,6 +861,7 @@ export type UserUncheckedUpdateWithoutIncomingGoodsInput = {
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutOutgoingGoodsInput = {
@@ -852,6 +883,7 @@ export type UserCreateWithoutOutgoingGoodsInput = {
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutOutgoingGoodsInput = {
@@ -873,6 +905,7 @@ export type UserUncheckedCreateWithoutOutgoingGoodsInput = {
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutOutgoingGoodsInput = {
@@ -910,6 +943,7 @@ export type UserUpdateWithoutOutgoingGoodsInput = {
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOutgoingGoodsInput = {
@@ -931,6 +965,7 @@ export type UserUncheckedUpdateWithoutOutgoingGoodsInput = {
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutBorrowingsInput = {
@@ -952,6 +987,7 @@ export type UserCreateWithoutBorrowingsInput = {
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutBorrowingsInput = {
@@ -973,6 +1009,7 @@ export type UserUncheckedCreateWithoutBorrowingsInput = {
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutBorrowingsInput = {
@@ -1010,6 +1047,7 @@ export type UserUpdateWithoutBorrowingsInput = {
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBorrowingsInput = {
@@ -1031,6 +1069,7 @@ export type UserUncheckedUpdateWithoutBorrowingsInput = {
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutDamageReportsInput = {
@@ -1052,6 +1091,7 @@ export type UserCreateWithoutDamageReportsInput = {
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutDamageReportsInput = {
@@ -1073,6 +1113,7 @@ export type UserUncheckedCreateWithoutDamageReportsInput = {
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutDamageReportsInput = {
@@ -1110,6 +1151,7 @@ export type UserUpdateWithoutDamageReportsInput = {
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDamageReportsInput = {
@@ -1131,6 +1173,7 @@ export type UserUncheckedUpdateWithoutDamageReportsInput = {
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutRepairsInput = {
@@ -1152,6 +1195,7 @@ export type UserCreateWithoutRepairsInput = {
   damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutRepairsInput = {
@@ -1173,6 +1217,7 @@ export type UserUncheckedCreateWithoutRepairsInput = {
   damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutRepairsInput = {
@@ -1210,6 +1255,7 @@ export type UserUpdateWithoutRepairsInput = {
   damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRepairsInput = {
@@ -1231,6 +1277,7 @@ export type UserUncheckedUpdateWithoutRepairsInput = {
   damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutMaintenancesInput = {
@@ -1252,6 +1299,7 @@ export type UserCreateWithoutMaintenancesInput = {
   damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutMaintenancesInput = {
@@ -1273,6 +1321,7 @@ export type UserUncheckedCreateWithoutMaintenancesInput = {
   damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutMaintenancesInput = {
@@ -1310,6 +1359,7 @@ export type UserUpdateWithoutMaintenancesInput = {
   damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMaintenancesInput = {
@@ -1331,6 +1381,7 @@ export type UserUncheckedUpdateWithoutMaintenancesInput = {
   damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutInspectionsInput = {
@@ -1352,6 +1403,7 @@ export type UserCreateWithoutInspectionsInput = {
   damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutInspectionsInput = {
@@ -1373,6 +1425,7 @@ export type UserUncheckedCreateWithoutInspectionsInput = {
   damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutInspectionsInput = {
@@ -1410,6 +1463,7 @@ export type UserUpdateWithoutInspectionsInput = {
   damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInspectionsInput = {
@@ -1431,6 +1485,111 @@ export type UserUncheckedUpdateWithoutInspectionsInput = {
   damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
+}
+
+export type UserCreateWithoutScheduleRequestsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+}
+
+export type UserUncheckedCreateWithoutScheduleRequestsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: string
+  avatar?: string | null
+  active?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutUserInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedCreateNestedManyWithoutUserInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedCreateNestedManyWithoutUserInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedCreateNestedManyWithoutUserInput
+  borrowings?: Prisma.BorrowingUncheckedCreateNestedManyWithoutUserInput
+  damageReports?: Prisma.DamageReportUncheckedCreateNestedManyWithoutUserInput
+  repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
+  maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+}
+
+export type UserCreateOrConnectWithoutScheduleRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutScheduleRequestsInput, Prisma.UserUncheckedCreateWithoutScheduleRequestsInput>
+}
+
+export type UserUpsertWithoutScheduleRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutScheduleRequestsInput, Prisma.UserUncheckedUpdateWithoutScheduleRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutScheduleRequestsInput, Prisma.UserUncheckedCreateWithoutScheduleRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutScheduleRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutScheduleRequestsInput, Prisma.UserUncheckedUpdateWithoutScheduleRequestsInput>
+}
+
+export type UserUpdateWithoutScheduleRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutScheduleRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutUserNestedInput
+  inventoryHistory?: Prisma.InventoryHistoryUncheckedUpdateManyWithoutUserNestedInput
+  incomingGoods?: Prisma.IncomingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  outgoingGoods?: Prisma.OutgoingGoodsUncheckedUpdateManyWithoutUserNestedInput
+  borrowings?: Prisma.BorrowingUncheckedUpdateManyWithoutUserNestedInput
+  damageReports?: Prisma.DamageReportUncheckedUpdateManyWithoutUserNestedInput
+  repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
+  maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
 }
 
 export type UserCreateWithoutInitialInventoriesInput = {
@@ -1452,6 +1611,7 @@ export type UserCreateWithoutInitialInventoriesInput = {
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutInitialInventoriesInput = {
@@ -1473,6 +1633,7 @@ export type UserUncheckedCreateWithoutInitialInventoriesInput = {
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutInitialInventoriesInput = {
@@ -1510,6 +1671,7 @@ export type UserUpdateWithoutInitialInventoriesInput = {
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInitialInventoriesInput = {
@@ -1531,6 +1693,7 @@ export type UserUncheckedUpdateWithoutInitialInventoriesInput = {
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1552,6 +1715,7 @@ export type UserCreateWithoutAuditLogsInput = {
   repairs?: Prisma.RepairCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1573,6 +1737,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   repairs?: Prisma.RepairUncheckedCreateNestedManyWithoutTechnicianInput
   maintenances?: Prisma.MaintenanceUncheckedCreateNestedManyWithoutTechnicianInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutInspectorInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1610,6 +1775,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   repairs?: Prisma.RepairUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUpdateManyWithoutRequestedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1631,6 +1797,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   repairs?: Prisma.RepairUncheckedUpdateManyWithoutTechnicianNestedInput
   maintenances?: Prisma.MaintenanceUncheckedUpdateManyWithoutTechnicianNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutInspectorNestedInput
+  scheduleRequests?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput
 }
 
 
@@ -1649,6 +1816,7 @@ export type UserCountOutputType = {
   repairs: number
   maintenances: number
   inspections: number
+  scheduleRequests: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1662,6 +1830,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   repairs?: boolean | UserCountOutputTypeCountRepairsArgs
   maintenances?: boolean | UserCountOutputTypeCountMaintenancesArgs
   inspections?: boolean | UserCountOutputTypeCountInspectionsArgs
+  scheduleRequests?: boolean | UserCountOutputTypeCountScheduleRequestsArgs
 }
 
 /**
@@ -1744,6 +1913,13 @@ export type UserCountOutputTypeCountInspectionsArgs<ExtArgs extends runtime.Type
   where?: Prisma.InspectionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountScheduleRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PracticumScheduleWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1765,6 +1941,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   repairs?: boolean | Prisma.User$repairsArgs<ExtArgs>
   maintenances?: boolean | Prisma.User$maintenancesArgs<ExtArgs>
   inspections?: boolean | Prisma.User$inspectionsArgs<ExtArgs>
+  scheduleRequests?: boolean | Prisma.User$scheduleRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1816,6 +1993,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   repairs?: boolean | Prisma.User$repairsArgs<ExtArgs>
   maintenances?: boolean | Prisma.User$maintenancesArgs<ExtArgs>
   inspections?: boolean | Prisma.User$inspectionsArgs<ExtArgs>
+  scheduleRequests?: boolean | Prisma.User$scheduleRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1834,6 +2012,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     repairs: Prisma.$RepairPayload<ExtArgs>[]
     maintenances: Prisma.$MaintenancePayload<ExtArgs>[]
     inspections: Prisma.$InspectionPayload<ExtArgs>[]
+    scheduleRequests: Prisma.$PracticumSchedulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2249,6 +2428,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   repairs<T extends Prisma.User$repairsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$repairsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RepairPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   maintenances<T extends Prisma.User$maintenancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$maintenancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaintenancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inspections<T extends Prisma.User$inspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$inspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  scheduleRequests<T extends Prisma.User$scheduleRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$scheduleRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticumSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2917,6 +3097,30 @@ export type User$inspectionsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.InspectionScalarFieldEnum | Prisma.InspectionScalarFieldEnum[]
+}
+
+/**
+ * User.scheduleRequests
+ */
+export type User$scheduleRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PracticumSchedule
+   */
+  select?: Prisma.PracticumScheduleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PracticumSchedule
+   */
+  omit?: Prisma.PracticumScheduleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticumScheduleInclude<ExtArgs> | null
+  where?: Prisma.PracticumScheduleWhereInput
+  orderBy?: Prisma.PracticumScheduleOrderByWithRelationInput | Prisma.PracticumScheduleOrderByWithRelationInput[]
+  cursor?: Prisma.PracticumScheduleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PracticumScheduleScalarFieldEnum | Prisma.PracticumScheduleScalarFieldEnum[]
 }
 
 /**

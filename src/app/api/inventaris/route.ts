@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
+import { requireStaff, requireAuth } from "@/lib/rbac";
+import { parseValidation, CreateInventorySchema } from "@/lib/validations";
 
 // GET /api/inventaris - List inventaris with filters
 export async function GET(request: Request) {
   try {
+    const session = await getSession();
+    const authError = requireAuth(session);
+    if (authError) return authError;
+
     const { searchParams } = new URL(request.url);
     const search = searchParams.get("search") || "";
     const categoryId = searchParams.get("categoryId") || undefined;
@@ -12,13 +18,13 @@ export async function GET(request: Request) {
     const condition = searchParams.get("condition") || undefined;
     const status = searchParams.get("status") || undefined;
 
-    const where: any = {};
+    const where: Record<string, unknown> = {};
 
     if (search) {
       where.OR = [
-        { code: { contains: search } },
-        { name: { contains: search } },
-        { serialNumber: { contains: search } },
+        { code: { contains: search, mode: "insensitive" } },
+        { name: { contains: search, mode: "insensitive" } },
+        { serialNumber: { contains: search, mode: "insensitive" } },
       ];
     }
 
@@ -48,85 +54,51 @@ export async function GET(request: Request) {
   }
 }
 
-// POST /api/inventaris - Create new inventory
+// POST /api/inventaris - Create new inventory (ADMIN & TOOLMAN only)
 export async function POST(request: Request) {
   try {
     const session = await getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const authError = requireStaff(session);
+    if (authError) return authError;
 
     const body = await request.json();
-    const {
-      code,
-      name,
-      categoryId,
-      brandId,
-      type,
-      serialNumber,
-      year,
-      source,
-      price,
-      documentNo,
-      roomId,
-      position,
-      condition = "BAIK",
-      status = "AKTIF",
-      quantity = 1,
-      note,
-      specs = [],
-    } = body;
-
-    if (!code || !name || !categoryId) {
-      return NextResponse.json(
-        { error: "Kode, Nama, dan Kategori wajib diisi" },
-        { status: 400 }
-      );
+    const validation = parseValidation(CreateInventorySchema, {
+      ...body,
+      year: body.year ? Number(body.year) : undefined,
+      price: body.price ? Number(body.price) : undefined,
+      quantity: body.quantity ? Number(body.quantity) : 1,
+    });
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
     }
+    const data = validation.data;
 
     // Check duplicate code
     const existing = await prisma.inventory.findUnique({
-      where: { code },
+      where: { code: data.code },
     });
-
     if (existing) {
       return NextResponse.json(
-        { error: `Kode barang ${code} sudah digunakan` },
+        { error: `Kode barang ${data.code} sudah digunakan` },
         { status: 400 }
       );
     }
 
+    const { specs = [], ...inventoryData } = data;
+
     const inventory = await prisma.inventory.create({
       data: {
-        code,
-        name,
-        categoryId,
-        brandId: brandId || null,
-        type: type || null,
-        serialNumber: serialNumber || null,
-        year: year ? parseInt(year) : null,
-        source: source || null,
-        price: price ? parseFloat(price) : null,
-        documentNo: documentNo || null,
-        roomId: roomId || null,
-        position: position || null,
-        condition,
-        status,
-        quantity: parseInt(quantity) || 1,
-        note: note || null,
+        ...inventoryData,
         specs: {
           create: specs
-            .filter((s: { key: string; value: string }) => s.key && s.value)
-            .map((s: { key: string; value: string }) => ({
-              key: s.key,
-              value: s.value,
-            })),
+            .filter((s) => s.key && s.value)
+            .map((s) => ({ key: s.key, value: s.value })),
         },
         history: {
           create: {
             action: "MASUK",
-            description: `Penambahan inventaris baru: ${name} (${code})`,
-            userId: session.id,
+            description: `Penambahan inventaris baru: ${data.name} (${data.code})`,
+            userId: session!.id,
           },
         },
       },

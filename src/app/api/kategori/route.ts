@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
+import { requireStaff } from "@/lib/rbac";
+import { parseValidation, CategorySchema } from "@/lib/validations";
 
 export async function GET() {
   try {
@@ -20,17 +22,18 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getSession();
-    if (!session || session.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
-    }
+    const authError = requireStaff(session);
+    if (authError) return authError;
 
-    const { name, description, icon } = await request.json();
-    if (!name) {
-      return NextResponse.json({ error: "Nama kategori wajib diisi" }, { status: 400 });
+    const body = await request.json();
+    const validation = parseValidation(CategorySchema, body);
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
     }
+    const { name, description, icon } = validation.data;
 
     const category = await prisma.category.create({
-      data: { name, description: description || null, icon: icon || "Package" },
+      data: { name, description: description ?? null, icon: icon ?? "Package" },
     });
 
     return NextResponse.json({ success: true, data: category });

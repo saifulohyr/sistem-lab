@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
+import { requireStaff } from "@/lib/rbac";
+import { parseValidation, MaintenanceSchema } from "@/lib/validations";
 
 export async function GET() {
   try {
@@ -20,30 +22,33 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getSession();
-    if (!session || (session.role !== "ADMIN" && session.role !== "TOOLMAN")) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+    const authError = requireStaff(session);
+    if (authError) return authError;
+
+    const body = await request.json();
+    const validation = parseValidation(MaintenanceSchema, {
+      ...body,
+      technicianId: body.technicianId || session!.id,
+    });
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
     }
+    const data = validation.data;
 
-    const { number, date, type, title, description, result } = await request.json();
-
-    if (!number || !title || !description) {
-      return NextResponse.json({ error: "Nomor, judul, dan deskripsi wajib diisi" }, { status: 400 });
-    }
-
-    const existing = await prisma.maintenance.findUnique({ where: { number } });
+    const existing = await prisma.maintenance.findUnique({ where: { number: data.number } });
     if (existing) {
       return NextResponse.json({ error: "Nomor dokumen sudah digunakan" }, { status: 400 });
     }
 
     const maintenance = await prisma.maintenance.create({
       data: {
-        number,
-        date: date ? new Date(date) : new Date(),
-        type: type || "PREVENTIVE",
-        title,
-        description,
-        result: result || null,
-        technicianId: session.id,
+        number: data.number,
+        date: new Date(data.date),
+        type: data.type,
+        title: data.title,
+        description: data.description,
+        result: data.result ?? null,
+        technicianId: data.technicianId,
       },
     });
 

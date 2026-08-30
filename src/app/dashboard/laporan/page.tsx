@@ -81,107 +81,41 @@ export default function LaporanPage() {
     window.print();
   };
 
-  const handleExportCSV = () => {
+  const handleExportExcel = async () => {
     if (reportData.length === 0) {
       toast.error("Tidak ada data untuk diekspor");
       return;
     }
+    toast.loading("Menyiapkan file Excel...", { id: "export" });
+    try {
+      const params = new URLSearchParams();
+      params.set("format", "xlsx");
+      params.set("type", reportType);
+      if (startDate) params.set("startDate", startDate);
+      if (endDate) params.set("endDate", endDate);
+      if (roomId) params.set("roomId", roomId);
+      if (categoryId) params.set("categoryId", categoryId);
+      if (condition) params.set("condition", condition);
 
-    let csvContent = "\uFEFF"; // UTF-8 BOM for Excel
-    let headers: string[] = [];
-    let rows: string[][] = [];
+      const res = await fetch(`/api/laporan/export?${params.toString()}`);
+      if (!res.ok) {
+        const json = await res.json();
+        throw new Error(json.error || "Gagal mengekspor");
+      }
 
-    if (reportType === "INVENTARIS") {
-      headers = ["No", "Kode Barang", "Nama Barang", "Kategori", "Merk", "Tipe", "Ruangan", "Posisi", "Kondisi", "Status", "Jumlah", "Harga Satuan", "Tahun"];
-      rows = reportData.map((it, idx) => [
-        String(idx + 1),
-        `"${it.code}"`,
-        `"${it.name}"`,
-        `"${it.category}"`,
-        `"${it.brand}"`,
-        `"${it.type}"`,
-        `"${it.room}"`,
-        `"${it.position}"`,
-        `"${it.condition}"`,
-        `"${it.status}"`,
-        String(it.quantity),
-        String(it.price || 0),
-        String(it.year),
-      ]);
-    } else if (reportType === "PEMINJAMAN") {
-      headers = ["No", "No Transaksi", "Tanggal", "Nama Peminjam", "Peran", "Keperluan", "Tgl Batas Kembali", "Tgl Dikembalikan", "Status", "Daftar Barang", "Petugas"];
-      rows = reportData.map((it, idx) => [
-        String(idx + 1),
-        `"${it.number}"`,
-        `"${formatDateShort(it.date)}"`,
-        `"${it.borrower}"`,
-        `"${it.role}"`,
-        `"${it.purpose}"`,
-        `"${it.expectedReturn ? formatDateShort(it.expectedReturn) : "-"}"`,
-        `"${it.actualReturn ? formatDateShort(it.actualReturn) : "-"}"`,
-        `"${it.status}"`,
-        `"${it.itemsList}"`,
-        `"${it.recordedBy}"`,
-      ]);
-    } else if (reportType === "PERBAIKAN") {
-      headers = ["No", "No Tiket", "Tanggal", "Kode Barang", "Nama Barang", "Jenis Kerusakan", "Tingkat", "Diagnosa", "Tindakan", "Hasil", "Status", "Biaya", "Teknisi"];
-      rows = reportData.map((it, idx) => [
-        String(idx + 1),
-        `"${it.number}"`,
-        `"${formatDateShort(it.date)}"`,
-        `"${it.inventoryCode}"`,
-        `"${it.inventoryName}"`,
-        `"${it.damageType}"`,
-        `"${it.severity}"`,
-        `"${it.diagnosis}"`,
-        `"${it.action}"`,
-        `"${it.result}"`,
-        `"${it.status}"`,
-        String(it.cost || 0),
-        `"${it.technician}"`,
-      ]);
-    } else if (reportType === "PEMELIHARAAN") {
-      headers = ["No", "No Pemeliharaan", "Tanggal", "Tipe", "Judul Kegiatan", "Deskripsi", "Hasil", "Teknisi"];
-      rows = reportData.map((it, idx) => [
-        String(idx + 1),
-        `"${it.number}"`,
-        `"${formatDateShort(it.date)}"`,
-        `"${it.type}"`,
-        `"${it.title}"`,
-        `"${it.description}"`,
-        `"${it.result}"`,
-        `"${it.technician}"`,
-      ]);
-    } else if (reportType === "MASUK_KELUAR") {
-      headers = ["No", "Jenis Mutasi", "No Dokumen", "Tanggal", "Kode Barang", "Nama Barang", "Jumlah", "Pihak Terkait / Sumber / Tujuan", "Catatan", "Petugas"];
-      rows = reportData.map((it, idx) => [
-        String(idx + 1),
-        `"${it.type}"`,
-        `"${it.number}"`,
-        `"${formatDateShort(it.date)}"`,
-        `"${it.inventoryCode}"`,
-        `"${it.inventoryName}"`,
-        String(it.quantity),
-        `"${it.party}"`,
-        `"${it.note}"`,
-        `"${it.user}"`,
-      ]);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `Laporan_${reportType}_${new Date().toISOString().split("T")[0]}.xlsx`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      toast.success("File Excel berhasil diunduh", { id: "export" });
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Gagal mengekspor", { id: "export" });
     }
-
-    csvContent += headers.join(";") + "\r\n";
-    rows.forEach((row) => {
-      csvContent += row.join(";") + "\r\n";
-    });
-
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", `Laporan_${reportType}_${new Date().toISOString().split("T")[0]}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    toast.success("File CSV berhasil diunduh");
   };
 
   const getReportTitle = () => {
@@ -205,8 +139,8 @@ export default function LaporanPage() {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <Button variant="outline" size="sm" className="h-9 text-xs sm:text-sm" onClick={handleExportCSV} disabled={loading || reportData.length === 0}>
-            <Download className="w-3.5 h-3.5 mr-1.5" /> Export CSV (Excel)
+          <Button variant="outline" size="sm" className="h-9 text-xs sm:text-sm" onClick={handleExportExcel} disabled={loading || reportData.length === 0}>
+            <Download className="w-3.5 h-3.5 mr-1.5" /> Export Excel (.xlsx)
           </Button>
           <Button size="sm" className="h-9 text-xs sm:text-sm bg-blue-600 hover:bg-blue-700 text-white" onClick={handlePrint} disabled={loading || reportData.length === 0}>
             <Printer className="w-3.5 h-3.5 mr-1.5" /> Cetak / PDF
@@ -657,7 +591,7 @@ export default function LaporanPage() {
 
               <div className="flex flex-col items-center">
                 <p className="text-xs text-muted-foreground print:text-gray-700">Mengetahui,</p>
-                <p className="text-xs font-semibold">Kepala Laboratorium Rekayasa Perangkat Lunak</p>
+                <p className="text-xs font-semibold">Toolman Laboratorium Rekayasa Perangkat Lunak</p>
                 <div className="h-16" />
                 <p className="font-bold underline uppercase">..................................................</p>
                 <p className="text-xs text-muted-foreground">NIP. .....................................</p>

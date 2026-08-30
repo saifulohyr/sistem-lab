@@ -256,7 +256,7 @@ export default function DetailBarangKeluarPage({ params }: { params: Promise<{ i
 
           <div className="flex flex-col items-center">
             <p className="text-xs text-muted-foreground print:text-gray-700">Mengetahui & Menyetujui,</p>
-            <p className="text-xs font-semibold">Kepala Laboratorium / Sarpras</p>
+            <p className="text-xs font-semibold">Toolman Laboratorium / Sarpras</p>
             <div className="h-16" />
             <p className="font-bold underline uppercase">..................................................</p>
             <p className="text-xs text-muted-foreground">NIP. .....................................</p>

@@ -25,10 +25,9 @@ import {
   Search,
   Bell,
   Truck,
-  Sparkles,
   AlertTriangle,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 interface SidebarProps {
   user: {
@@ -90,7 +89,7 @@ function getRoleColor(role: string) {
   switch (role) {
     case "ADMIN": return "bg-red-50 text-red-700 border border-red-200";
     case "TOOLMAN": return "bg-blue-50 text-blue-700 border border-blue-200";
-    case "KEPALA_LAB": return "bg-emerald-50 text-emerald-700 border border-emerald-200";
+    case "SISWA": return "bg-emerald-50 text-emerald-700 border border-emerald-200";
     case "GURU": return "bg-amber-50 text-amber-700 border border-amber-200";
     default: return "bg-slate-50 text-slate-700 border border-slate-200";
   }
@@ -100,10 +99,17 @@ function getRoleLabel(role: string) {
   switch (role) {
     case "ADMIN": return "Admin";
     case "TOOLMAN": return "Toolman";
-    case "KEPALA_LAB": return "Kepala Lab";
+    case "SISWA": return "Siswa";
     case "GURU": return "Guru";
     default: return role;
   }
+}
+
+// ─── Search Results Types ──────────────────────────────────────
+interface SearchResult {
+  inventories: { id: string; code: string; name: string; condition: string; status: string; category: { name: string } | null; room: { name: string } | null }[];
+  categories: { id: string; name: string; icon: string | null }[];
+  rooms: { id: string; name: string }[];
 }
 
 export default function Sidebar({ user }: SidebarProps) {
@@ -111,6 +117,13 @@ export default function Sidebar({ user }: SidebarProps) {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
+
+  // ─── Search state ────────────────────────────────────────────
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<SearchResult | null>(null);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [showSearchDropdown, setShowSearchDropdown] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   const toggleGroup = (label: string) => {
     setExpandedGroups((prev) => ({ ...prev, [label]: !prev[label] }));
@@ -125,6 +138,48 @@ export default function Sidebar({ user }: SidebarProps) {
   const isActive = (href: string) => {
     if (href === "/dashboard") return pathname === "/dashboard";
     return pathname.startsWith(href);
+  };
+
+  // ─── Debounced search ─────────────────────────────────────────
+  const doSearch = useCallback(async (q: string) => {
+    if (q.trim().length < 2) {
+      setSearchResults(null);
+      return;
+    }
+    setSearchLoading(true);
+    try {
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q.trim())}`);
+      const json = await res.json();
+      if (json.data) setSearchResults(json.data);
+    } catch {
+      // silent fail
+    } finally {
+      setSearchLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => doSearch(searchQuery), 350);
+    return () => clearTimeout(timer);
+  }, [searchQuery, doSearch]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setShowSearchDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      router.push(`/dashboard/inventaris?search=${encodeURIComponent(searchQuery.trim())}`);
+      setShowSearchDropdown(false);
+      setSearchQuery("");
+    }
   };
 
   const sidebarContent = (
@@ -250,16 +305,140 @@ export default function Sidebar({ user }: SidebarProps) {
 }
 
 export function Navbar({ user }: { user: { name: string; role: string } }) {
+  const router = useRouter();
+
+  // ─── Navbar search state ──────────────────────────────────────
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<SearchResult | null>(null);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [showSearchDropdown, setShowSearchDropdown] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  const doSearch = useCallback(async (q: string) => {
+    if (q.trim().length < 2) { setSearchResults(null); return; }
+    setSearchLoading(true);
+    try {
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q.trim())}`);
+      const json = await res.json();
+      if (json.data) setSearchResults(json.data);
+    } catch { /* silent */ } finally { setSearchLoading(false); }
+  }, []);
+
+  useEffect(() => {
+    const t = setTimeout(() => doSearch(searchQuery), 350);
+    return () => clearTimeout(t);
+  }, [searchQuery, doSearch]);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setShowSearchDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      router.push(`/dashboard/inventaris?search=${encodeURIComponent(searchQuery.trim())}`);
+      setShowSearchDropdown(false);
+      setSearchQuery("");
+    }
+    if (e.key === "Escape") setShowSearchDropdown(false);
+  };
+
+  const hasResults = searchResults && (
+    searchResults.inventories.length > 0 ||
+    searchResults.categories.length > 0 ||
+    searchResults.rooms.length > 0
+  );
+
   return (
     <header className="sticky top-0 z-30 h-14 lg:h-16 bg-white/80 backdrop-blur-xl border-b border-[#eaedff] shadow-[0_1px_8px_rgba(0,0,0,0.03)] flex items-center justify-between px-3 sm:px-4 lg:px-6">
       <div className="flex items-center gap-4 flex-1 ml-10 lg:ml-0">
-        <div className="relative max-w-md flex-1 group hidden sm:block">
+        {/* Search with live dropdown */}
+        <div ref={searchRef} className="relative max-w-md flex-1 group hidden sm:block">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#727785] group-focus-within:text-[#0058be] transition-colors" />
           <input
             type="text"
-            placeholder="Cari sumber daya laboratorium..."
+            value={searchQuery}
+            onChange={(e) => { setSearchQuery(e.target.value); setShowSearchDropdown(true); }}
+            onFocus={() => setShowSearchDropdown(true)}
+            onKeyDown={handleKeyDown}
+            placeholder="Cari inventaris, kategori, ruangan..."
             className="w-full pl-9 pr-4 py-2 rounded-lg bg-[#f2f3ff] border border-transparent text-xs sm:text-sm text-[#131b2e] placeholder:text-[#727785] focus:outline-none focus:bg-white focus:border-[#2170e4] focus:ring-4 focus:ring-[#2170e4]/10 transition-all"
           />
+          {/* Dropdown results */}
+          {showSearchDropdown && searchQuery.length >= 2 && (
+            <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-[#eaedff] rounded-xl shadow-xl z-50 overflow-hidden animate-scale-in">
+              {searchLoading ? (
+                <div className="p-4 text-center text-xs text-[#727785]">Mencari...</div>
+              ) : !hasResults ? (
+                <div className="p-4 text-center text-xs text-[#727785]">
+                  Tidak ada hasil untuk &quot;{searchQuery}&quot;
+                </div>
+              ) : (
+                <div className="max-h-80 overflow-y-auto py-1">
+                  {searchResults!.inventories.length > 0 && (
+                    <>
+                      <p className="px-3 py-1.5 text-[10px] font-bold text-[#727785] uppercase tracking-wider">Inventaris</p>
+                      {searchResults!.inventories.map((item) => (
+                        <button
+                          key={item.id}
+                          className="w-full text-left px-3 py-2 hover:bg-[#f2f3ff] transition-colors flex items-start gap-2.5"
+                          onClick={() => {
+                            router.push(`/dashboard/inventaris/${item.id}`);
+                            setShowSearchDropdown(false);
+                            setSearchQuery("");
+                          }}
+                        >
+                          <div className="w-7 h-7 rounded-lg bg-[#eaedff] flex items-center justify-center shrink-0 mt-0.5">
+                            <Package className="w-3.5 h-3.5 text-[#0058be]" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-xs font-semibold text-[#131b2e] truncate">{item.name}</p>
+                            <p className="text-[10px] text-[#727785]">{item.code} · {item.category?.name} · {item.room?.name ?? "Belum ditempatkan"}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </>
+                  )}
+                  {searchResults!.rooms.length > 0 && (
+                    <>
+                      <p className="px-3 py-1.5 text-[10px] font-bold text-[#727785] uppercase tracking-wider border-t border-[#f2f3ff] mt-1">Ruangan</p>
+                      {searchResults!.rooms.map((room) => (
+                        <button
+                          key={room.id}
+                          className="w-full text-left px-3 py-2 hover:bg-[#f2f3ff] transition-colors flex items-center gap-2.5"
+                          onClick={() => {
+                            router.push(`/dashboard/ruangan`);
+                            setShowSearchDropdown(false);
+                            setSearchQuery("");
+                          }}
+                        >
+                          <Building2 className="w-4 h-4 text-[#727785] shrink-0" />
+                          <span className="text-xs font-medium text-[#131b2e]">{room.name}</span>
+                        </button>
+                      ))}
+                    </>
+                  )}
+                  <div className="px-3 py-2 border-t border-[#f2f3ff]">
+                    <button
+                      className="text-[10px] text-[#0058be] hover:underline font-semibold"
+                      onClick={() => {
+                        router.push(`/dashboard/inventaris?search=${encodeURIComponent(searchQuery)}`);
+                        setShowSearchDropdown(false);
+                        setSearchQuery("");
+                      }}
+                    >
+                      Cari semua inventaris untuk &quot;{searchQuery}&quot; →
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <button className="sm:hidden p-2 rounded-lg text-[#727785] hover:bg-[#f2f3ff] hover:text-[#131b2e] transition-all">
           <Search className="w-5 h-5" />

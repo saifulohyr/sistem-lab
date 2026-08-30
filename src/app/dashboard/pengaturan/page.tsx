@@ -213,15 +213,15 @@ export default function PengaturanPage() {
                 </div>
                 <div className="p-3 bg-muted/40 rounded-lg border">
                   <span className="font-bold text-foreground block mb-1 text-blue-600">Toolman (Teknisi Lab)</span>
-                  Pengelolaan inventaris barang, mutasi, transaksi peminjaman, tiket perbaikan, pemeliharaan lab, dan scan QR.
+                  Pengelolaan inventaris barang, mutasi, transaksi peminjaman, tiket perbaikan, pemeliharaan lab, pengesahan pendataan awal & berita acara, monitoring statistik, serta cetak rekapitulasi laporan.
                 </div>
                 <div className="p-3 bg-muted/40 rounded-lg border">
-                  <span className="font-bold text-foreground block mb-1 text-emerald-600">Kepala Lab</span>
-                  Monitoring statistik, pengesahan pendataan awal & berita acara, tinjauan jadwal, serta cetak rekapitulasi.
+                  <span className="font-bold text-foreground block mb-1 text-emerald-600">Siswa</span>
+                  Melihat katalog inventaris lab, mengecek jadwal pemakaian ruangan, serta melaporkan kerusakan alat.
                 </div>
                 <div className="p-3 bg-muted/40 rounded-lg border">
-                  <span className="font-bold text-foreground block mb-1 text-amber-600">Guru / Siswa</span>
-                  Melihat katalog inventaris lab, mengajukan laporan kerusakan barang, dan melihat jadwal lab.
+                  <span className="font-bold text-foreground block mb-1 text-amber-600">Guru</span>
+                  Melihat katalog inventaris, mengajukan jadwal penggunaan lab, meminjam barang, dan melaporkan kerusakan alat.
                 </div>
               </div>
             </CardContent>

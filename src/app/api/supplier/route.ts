@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
+import { requireStaff } from "@/lib/rbac";
+import { parseValidation, SupplierSchema } from "@/lib/validations";
 
 export async function GET() {
   try {
@@ -17,22 +19,23 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getSession();
-    if (!session || (session.role !== "ADMIN" && session.role !== "TOOLMAN")) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
-    }
+    const authError = requireStaff(session);
+    if (authError) return authError;
 
-    const { name, contactName, phone, email, address } = await request.json();
-    if (!name) {
-      return NextResponse.json({ error: "Nama supplier wajib diisi" }, { status: 400 });
+    const body = await request.json();
+    const validation = parseValidation(SupplierSchema, body);
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
     }
+    const { name, contactName, phone, email, address } = validation.data;
 
     const supplier = await prisma.supplier.create({
       data: {
         name,
-        contactName: contactName || null,
-        phone: phone || null,
-        email: email || null,
-        address: address || null,
+        contactName: contactName ?? null,
+        phone: phone ?? null,
+        email: email ?? null,
+        address: address ?? null,
       },
     });
 

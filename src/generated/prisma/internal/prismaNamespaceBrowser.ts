@@ -435,6 +435,9 @@ export const PracticumScheduleScalarFieldEnum = {
   endTime: 'endTime',
   academicYear: 'academicYear',
   semester: 'semester',
+  status: 'status',
+  requestedById: 'requestedById',
+  approvedAt: 'approvedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

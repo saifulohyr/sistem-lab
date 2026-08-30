@@ -94,7 +94,7 @@ export default function DetailPendataanAwalPage({ params }: { params: Promise<{ 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           status: "DISAHKAN",
-          approvedBy: session?.user?.name || "Kepala Lab",
+          approvedBy: session?.user?.name || "Admin",
         }),
       });
       const json = await res.json();
@@ -135,7 +135,7 @@ export default function DetailPendataanAwalPage({ params }: { params: Promise<{ 
   }
 
   const isDisahkan = data.status === "DISAHKAN";
-  const canApprove = session?.user && (session.user as any).role !== "GURU" && !isDisahkan;
+  const canApprove = session?.user && ["ADMIN", "TOOLMAN"].includes((session.user as any).role) && !isDisahkan;
 
   return (
     <div className="flex flex-col gap-4 sm:gap-6 max-w-6xl mx-auto w-full print:p-0 print:max-w-none">
@@ -302,7 +302,7 @@ export default function DetailPendataanAwalPage({ params }: { params: Promise<{ 
 
           <div className="flex flex-col items-center">
             <p className="text-xs text-muted-foreground print:text-gray-700">Mengetahui / Mengesahkan,</p>
-            <p className="text-xs font-semibold">Kepala Laboratorium RPL</p>
+            <p className="text-xs font-semibold">Toolman Laboratorium RPL</p>
             <div className="h-16" />
             <p className="font-bold underline uppercase">{data.approvedBy || "....................................."}</p>
             <p className="text-xs text-muted-foreground">NIP. .....................................</p>

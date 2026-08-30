@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
+import { requireStaff } from "@/lib/rbac";
+import { parseValidation, RoomSchema } from "@/lib/validations";
 
 export async function GET() {
   try {
@@ -21,29 +23,34 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getSession();
-    if (!session || session.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
-    }
+    const authError = requireStaff(session);
+    if (authError) return authError;
 
-    const { name, locationId, capacity, note } = await request.json();
+    const body = await request.json();
 
-    if (!name) {
-      return NextResponse.json({ error: "Nama ruangan wajib diisi" }, { status: 400 });
-    }
-
-    // Use existing location or create default if none provided
-    let locId = locationId;
-    if (!locId) {
+    // Use existing location or default if none provided
+    let resolvedLocationId = body.locationId;
+    if (!resolvedLocationId) {
       const defaultLoc = await prisma.location.findFirst();
-      locId = defaultLoc?.id;
+      resolvedLocationId = defaultLoc?.id;
     }
+
+    const validation = parseValidation(RoomSchema, {
+      ...body,
+      locationId: resolvedLocationId,
+      capacity: body.capacity ? Number(body.capacity) : undefined,
+    });
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
+    }
+    const { name, locationId, capacity, note } = validation.data;
 
     const room = await prisma.room.create({
       data: {
         name,
-        locationId: locId,
-        capacity: capacity ? parseInt(capacity) : null,
-        note: note || null,
+        locationId,
+        capacity: capacity ?? null,
+        note: note ?? null,
       },
     });
 

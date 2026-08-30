@@ -107,7 +107,7 @@ export default function UsersPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-foreground">Pengguna & Hak Akses</h1>
-          <p className="text-muted-foreground text-xs sm:text-sm">Kelola akun Admin, Toolman, Kepala Lab, dan Guru</p>
+          <p className="text-muted-foreground text-xs sm:text-sm">Kelola akun Admin, Toolman, Guru, dan Siswa</p>
         </div>
         <button
           onClick={openAddModal}
@@ -246,8 +246,8 @@ export default function UsersPage() {
                 >
                   <option value="ADMIN">Admin</option>
                   <option value="TOOLMAN">Toolman</option>
-                  <option value="KEPALA_LAB">Kepala Lab</option>
-                  <option value="GURU">Guru / Peminjam</option>
+                  <option value="GURU">Guru</option>
+                  <option value="SISWA">Siswa</option>
                 </select>
               </div>
 

@@ -43,8 +43,8 @@ export const STATUSES = [
 export const ROLES = [
   { value: "ADMIN", label: "Admin" },
   { value: "TOOLMAN", label: "Toolman" },
-  { value: "KEPALA_LAB", label: "Kepala Lab" },
-  { value: "GURU", label: "Guru / Peminjam" },
+  { value: "GURU", label: "Guru" },
+  { value: "SISWA", label: "Siswa" },
 ] as const;
 
 export function getConditionLabel(value: string): string {

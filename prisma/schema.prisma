@@ -14,7 +14,7 @@ model User {
   name          String
   email         String   @unique
   password      String
-  role          String   @default("TOOLMAN") // ADMIN, TOOLMAN, KEPALA_LAB, GURU
+  role          String   @default("SISWA") // ADMIN, TOOLMAN, GURU, SISWA
   avatar        String?
   active        Boolean  @default(true)
   createdAt     DateTime @default(now())
@@ -31,6 +31,7 @@ model User {
   repairs            Repair[]
   maintenances       Maintenance[]
   inspections        Inspection[]
+  scheduleRequests   PracticumSchedule[]
 }
 
 // ─── MASTER DATA ────────────────────────────────────────────────
@@ -362,20 +363,24 @@ model InspectionItem {
 
 // ─── TEKNIS RPL (PHASE 4) ───────────────────────────────────────
 model PracticumSchedule {
-  id           String   @id @default(cuid())
-  roomId       String
-  subject      String   // Mata Pelajaran
-  teacher      String   // Nama Guru
-  className    String   // Kelas
-  dayOfWeek    Int      // 1 (Senin) - 7 (Minggu)
-  startTime    String   // "07:30"
-  endTime      String   // "10:00"
-  academicYear String   // "2026/2027"
-  semester     String   // "GANJIL" / "GENAP"
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id            String    @id @default(cuid())
+  roomId        String
+  subject       String    // Mata Pelajaran
+  teacher       String    // Nama Guru
+  className     String    // Kelas
+  dayOfWeek     Int       // 1 (Senin) - 7 (Minggu)
+  startTime     String    // "07:30"
+  endTime       String    // "10:00"
+  academicYear  String    // "2026/2027"
+  semester      String    // "GANJIL" / "GENAP"
+  status        String    @default("MENUNGGU") // MENUNGGU, DISETUJUI, DITOLAK
+  requestedById String?   // User ID yang mengajukan
+  approvedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
-  room Room @relation(fields: [roomId], references: [id])
+  room        Room  @relation(fields: [roomId], references: [id])
+  requestedBy User? @relation(fields: [requestedById], references: [id])
 }
 
 model Software {

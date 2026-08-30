@@ -1,6 +1,7 @@
 import { PrismaClient } from "../src/generated/prisma/client.js";
 import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
+import bcrypt from "bcryptjs";
 import "dotenv/config";
 
 const connectionString = process.env.DATABASE_URL;
@@ -9,55 +10,62 @@ const adapter = new PrismaPg(pool);
 
 const prisma = new PrismaClient({ adapter });
 
+const SALT_ROUNDS = 12;
+
 async function main() {
   console.log("🌱 Seeding LABMUMA database...\n");
 
-  // ─── Users ────────────────────────────────────────────────
+  // ─── Users (passwords hashed with bcrypt) ─────────────────
+  const adminHash = await bcrypt.hash("admin123", SALT_ROUNDS);
+  const toolmanHash = await bcrypt.hash("toolman123", SALT_ROUNDS);
+  const siswaHash = await bcrypt.hash("siswa123", SALT_ROUNDS);
+  const guruHash = await bcrypt.hash("guru123", SALT_ROUNDS);
+
   const admin = await prisma.user.upsert({
     where: { email: "admin@labmuma.id" },
-    update: {},
+    update: { password: adminHash },
     create: {
       name: "Administrator",
       email: "admin@labmuma.id",
-      password: "admin123",
+      password: adminHash,
       role: "ADMIN",
     },
   });
 
   const toolman = await prisma.user.upsert({
     where: { email: "toolman@labmuma.id" },
-    update: {},
+    update: { password: toolmanHash },
     create: {
       name: "Toolman RPL",
       email: "toolman@labmuma.id",
-      password: "toolman123",
+      password: toolmanHash,
       role: "TOOLMAN",
     },
   });
 
-  const kepalaLab = await prisma.user.upsert({
-    where: { email: "kepalalab@labmuma.id" },
-    update: {},
+  const siswa = await prisma.user.upsert({
+    where: { email: "siswa@labmuma.id" },
+    update: { password: siswaHash },
     create: {
-      name: "Kepala Lab RPL",
-      email: "kepalalab@labmuma.id",
-      password: "kepalalab123",
-      role: "KEPALA_LAB",
+      name: "Siswa RPL",
+      email: "siswa@labmuma.id",
+      password: siswaHash,
+      role: "SISWA",
     },
   });
 
   const guru = await prisma.user.upsert({
     where: { email: "guru@labmuma.id" },
-    update: {},
+    update: { password: guruHash },
     create: {
       name: "Guru RPL",
       email: "guru@labmuma.id",
-      password: "guru123",
+      password: guruHash,
       role: "GURU",
     },
   });
 
-  console.log("✅ Users created:", { admin: admin.name, toolman: toolman.name, kepalaLab: kepalaLab.name, guru: guru.name });
+  console.log("✅ Users created (passwords hashed):", { admin: admin.name, toolman: toolman.name, siswa: siswa.name, guru: guru.name });
 
   // ─── Locations ────────────────────────────────────────────
   const gedungUtama = await prisma.location.upsert({
@@ -209,7 +217,7 @@ async function main() {
   console.log("\n📋 Login accounts:");
   console.log("   Admin    : admin@labmuma.id / admin123");
   console.log("   Toolman  : toolman@labmuma.id / toolman123");
-  console.log("   Kepala Lab: kepalalab@labmuma.id / kepalalab123");
+  console.log("   Siswa    : siswa@labmuma.id / siswa123");
   console.log("   Guru     : guru@labmuma.id / guru123");
 }
 

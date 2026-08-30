@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
+import { requireAdmin } from "@/lib/rbac";
+import { hashPassword } from "@/lib/bcrypt";
 
 export async function PUT(
   request: Request,
@@ -9,21 +11,27 @@ export async function PUT(
   try {
     const session = await getSession();
     const { id } = await params;
+
+    // Allow admin to edit anyone; other users can only edit themselves
     if (!session || (session.role !== "ADMIN" && session.id !== id)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
     }
 
     const { name, email, password, role, active } = await request.json();
 
-    const data: any = {};
-    if (name) data.name = name;
-    if (email) data.email = email;
-    if (password) data.password = password;
-    
+    const data: Record<string, unknown> = {};
+    if (name) data.name = String(name).trim();
+    if (email) data.email = String(email).trim();
+
+    // Hash password if updating
+    if (password) {
+      data.password = await hashPassword(String(password));
+    }
+
     // Only admin can change role and active status
     if (session.role === "ADMIN") {
       if (role) data.role = role;
-      if (active !== undefined) data.active = active;
+      if (active !== undefined) data.active = Boolean(active);
     }
 
     const updated = await prisma.user.update({

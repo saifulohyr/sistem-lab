@@ -33,6 +33,8 @@ interface ScheduleRecord {
   academicYear: string;
   semester: string;
   room: { id: string; name: string };
+  status?: string;
+  requestedBy?: { name: string };
 }
 
 interface RoomData {
@@ -256,13 +258,26 @@ export default function JadwalLabPage() {
     if (!confirm("Hapus jadwal ini?")) return;
     try {
       const res = await fetch(`/api/jadwal/${id}`, { method: "DELETE" });
-      const json = await res.json();
-      if (json.success) {
-        toast.success("Jadwal dihapus");
-        fetchData();
-      }
-    } catch (error) {
-      toast.error("Terjadi kesalahan");
+      if (!res.ok) throw new Error("Gagal menghapus");
+      toast.success("Jadwal dihapus");
+      fetchData();
+    } catch {
+      toast.error("Gagal menghapus jadwal");
+    }
+  };
+
+  const handleUpdateStatus = async (id: string, status: string) => {
+    try {
+      const res = await fetch("/api/jadwal", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status }),
+      });
+      if (!res.ok) throw new Error("Gagal mengubah status");
+      toast.success(`Jadwal ${status.toLowerCase()}`);
+      fetchData();
+    } catch {
+      toast.error("Gagal mengubah status");
     }
   };
 
@@ -655,20 +670,44 @@ export default function JadwalLabPage() {
                                   <div>
                                     {/* Header Badge */}
                                     <div className="flex items-center justify-between gap-1 mb-1">
-                                      <span className={`text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md ${theme.tagColor}`}>
-                                        {rec.className || "PRACTICAL"}
-                                      </span>
+                                      <div className="flex gap-1 flex-wrap">
+                                        <span className={`text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md ${theme.tagColor}`}>
+                                          {rec.className || "PRACTICAL"}
+                                        </span>
+                                        {rec.status === "MENUNGGU" && (
+                                          <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-amber-500 text-white">
+                                            MENUNGGU
+                                          </span>
+                                        )}
+                                      </div>
                                       {isAdminOrToolman && (
-                                        <button
-                                          onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleDelete(rec.id);
-                                          }}
-                                          className="opacity-0 group-hover/card:opacity-100 p-1 rounded hover:bg-black/10 transition-all text-red-400 hover:text-red-600"
-                                          title="Hapus Jadwal"
-                                        >
-                                          <Trash2 className="w-3.5 h-3.5" />
-                                        </button>
+                                        <div className="flex gap-1">
+                                          {rec.status === "MENUNGGU" && (
+                                            <>
+                                              <button
+                                                onClick={(e) => { e.stopPropagation(); handleUpdateStatus(rec.id, "DISETUJUI"); }}
+                                                className="opacity-0 group-hover/card:opacity-100 p-1 rounded hover:bg-black/10 transition-all text-emerald-400 hover:text-emerald-600"
+                                                title="Setujui Jadwal"
+                                              >
+                                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                                              </button>
+                                              <button
+                                                onClick={(e) => { e.stopPropagation(); handleUpdateStatus(rec.id, "DITOLAK"); }}
+                                                className="opacity-0 group-hover/card:opacity-100 p-1 rounded hover:bg-black/10 transition-all text-red-400 hover:text-red-600"
+                                                title="Tolak Jadwal"
+                                              >
+                                                <X className="w-3.5 h-3.5" />
+                                              </button>
+                                            </>
+                                          )}
+                                          <button
+                                            onClick={(e) => { e.stopPropagation(); handleDelete(rec.id); }}
+                                            className="opacity-0 group-hover/card:opacity-100 p-1 rounded hover:bg-black/10 transition-all text-red-400 hover:text-red-600"
+                                            title="Hapus Jadwal"
+                                          >
+                                            <Trash2 className="w-3.5 h-3.5" />
+                                          </button>
+                                        </div>
                                       )}
                                     </div>
 

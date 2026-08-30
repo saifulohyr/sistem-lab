@@ -45,6 +45,9 @@ export type PracticumScheduleMinAggregateOutputType = {
   endTime: string | null
   academicYear: string | null
   semester: string | null
+  status: string | null
+  requestedById: string | null
+  approvedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -60,6 +63,9 @@ export type PracticumScheduleMaxAggregateOutputType = {
   endTime: string | null
   academicYear: string | null
   semester: string | null
+  status: string | null
+  requestedById: string | null
+  approvedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -75,6 +81,9 @@ export type PracticumScheduleCountAggregateOutputType = {
   endTime: number
   academicYear: number
   semester: number
+  status: number
+  requestedById: number
+  approvedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -100,6 +109,9 @@ export type PracticumScheduleMinAggregateInputType = {
   endTime?: true
   academicYear?: true
   semester?: true
+  status?: true
+  requestedById?: true
+  approvedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -115,6 +127,9 @@ export type PracticumScheduleMaxAggregateInputType = {
   endTime?: true
   academicYear?: true
   semester?: true
+  status?: true
+  requestedById?: true
+  approvedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -130,6 +145,9 @@ export type PracticumScheduleCountAggregateInputType = {
   endTime?: true
   academicYear?: true
   semester?: true
+  status?: true
+  requestedById?: true
+  approvedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -232,6 +250,9 @@ export type PracticumScheduleGroupByOutputType = {
   endTime: string
   academicYear: string
   semester: string
+  status: string
+  requestedById: string | null
+  approvedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: PracticumScheduleCountAggregateOutputType | null
@@ -270,9 +291,13 @@ export type PracticumScheduleWhereInput = {
   endTime?: Prisma.StringFilter<"PracticumSchedule"> | string
   academicYear?: Prisma.StringFilter<"PracticumSchedule"> | string
   semester?: Prisma.StringFilter<"PracticumSchedule"> | string
+  status?: Prisma.StringFilter<"PracticumSchedule"> | string
+  requestedById?: Prisma.StringNullableFilter<"PracticumSchedule"> | string | null
+  approvedAt?: Prisma.DateTimeNullableFilter<"PracticumSchedule"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PracticumSchedule"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PracticumSchedule"> | Date | string
   room?: Prisma.XOR<Prisma.RoomScalarRelationFilter, Prisma.RoomWhereInput>
+  requestedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type PracticumScheduleOrderByWithRelationInput = {
@@ -286,9 +311,13 @@ export type PracticumScheduleOrderByWithRelationInput = {
   endTime?: Prisma.SortOrder
   academicYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  requestedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   room?: Prisma.RoomOrderByWithRelationInput
+  requestedBy?: Prisma.UserOrderByWithRelationInput
 }
 
 export type PracticumScheduleWhereUniqueInput = Prisma.AtLeast<{
@@ -305,9 +334,13 @@ export type PracticumScheduleWhereUniqueInput = Prisma.AtLeast<{
   endTime?: Prisma.StringFilter<"PracticumSchedule"> | string
   academicYear?: Prisma.StringFilter<"PracticumSchedule"> | string
   semester?: Prisma.StringFilter<"PracticumSchedule"> | string
+  status?: Prisma.StringFilter<"PracticumSchedule"> | string
+  requestedById?: Prisma.StringNullableFilter<"PracticumSchedule"> | string | null
+  approvedAt?: Prisma.DateTimeNullableFilter<"PracticumSchedule"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PracticumSchedule"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PracticumSchedule"> | Date | string
   room?: Prisma.XOR<Prisma.RoomScalarRelationFilter, Prisma.RoomWhereInput>
+  requestedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type PracticumScheduleOrderByWithAggregationInput = {
@@ -321,6 +354,9 @@ export type PracticumScheduleOrderByWithAggregationInput = {
   endTime?: Prisma.SortOrder
   academicYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  requestedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PracticumScheduleCountOrderByAggregateInput
@@ -344,6 +380,9 @@ export type PracticumScheduleScalarWhereWithAggregatesInput = {
   endTime?: Prisma.StringWithAggregatesFilter<"PracticumSchedule"> | string
   academicYear?: Prisma.StringWithAggregatesFilter<"PracticumSchedule"> | string
   semester?: Prisma.StringWithAggregatesFilter<"PracticumSchedule"> | string
+  status?: Prisma.StringWithAggregatesFilter<"PracticumSchedule"> | string
+  requestedById?: Prisma.StringNullableWithAggregatesFilter<"PracticumSchedule"> | string | null
+  approvedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PracticumSchedule"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PracticumSchedule"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PracticumSchedule"> | Date | string
 }
@@ -358,9 +397,12 @@ export type PracticumScheduleCreateInput = {
   endTime: string
   academicYear: string
   semester: string
+  status?: string
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   room: Prisma.RoomCreateNestedOneWithoutPracticumSchedulesInput
+  requestedBy?: Prisma.UserCreateNestedOneWithoutScheduleRequestsInput
 }
 
 export type PracticumScheduleUncheckedCreateInput = {
@@ -374,6 +416,9 @@ export type PracticumScheduleUncheckedCreateInput = {
   endTime: string
   academicYear: string
   semester: string
+  status?: string
+  requestedById?: string | null
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -388,9 +433,12 @@ export type PracticumScheduleUpdateInput = {
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
   academicYear?: Prisma.StringFieldUpdateOperationsInput | string
   semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   room?: Prisma.RoomUpdateOneRequiredWithoutPracticumSchedulesNestedInput
+  requestedBy?: Prisma.UserUpdateOneWithoutScheduleRequestsNestedInput
 }
 
 export type PracticumScheduleUncheckedUpdateInput = {
@@ -404,6 +452,9 @@ export type PracticumScheduleUncheckedUpdateInput = {
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
   academicYear?: Prisma.StringFieldUpdateOperationsInput | string
   semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -419,6 +470,9 @@ export type PracticumScheduleCreateManyInput = {
   endTime: string
   academicYear: string
   semester: string
+  status?: string
+  requestedById?: string | null
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -433,6 +487,8 @@ export type PracticumScheduleUpdateManyMutationInput = {
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
   academicYear?: Prisma.StringFieldUpdateOperationsInput | string
   semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -448,6 +504,9 @@ export type PracticumScheduleUncheckedUpdateManyInput = {
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
   academicYear?: Prisma.StringFieldUpdateOperationsInput | string
   semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -473,6 +532,9 @@ export type PracticumScheduleCountOrderByAggregateInput = {
   endTime?: Prisma.SortOrder
   academicYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  requestedById?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -492,6 +554,9 @@ export type PracticumScheduleMaxOrderByAggregateInput = {
   endTime?: Prisma.SortOrder
   academicYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  requestedById?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -507,12 +572,57 @@ export type PracticumScheduleMinOrderByAggregateInput = {
   endTime?: Prisma.SortOrder
   academicYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  requestedById?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type PracticumScheduleSumOrderByAggregateInput = {
   dayOfWeek?: Prisma.SortOrder
+}
+
+export type PracticumScheduleCreateNestedManyWithoutRequestedByInput = {
+  create?: Prisma.XOR<Prisma.PracticumScheduleCreateWithoutRequestedByInput, Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput> | Prisma.PracticumScheduleCreateWithoutRequestedByInput[] | Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput[]
+  connectOrCreate?: Prisma.PracticumScheduleCreateOrConnectWithoutRequestedByInput | Prisma.PracticumScheduleCreateOrConnectWithoutRequestedByInput[]
+  createMany?: Prisma.PracticumScheduleCreateManyRequestedByInputEnvelope
+  connect?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+}
+
+export type PracticumScheduleUncheckedCreateNestedManyWithoutRequestedByInput = {
+  create?: Prisma.XOR<Prisma.PracticumScheduleCreateWithoutRequestedByInput, Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput> | Prisma.PracticumScheduleCreateWithoutRequestedByInput[] | Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput[]
+  connectOrCreate?: Prisma.PracticumScheduleCreateOrConnectWithoutRequestedByInput | Prisma.PracticumScheduleCreateOrConnectWithoutRequestedByInput[]
+  createMany?: Prisma.PracticumScheduleCreateManyRequestedByInputEnvelope
+  connect?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+}
+
+export type PracticumScheduleUpdateManyWithoutRequestedByNestedInput = {
+  create?: Prisma.XOR<Prisma.PracticumScheduleCreateWithoutRequestedByInput, Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput> | Prisma.PracticumScheduleCreateWithoutRequestedByInput[] | Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput[]
+  connectOrCreate?: Prisma.PracticumScheduleCreateOrConnectWithoutRequestedByInput | Prisma.PracticumScheduleCreateOrConnectWithoutRequestedByInput[]
+  upsert?: Prisma.PracticumScheduleUpsertWithWhereUniqueWithoutRequestedByInput | Prisma.PracticumScheduleUpsertWithWhereUniqueWithoutRequestedByInput[]
+  createMany?: Prisma.PracticumScheduleCreateManyRequestedByInputEnvelope
+  set?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+  disconnect?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+  delete?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+  connect?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+  update?: Prisma.PracticumScheduleUpdateWithWhereUniqueWithoutRequestedByInput | Prisma.PracticumScheduleUpdateWithWhereUniqueWithoutRequestedByInput[]
+  updateMany?: Prisma.PracticumScheduleUpdateManyWithWhereWithoutRequestedByInput | Prisma.PracticumScheduleUpdateManyWithWhereWithoutRequestedByInput[]
+  deleteMany?: Prisma.PracticumScheduleScalarWhereInput | Prisma.PracticumScheduleScalarWhereInput[]
+}
+
+export type PracticumScheduleUncheckedUpdateManyWithoutRequestedByNestedInput = {
+  create?: Prisma.XOR<Prisma.PracticumScheduleCreateWithoutRequestedByInput, Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput> | Prisma.PracticumScheduleCreateWithoutRequestedByInput[] | Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput[]
+  connectOrCreate?: Prisma.PracticumScheduleCreateOrConnectWithoutRequestedByInput | Prisma.PracticumScheduleCreateOrConnectWithoutRequestedByInput[]
+  upsert?: Prisma.PracticumScheduleUpsertWithWhereUniqueWithoutRequestedByInput | Prisma.PracticumScheduleUpsertWithWhereUniqueWithoutRequestedByInput[]
+  createMany?: Prisma.PracticumScheduleCreateManyRequestedByInputEnvelope
+  set?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+  disconnect?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+  delete?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+  connect?: Prisma.PracticumScheduleWhereUniqueInput | Prisma.PracticumScheduleWhereUniqueInput[]
+  update?: Prisma.PracticumScheduleUpdateWithWhereUniqueWithoutRequestedByInput | Prisma.PracticumScheduleUpdateWithWhereUniqueWithoutRequestedByInput[]
+  updateMany?: Prisma.PracticumScheduleUpdateManyWithWhereWithoutRequestedByInput | Prisma.PracticumScheduleUpdateManyWithWhereWithoutRequestedByInput[]
+  deleteMany?: Prisma.PracticumScheduleScalarWhereInput | Prisma.PracticumScheduleScalarWhereInput[]
 }
 
 export type PracticumScheduleCreateNestedManyWithoutRoomInput = {
@@ -557,6 +667,87 @@ export type PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput = {
   deleteMany?: Prisma.PracticumScheduleScalarWhereInput | Prisma.PracticumScheduleScalarWhereInput[]
 }
 
+export type PracticumScheduleCreateWithoutRequestedByInput = {
+  id?: string
+  subject: string
+  teacher: string
+  className: string
+  dayOfWeek: number
+  startTime: string
+  endTime: string
+  academicYear: string
+  semester: string
+  status?: string
+  approvedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  room: Prisma.RoomCreateNestedOneWithoutPracticumSchedulesInput
+}
+
+export type PracticumScheduleUncheckedCreateWithoutRequestedByInput = {
+  id?: string
+  roomId: string
+  subject: string
+  teacher: string
+  className: string
+  dayOfWeek: number
+  startTime: string
+  endTime: string
+  academicYear: string
+  semester: string
+  status?: string
+  approvedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PracticumScheduleCreateOrConnectWithoutRequestedByInput = {
+  where: Prisma.PracticumScheduleWhereUniqueInput
+  create: Prisma.XOR<Prisma.PracticumScheduleCreateWithoutRequestedByInput, Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput>
+}
+
+export type PracticumScheduleCreateManyRequestedByInputEnvelope = {
+  data: Prisma.PracticumScheduleCreateManyRequestedByInput | Prisma.PracticumScheduleCreateManyRequestedByInput[]
+  skipDuplicates?: boolean
+}
+
+export type PracticumScheduleUpsertWithWhereUniqueWithoutRequestedByInput = {
+  where: Prisma.PracticumScheduleWhereUniqueInput
+  update: Prisma.XOR<Prisma.PracticumScheduleUpdateWithoutRequestedByInput, Prisma.PracticumScheduleUncheckedUpdateWithoutRequestedByInput>
+  create: Prisma.XOR<Prisma.PracticumScheduleCreateWithoutRequestedByInput, Prisma.PracticumScheduleUncheckedCreateWithoutRequestedByInput>
+}
+
+export type PracticumScheduleUpdateWithWhereUniqueWithoutRequestedByInput = {
+  where: Prisma.PracticumScheduleWhereUniqueInput
+  data: Prisma.XOR<Prisma.PracticumScheduleUpdateWithoutRequestedByInput, Prisma.PracticumScheduleUncheckedUpdateWithoutRequestedByInput>
+}
+
+export type PracticumScheduleUpdateManyWithWhereWithoutRequestedByInput = {
+  where: Prisma.PracticumScheduleScalarWhereInput
+  data: Prisma.XOR<Prisma.PracticumScheduleUpdateManyMutationInput, Prisma.PracticumScheduleUncheckedUpdateManyWithoutRequestedByInput>
+}
+
+export type PracticumScheduleScalarWhereInput = {
+  AND?: Prisma.PracticumScheduleScalarWhereInput | Prisma.PracticumScheduleScalarWhereInput[]
+  OR?: Prisma.PracticumScheduleScalarWhereInput[]
+  NOT?: Prisma.PracticumScheduleScalarWhereInput | Prisma.PracticumScheduleScalarWhereInput[]
+  id?: Prisma.StringFilter<"PracticumSchedule"> | string
+  roomId?: Prisma.StringFilter<"PracticumSchedule"> | string
+  subject?: Prisma.StringFilter<"PracticumSchedule"> | string
+  teacher?: Prisma.StringFilter<"PracticumSchedule"> | string
+  className?: Prisma.StringFilter<"PracticumSchedule"> | string
+  dayOfWeek?: Prisma.IntFilter<"PracticumSchedule"> | number
+  startTime?: Prisma.StringFilter<"PracticumSchedule"> | string
+  endTime?: Prisma.StringFilter<"PracticumSchedule"> | string
+  academicYear?: Prisma.StringFilter<"PracticumSchedule"> | string
+  semester?: Prisma.StringFilter<"PracticumSchedule"> | string
+  status?: Prisma.StringFilter<"PracticumSchedule"> | string
+  requestedById?: Prisma.StringNullableFilter<"PracticumSchedule"> | string | null
+  approvedAt?: Prisma.DateTimeNullableFilter<"PracticumSchedule"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"PracticumSchedule"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PracticumSchedule"> | Date | string
+}
+
 export type PracticumScheduleCreateWithoutRoomInput = {
   id?: string
   subject: string
@@ -567,8 +758,11 @@ export type PracticumScheduleCreateWithoutRoomInput = {
   endTime: string
   academicYear: string
   semester: string
+  status?: string
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  requestedBy?: Prisma.UserCreateNestedOneWithoutScheduleRequestsInput
 }
 
 export type PracticumScheduleUncheckedCreateWithoutRoomInput = {
@@ -581,6 +775,9 @@ export type PracticumScheduleUncheckedCreateWithoutRoomInput = {
   endTime: string
   academicYear: string
   semester: string
+  status?: string
+  requestedById?: string | null
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -611,22 +808,72 @@ export type PracticumScheduleUpdateManyWithWhereWithoutRoomInput = {
   data: Prisma.XOR<Prisma.PracticumScheduleUpdateManyMutationInput, Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomInput>
 }
 
-export type PracticumScheduleScalarWhereInput = {
-  AND?: Prisma.PracticumScheduleScalarWhereInput | Prisma.PracticumScheduleScalarWhereInput[]
-  OR?: Prisma.PracticumScheduleScalarWhereInput[]
-  NOT?: Prisma.PracticumScheduleScalarWhereInput | Prisma.PracticumScheduleScalarWhereInput[]
-  id?: Prisma.StringFilter<"PracticumSchedule"> | string
-  roomId?: Prisma.StringFilter<"PracticumSchedule"> | string
-  subject?: Prisma.StringFilter<"PracticumSchedule"> | string
-  teacher?: Prisma.StringFilter<"PracticumSchedule"> | string
-  className?: Prisma.StringFilter<"PracticumSchedule"> | string
-  dayOfWeek?: Prisma.IntFilter<"PracticumSchedule"> | number
-  startTime?: Prisma.StringFilter<"PracticumSchedule"> | string
-  endTime?: Prisma.StringFilter<"PracticumSchedule"> | string
-  academicYear?: Prisma.StringFilter<"PracticumSchedule"> | string
-  semester?: Prisma.StringFilter<"PracticumSchedule"> | string
-  createdAt?: Prisma.DateTimeFilter<"PracticumSchedule"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PracticumSchedule"> | Date | string
+export type PracticumScheduleCreateManyRequestedByInput = {
+  id?: string
+  roomId: string
+  subject: string
+  teacher: string
+  className: string
+  dayOfWeek: number
+  startTime: string
+  endTime: string
+  academicYear: string
+  semester: string
+  status?: string
+  approvedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PracticumScheduleUpdateWithoutRequestedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  subject?: Prisma.StringFieldUpdateOperationsInput | string
+  teacher?: Prisma.StringFieldUpdateOperationsInput | string
+  className?: Prisma.StringFieldUpdateOperationsInput | string
+  dayOfWeek?: Prisma.IntFieldUpdateOperationsInput | number
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  academicYear?: Prisma.StringFieldUpdateOperationsInput | string
+  semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  room?: Prisma.RoomUpdateOneRequiredWithoutPracticumSchedulesNestedInput
+}
+
+export type PracticumScheduleUncheckedUpdateWithoutRequestedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  roomId?: Prisma.StringFieldUpdateOperationsInput | string
+  subject?: Prisma.StringFieldUpdateOperationsInput | string
+  teacher?: Prisma.StringFieldUpdateOperationsInput | string
+  className?: Prisma.StringFieldUpdateOperationsInput | string
+  dayOfWeek?: Prisma.IntFieldUpdateOperationsInput | number
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  academicYear?: Prisma.StringFieldUpdateOperationsInput | string
+  semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PracticumScheduleUncheckedUpdateManyWithoutRequestedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  roomId?: Prisma.StringFieldUpdateOperationsInput | string
+  subject?: Prisma.StringFieldUpdateOperationsInput | string
+  teacher?: Prisma.StringFieldUpdateOperationsInput | string
+  className?: Prisma.StringFieldUpdateOperationsInput | string
+  dayOfWeek?: Prisma.IntFieldUpdateOperationsInput | number
+  startTime?: Prisma.StringFieldUpdateOperationsInput | string
+  endTime?: Prisma.StringFieldUpdateOperationsInput | string
+  academicYear?: Prisma.StringFieldUpdateOperationsInput | string
+  semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PracticumScheduleCreateManyRoomInput = {
@@ -639,6 +886,9 @@ export type PracticumScheduleCreateManyRoomInput = {
   endTime: string
   academicYear: string
   semester: string
+  status?: string
+  requestedById?: string | null
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -653,8 +903,11 @@ export type PracticumScheduleUpdateWithoutRoomInput = {
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
   academicYear?: Prisma.StringFieldUpdateOperationsInput | string
   semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  requestedBy?: Prisma.UserUpdateOneWithoutScheduleRequestsNestedInput
 }
 
 export type PracticumScheduleUncheckedUpdateWithoutRoomInput = {
@@ -667,6 +920,9 @@ export type PracticumScheduleUncheckedUpdateWithoutRoomInput = {
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
   academicYear?: Prisma.StringFieldUpdateOperationsInput | string
   semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -681,6 +937,9 @@ export type PracticumScheduleUncheckedUpdateManyWithoutRoomInput = {
   endTime?: Prisma.StringFieldUpdateOperationsInput | string
   academicYear?: Prisma.StringFieldUpdateOperationsInput | string
   semester?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -698,9 +957,13 @@ export type PracticumScheduleSelect<ExtArgs extends runtime.Types.Extensions.Int
   endTime?: boolean
   academicYear?: boolean
   semester?: boolean
+  status?: boolean
+  requestedById?: boolean
+  approvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   room?: boolean | Prisma.RoomDefaultArgs<ExtArgs>
+  requestedBy?: boolean | Prisma.PracticumSchedule$requestedByArgs<ExtArgs>
 }, ExtArgs["result"]["practicumSchedule"]>
 
 export type PracticumScheduleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -714,9 +977,13 @@ export type PracticumScheduleSelectCreateManyAndReturn<ExtArgs extends runtime.T
   endTime?: boolean
   academicYear?: boolean
   semester?: boolean
+  status?: boolean
+  requestedById?: boolean
+  approvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   room?: boolean | Prisma.RoomDefaultArgs<ExtArgs>
+  requestedBy?: boolean | Prisma.PracticumSchedule$requestedByArgs<ExtArgs>
 }, ExtArgs["result"]["practicumSchedule"]>
 
 export type PracticumScheduleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -730,9 +997,13 @@ export type PracticumScheduleSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   endTime?: boolean
   academicYear?: boolean
   semester?: boolean
+  status?: boolean
+  requestedById?: boolean
+  approvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   room?: boolean | Prisma.RoomDefaultArgs<ExtArgs>
+  requestedBy?: boolean | Prisma.PracticumSchedule$requestedByArgs<ExtArgs>
 }, ExtArgs["result"]["practicumSchedule"]>
 
 export type PracticumScheduleSelectScalar = {
@@ -746,25 +1017,32 @@ export type PracticumScheduleSelectScalar = {
   endTime?: boolean
   academicYear?: boolean
   semester?: boolean
+  status?: boolean
+  requestedById?: boolean
+  approvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PracticumScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "roomId" | "subject" | "teacher" | "className" | "dayOfWeek" | "startTime" | "endTime" | "academicYear" | "semester" | "createdAt" | "updatedAt", ExtArgs["result"]["practicumSchedule"]>
+export type PracticumScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "roomId" | "subject" | "teacher" | "className" | "dayOfWeek" | "startTime" | "endTime" | "academicYear" | "semester" | "status" | "requestedById" | "approvedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["practicumSchedule"]>
 export type PracticumScheduleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   room?: boolean | Prisma.RoomDefaultArgs<ExtArgs>
+  requestedBy?: boolean | Prisma.PracticumSchedule$requestedByArgs<ExtArgs>
 }
 export type PracticumScheduleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   room?: boolean | Prisma.RoomDefaultArgs<ExtArgs>
+  requestedBy?: boolean | Prisma.PracticumSchedule$requestedByArgs<ExtArgs>
 }
 export type PracticumScheduleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   room?: boolean | Prisma.RoomDefaultArgs<ExtArgs>
+  requestedBy?: boolean | Prisma.PracticumSchedule$requestedByArgs<ExtArgs>
 }
 
 export type $PracticumSchedulePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PracticumSchedule"
   objects: {
     room: Prisma.$RoomPayload<ExtArgs>
+    requestedBy: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -777,6 +1055,9 @@ export type $PracticumSchedulePayload<ExtArgs extends runtime.Types.Extensions.I
     endTime: string
     academicYear: string
     semester: string
+    status: string
+    requestedById: string | null
+    approvedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["practicumSchedule"]>
@@ -1174,6 +1455,7 @@ readonly fields: PracticumScheduleFieldRefs;
 export interface Prisma__PracticumScheduleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   room<T extends Prisma.RoomDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoomDefaultArgs<ExtArgs>>): Prisma.Prisma__RoomClient<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  requestedBy<T extends Prisma.PracticumSchedule$requestedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticumSchedule$requestedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1213,6 +1495,9 @@ export interface PracticumScheduleFieldRefs {
   readonly endTime: Prisma.FieldRef<"PracticumSchedule", 'String'>
   readonly academicYear: Prisma.FieldRef<"PracticumSchedule", 'String'>
   readonly semester: Prisma.FieldRef<"PracticumSchedule", 'String'>
+  readonly status: Prisma.FieldRef<"PracticumSchedule", 'String'>
+  readonly requestedById: Prisma.FieldRef<"PracticumSchedule", 'String'>
+  readonly approvedAt: Prisma.FieldRef<"PracticumSchedule", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"PracticumSchedule", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PracticumSchedule", 'DateTime'>
 }
@@ -1613,6 +1898,25 @@ export type PracticumScheduleDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many PracticumSchedules to delete.
    */
   limit?: number
+}
+
+/**
+ * PracticumSchedule.requestedBy
+ */
+export type PracticumSchedule$requestedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

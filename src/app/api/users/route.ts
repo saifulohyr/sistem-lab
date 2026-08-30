@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
+import { requireAdmin } from "@/lib/rbac";
+import { parseValidation, CreateUserSchema, UpdateUserSchema } from "@/lib/validations";
+import { hashPassword } from "@/lib/bcrypt";
 
 export async function GET() {
   try {
     const session = await getSession();
-    if (!session || session.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
-    }
+    const authError = requireAdmin(session);
+    if (authError) return authError;
 
     const users = await prisma.user.findMany({
       select: {
@@ -30,26 +32,30 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getSession();
-    if (!session || session.role !== "ADMIN") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
-    }
+    const authError = requireAdmin(session);
+    if (authError) return authError;
 
-    const { name, email, password, role } = await request.json();
-    if (!name || !email || !password) {
-      return NextResponse.json({ error: "Nama, email, dan password wajib diisi" }, { status: 400 });
+    const body = await request.json();
+    const validation = parseValidation(CreateUserSchema, body);
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
     }
+    const { name, email, password, role } = validation.data;
 
     const existing = await prisma.user.findUnique({ where: { email } });
     if (existing) {
       return NextResponse.json({ error: "Email sudah terdaftar" }, { status: 400 });
     }
 
+    // Hash password before saving
+    const hashedPassword = await hashPassword(password);
+
     const user = await prisma.user.create({
       data: {
         name,
         email,
-        password,
-        role: role || "TOOLMAN",
+        password: hashedPassword,
+        role: role ?? "TOOLMAN",
       },
       select: {
         id: true,

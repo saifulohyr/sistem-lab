@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/session";
+import { requireStaff } from "@/lib/rbac";
+import { parseValidation, RepairSchema } from "@/lib/validations";
 
 export async function GET() {
   try {
@@ -22,59 +24,58 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const session = await getSession();
-    if (!session || (session.role !== "ADMIN" && session.role !== "TOOLMAN")) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
-    }
+    const authError = requireStaff(session);
+    if (authError) return authError;
 
-    const { number, date, damageReportId, inventoryId, damageType, severity, diagnosis } = await request.json();
-
-    if (!number || !inventoryId) {
-      return NextResponse.json({ error: "Nomor tiket dan ID Barang wajib diisi" }, { status: 400 });
+    const body = await request.json();
+    const validation = parseValidation(RepairSchema, {
+      ...body,
+      technicianId: body.technicianId || session!.id,
+    });
+    if (!validation.success) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
     }
+    const data = validation.data;
 
     // Check duplicate number
-    const existing = await prisma.repair.findUnique({ where: { number } });
+    const existing = await prisma.repair.findUnique({ where: { number: data.number } });
     if (existing) {
       return NextResponse.json({ error: "Nomor tiket sudah digunakan" }, { status: 400 });
     }
 
-    const ticket = await prisma.$transaction(async (tx: any) => {
-      // 1. Create Repair Ticket
+    const ticket = await prisma.$transaction(async (tx) => {
       const newRepair = await tx.repair.create({
         data: {
-          number,
-          date: date ? new Date(date) : new Date(),
-          damageReportId: damageReportId || null,
-          inventoryId,
-          damageType: damageType || null,
-          severity: severity || null,
-          diagnosis: diagnosis || null,
+          number: data.number,
+          date: new Date(data.date),
+          damageReportId: data.damageReportId ?? null,
+          inventoryId: data.inventoryId,
+          damageType: data.damageType ?? null,
+          severity: data.severity ?? null,
+          diagnosis: data.diagnosis ?? null,
           status: "DIAGNOSA",
-          technicianId: session.id,
+          technicianId: data.technicianId,
         },
       });
 
-      // 2. Update Damage Report Status (if linked)
-      if (damageReportId) {
+      if (data.damageReportId) {
         await tx.damageReport.update({
-          where: { id: damageReportId },
+          where: { id: data.damageReportId },
           data: { status: "DIPROSES" },
         });
       }
 
-      // 3. Ensure Inventory status is PERBAIKAN
       await tx.inventory.update({
-        where: { id: inventoryId },
+        where: { id: data.inventoryId },
         data: { status: "PERBAIKAN" },
       });
 
-      // 4. Log History
       await tx.inventoryHistory.create({
         data: {
-          inventoryId,
+          inventoryId: data.inventoryId,
           action: "MULAI_PERBAIKAN",
-          description: `Tiket perbaikan dibuat: ${number}. Teknisi: ${session.name}`,
-          userId: session.id,
+          description: `Tiket perbaikan dibuat: ${data.number}. Teknisi: ${session!.name}`,
+          userId: session!.id,
         },
       });
 
