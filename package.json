@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "tsx prisma/seed.ts",
-    "migrate-passwords": "tsx scripts/migrate-passwords.ts"
+    "migrate-passwords": "tsx scripts/migrate-passwords.ts",
+    "create-users": "tsx scripts/create-new-users.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { cookies } from "next/headers";
+import { verifyPassword } from "@/lib/bcrypt";
 
 export async function POST(request: Request) {
   try {
@@ -24,7 +25,9 @@ export async function POST(request: Request) {
       );
     }
 
-    if (user.password !== password) {
+    // Verify password dengan bcrypt (password sudah di-hash di DB)
+    const passwordMatch = await verifyPassword(password, user.password);
+    if (!passwordMatch) {
       return NextResponse.json(
         { error: "Password salah" },
         { status: 401 }
