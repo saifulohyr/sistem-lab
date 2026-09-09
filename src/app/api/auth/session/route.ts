@@ -11,7 +11,11 @@ export async function GET() {
     }
 
     const user = JSON.parse(Buffer.from(session.value, "base64").toString());
-    return NextResponse.json({ user });
+    return NextResponse.json({
+      user,
+      role: user.role,
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+    });
   } catch {
     return NextResponse.json({ user: null }, { status: 401 });
   }

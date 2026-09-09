@@ -178,3 +178,36 @@ body {
 .animate-scale-in {
   animation: scaleIn 0.3s ease-out forwards;
 }
+
+/* Print Optimization */
+@media print {
+  @page {
+    size: A4 auto;
+    margin: 10mm 12mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Hide navigation, sidebar, and interactive action buttons during print */
+  nav,
+  aside,
+  header,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Ensure tables don't split rows awkwardly */
+  table, tr, td, th {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+

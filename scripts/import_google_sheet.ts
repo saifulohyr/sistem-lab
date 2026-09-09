@@ -20,8 +20,55 @@ function parseCondition(raw: string): { condition: string; note: string } {
   return { condition: "BAIK", note: raw.toLowerCase().includes("baik") ? "" : raw };
 }
 
+function parseExcelDate(val: any): Date {
+  if (!val) return new Date();
+  if (typeof val === "number") {
+    // Excel serial date format
+    const utc_days = Math.floor(val - 25569);
+    const utc_value = utc_days * 86400;
+    const date_info = new Date(utc_value * 1000);
+    return date_info;
+  }
+  const str = String(val).trim();
+  if (!str) return new Date();
+
+  // Try dd/mm/yyyy
+  const dmyMatch = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
+  if (dmyMatch) {
+    const day = parseInt(dmyMatch[1]);
+    const month = parseInt(dmyMatch[2]) - 1;
+    const year = parseInt(dmyMatch[3]);
+    return new Date(year, month, day);
+  }
+
+  // Try parsing text Indonesian dates: "13 Agustus 2025"
+  const monthsIndo: Record<string, number> = {
+    januari: 0, februari: 1, maret: 2, april: 3, mei: 4, juni: 5,
+    juli: 6, agustus: 7, september: 8, oktober: 9, november: 10, desember: 11
+  };
+  for (const [mName, mIdx] of Object.entries(monthsIndo)) {
+    if (str.toLowerCase().includes(mName)) {
+      const match = str.match(/(\d{1,2})\s+[A-Za-z]+\s+(\d{4})/);
+      if (match) {
+        return new Date(parseInt(match[2]), mIdx, parseInt(match[1]));
+      }
+    }
+  }
+
+  const parsed = new Date(str);
+  return isNaN(parsed.getTime()) ? new Date() : parsed;
+}
+
+function parseQuantity(val: any): number {
+  if (typeof val === "number") return val;
+  if (!val) return 1;
+  const str = String(val).trim();
+  const match = str.match(/\d+/);
+  return match ? parseInt(match[0], 10) : 1;
+}
+
 async function main() {
-  console.log("🚀 Starting import from Google Sheet (data_lama.xlsx)...");
+  console.log("🚀 Starting comprehensive sync from Google Sheet (data_lama.xlsx)...\n");
 
   // 1. Get or create location
   const location = await prisma.location.upsert({
@@ -70,9 +117,14 @@ async function main() {
     catMap[c.name] = cat.id;
   }
 
-  // 4. Get Toolman user for history logging
-  const toolman = await prisma.user.findFirst({ where: { role: "TOOLMAN" } }) 
+  // 4. Get Toolman/Admin user for relations
+  const staffUser = await prisma.user.findFirst({ where: { role: "TOOLMAN" } })
+    || await prisma.user.findFirst({ where: { role: "ADMIN" } })
     || await prisma.user.findFirst();
+
+  if (!staffUser) {
+    throw new Error("No staff user found in database. Run seed first.");
+  }
 
   const filePath = path.resolve(process.cwd(), "data_lama.xlsx");
   const workbook = XLSX.readFile(filePath);
@@ -96,7 +148,7 @@ async function main() {
 
     const dataRows = rows.slice(headerIdx + 1).filter(r => r[1] && String(r[1]).trim() !== "");
 
-    console.log(`\n📦 Importing ${dataRows.length} PCs from ${pcSheet.sheetName}...`);
+    console.log(`📦 Importing ${dataRows.length} PCs from ${pcSheet.sheetName}...`);
 
     for (let i = 0; i < dataRows.length; i++) {
       const row = dataRows[i];
@@ -168,17 +220,17 @@ async function main() {
     }
   }
 
-  console.log(`\n✅ Total PC Imported: ${totalPcImported}`);
+  console.log(`✅ Total PC Imported: ${totalPcImported}\n`);
 
   // 6. Import "Daftar Rekap Barang" (Komponen & Alat)
   const rekapSheet = workbook.Sheets["Daftar Rekap Barang"];
   if (rekapSheet) {
     const rows: any[] = XLSX.utils.sheet_to_json(rekapSheet, { header: 1, defval: "" });
     const headerIdx = rows.findIndex(r => r.includes("Kode Barang") || r.includes("Nama Barang"));
-    
+
     if (headerIdx !== -1) {
       const dataRows = rows.slice(headerIdx + 1).filter(r => r[0] && String(r[0]).trim().startsWith("RPL-"));
-      console.log(`\n📦 Importing ${dataRows.length} Items from Daftar Rekap Barang...`);
+      console.log(`📦 Importing ${dataRows.length} Items from Daftar Rekap Barang...`);
 
       for (const row of dataRows) {
         const code = String(row[0]).trim();
@@ -186,7 +238,6 @@ async function main() {
         const stokAkhir = parseInt(row[5]) || parseInt(row[2]) || 0;
         const ket = String(row[7] || "").trim();
 
-        // Categorize automatically
         let catName = "Lainnya";
         const upper = rawName.toUpperCase();
         if (upper.includes("MONITOR")) catName = "Monitor";
@@ -197,7 +248,6 @@ async function main() {
         else if (upper.includes("PROYEKTOR") || upper.includes("PRINTER")) catName = "Peralatan Lab";
         else if (upper.includes("TOOL") || upper.includes("THERMAL") || upper.includes("BATERAI") || upper.includes("TINTA") || upper.includes("STIKER")) catName = "Tools & Perlengkapan";
 
-        // If it's CPU, it's already represented in individual PC sheets, but let's check
         if (upper === "CPU") continue;
 
         await prisma.inventory.upsert({
@@ -221,10 +271,50 @@ async function main() {
           },
         });
       }
+      console.log(`✅ Daftar Rekap Barang berhasil di-import!\n`);
     }
   }
 
-  console.log("\n🎉 IMPORT DATA COMPLETED SUCCESSFULLY!");
+  // 9. Import "MAINTENANCE AND REPAIR"
+  const maintSheet = workbook.Sheets["MAINTENANCE AND REPAIR"];
+  if (maintSheet) {
+    const rows: any[] = XLSX.utils.sheet_to_json(maintSheet, { header: 1, defval: "" });
+    const headerIdx = rows.findIndex(r => r.includes("NAMA PC") || r.includes("PERAWATAN"));
+
+    if (headerIdx !== -1) {
+      const dataRows = rows.slice(headerIdx + 1).filter(r => r[1] && String(r[1]).trim() !== "");
+      console.log(`📦 Importing ${dataRows.length} Maintenance/Repair records...`);
+
+      let maintCount = 0;
+      for (let i = 0; i < dataRows.length; i++) {
+        const row = dataRows[i];
+        const pcName = String(row[1]).trim();
+        const lokasi = String(row[2]).trim();
+        const perawatan = String(row[3]).trim();
+        const perbaikan = String(row[4]).trim();
+        const date = parseExcelDate(row[5]);
+
+        const maintNumber = `MNT-IMP-${String(i + 1).padStart(4, "0")}`;
+        await prisma.maintenance.upsert({
+          where: { number: maintNumber },
+          update: {},
+          create: {
+            number: maintNumber,
+            date,
+            type: perbaikan ? "CORRECTIVE" : "PREVENTIVE",
+            title: `Perawatan/Perbaikan ${pcName} (${lokasi})`,
+            description: `Perawatan: ${perawatan || "-"}, Perbaikan: ${perbaikan || "-"}`,
+            result: "Selesai",
+            technicianId: staffUser.id,
+          }
+        });
+        maintCount++;
+      }
+      console.log(`✅ ${maintCount} Maintenance records imported!\n`);
+    }
+  }
+
+  console.log("🎉 ALL GOOGLE SHEET DATA IMPORTED & SYNCED SUCCESSFULLY!");
 }
 
 main()

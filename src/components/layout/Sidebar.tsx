@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
@@ -26,6 +27,7 @@ import {
   Bell,
   Truck,
   AlertTriangle,
+  History,
 } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 
@@ -68,6 +70,7 @@ const menuGroups = [
     items: [
       { href: "/dashboard/pendataan-awal", label: "Pendataan Awal", icon: ClipboardList },
       { href: "/dashboard/jadwal", label: "Jadwal Laboratorium", icon: Calendar },
+      { href: "/dashboard/pemakaian-lab", label: "Pemakaian Lab", icon: History },
       { href: "/dashboard/pemeriksaan", label: "Pemeriksaan Rutin", icon: CheckSquare },
       { href: "/dashboard/software", label: "Software & Lisensi", icon: Package },
       { href: "/dashboard/asisten", label: "Asisten Lab", icon: Users },
@@ -185,13 +188,20 @@ export default function Sidebar({ user }: SidebarProps) {
   const sidebarContent = (
     <div className="flex flex-col h-full bg-white text-slate-700 border-r border-[#eaedff] shadow-[1px_0_8px_rgba(0,0,0,0.02)]">
       {/* Logo */}
-      <div className="p-6 mb-2 flex items-center gap-3 border-b border-[#eaedff]">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0058be] to-[#2170e4] flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20 text-white">
-          <Monitor className="w-5 h-5" />
+      <div className="p-5 mb-2 flex items-center gap-3 border-b border-[#eaedff]">
+        <div className="w-10 h-10 flex items-center justify-center shrink-0">
+          <Image
+            src="/logo.png"
+            alt="Logo SMK Muhammadiyah Majenang"
+            width={40}
+            height={40}
+            className="w-10 h-10 object-contain drop-shadow-sm"
+            priority
+          />
         </div>
         <div className="min-w-0">
           <h1 className="text-xl font-black text-[#0058be] tracking-tight">LABMUMA</h1>
-          <p className="text-[10px] text-[#505f76] font-semibold uppercase tracking-widest">Lab System</p>
+          <p className="text-[10px] text-[#505f76] font-semibold uppercase tracking-widest">SMK Muhammadiyah</p>
         </div>
       </div>
 

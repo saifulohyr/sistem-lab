@@ -32,6 +32,7 @@ model User {
   maintenances       Maintenance[]
   inspections        Inspection[]
   scheduleRequests   PracticumSchedule[]
+  labUsages          LabUsage[]
 }
 
 // ─── MASTER DATA ────────────────────────────────────────────────
@@ -60,6 +61,7 @@ model Room {
   initialInventories InitialInventory[]
   inspections        Inspection[]
   practicumSchedules PracticumSchedule[]
+  labUsages          LabUsage[]
 }
 
 model Category {
@@ -461,6 +463,29 @@ model InitialInventoryItem {
 
   initialInventory InitialInventory @relation(fields: [initialInventoryId], references: [id], onDelete: Cascade)
   inventory        Inventory?       @relation(fields: [inventoryId], references: [id])
+}
+
+// ─── PEMAKAIAN LAB (RIWAYAT HARIAN) ────────────────────────────
+model LabUsage {
+  id           String   @id @default(cuid())
+  roomId       String
+  date         DateTime              // Tanggal pemakaian
+  startPeriod  Int                   // Jam ke-berapa mulai (1-11)
+  endPeriod    Int                   // Jam ke-berapa selesai (1-11)
+  startTime    String                // "07:30"
+  endTime      String                // "11:15"
+  subject      String                // Mata Pelajaran
+  teacher      String                // Nama Guru
+  className    String                // "XII RPL 3"
+  studentCount Int?                  // Jumlah siswa hadir
+  activity     String?               // Deskripsi kegiatan
+  note         String?               // Catatan (kendala, dll)
+  userId       String                // Siapa yang mencatat
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  room Room @relation(fields: [roomId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
 
 // ─── AUDIT LOG ──────────────────────────────────────────────────

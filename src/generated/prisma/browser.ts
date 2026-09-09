@@ -163,6 +163,11 @@ export type InitialInventory = Prisma.InitialInventoryModel
  */
 export type InitialInventoryItem = Prisma.InitialInventoryItemModel
 /**
+ * Model LabUsage
+ * 
+ */
+export type LabUsage = Prisma.LabUsageModel
+/**
  * Model AuditLog
  * 
  */

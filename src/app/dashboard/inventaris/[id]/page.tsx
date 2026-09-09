@@ -3,6 +3,8 @@
 import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 import {
   ArrowLeft,
   Edit,
@@ -23,6 +25,13 @@ import {
   AlertTriangle,
   XCircle,
   HelpCircle,
+  Camera,
+  UploadCloud,
+  Plus,
+  X,
+  ZoomIn,
+  Image as ImageIcon,
+  Loader2,
 } from "lucide-react";
 import { formatDate, getConditionLabel, getStatusLabel } from "@/lib/utils";
 
@@ -46,6 +55,12 @@ interface InventoryDetail {
   brand: { id: string; name: string } | null;
   room: { id: string; name: string } | null;
   specs: { id: string; key: string; value: string }[];
+  photos: {
+    id: string;
+    url: string;
+    label: string | null;
+    createdAt: string;
+  }[];
   history: {
     id: string;
     action: string;
@@ -55,6 +70,16 @@ interface InventoryDetail {
   }[];
 }
 
+const PRESET_LABELS = [
+  "Tampak Depan",
+  "Tampak Belakang",
+  "Tampak Samping",
+  "Label & Barcode",
+  "Nomor Seri",
+  "Kondisi Fisik / Kerusakan",
+  "Kelengkapan & Aksesoris",
+];
+
 export default function DetailInventarisPage({
   params,
 }: {
@@ -62,9 +87,21 @@ export default function DetailInventarisPage({
 }) {
   const { id } = use(params);
   const router = useRouter();
+  const { data: session } = useSession();
+
   const [item, setItem] = useState<InventoryDetail | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<"info" | "specs" | "history" | "qr">("info");
+  const [activeTab, setActiveTab] = useState<"info" | "photos" | "specs" | "history" | "qr">("info");
+
+  // Photo management state
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [filePreview, setFilePreview] = useState<string | null>(null);
+  const [photoLabel, setPhotoLabel] = useState("Tampak Depan");
+  const [uploading, setUploading] = useState(false);
+  const [activeZoomPhoto, setActiveZoomPhoto] = useState<{ url: string; label: string | null } | null>(null);
+
+  const canManagePhotos = session?.user?.role === "ADMIN" || session?.user?.role === "TOOLMAN";
 
   useEffect(() => {
     async function loadDetail() {
@@ -89,14 +126,113 @@ export default function DetailInventarisPage({
     try {
       const res = await fetch(`/api/inventaris/${id}`, { method: "DELETE" });
       if (res.ok) {
+        toast.success("Inventaris berhasil dihapus");
         router.push("/dashboard/inventaris");
       } else {
         const d = await res.json();
-        alert(d.error || "Gagal menghapus");
+        toast.error(d.error || "Gagal menghapus");
       }
     } catch (err) {
       console.error(err);
-      alert("Terjadi kesalahan sistem");
+      toast.error("Terjadi kesalahan sistem");
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("File harus berupa gambar (JPG, PNG, WebP)");
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("Ukuran file maksimal 10MB");
+      return;
+    }
+
+    setSelectedFile(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setFilePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleUploadPhoto = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedFile) {
+      toast.error("Silakan pilih file foto terlebih dahulu");
+      return;
+    }
+
+    setUploading(true);
+    const toastId = toast.loading("Mengunggah foto ke storage...");
+
+    try {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      formData.append("label", photoLabel.trim() || "Foto Barang");
+
+      const res = await fetch(`/api/inventaris/${id}/photos`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const json = await res.json();
+
+      if (res.ok && json.data) {
+        toast.success("Foto berhasil diunggah!", { id: toastId });
+        setItem((prev) =>
+          prev
+            ? {
+                ...prev,
+                photos: [json.data, ...(prev.photos || [])],
+              }
+            : prev
+        );
+        setSelectedFile(null);
+        setFilePreview(null);
+        setPhotoLabel("Tampak Depan");
+        setUploadModalOpen(false);
+      } else {
+        toast.error(json.error || "Gagal mengunggah foto", { id: toastId });
+      }
+    } catch (err) {
+      console.error("Upload error:", err);
+      toast.error("Gagal terhubung ke server", { id: toastId });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleDeletePhoto = async (photoId: string) => {
+    if (!confirm("Hapus foto dokumentasi ini?")) return;
+
+    const toastId = toast.loading("Menghapus foto...");
+    try {
+      const res = await fetch(`/api/inventaris/${id}/photos?photoId=${photoId}`, {
+        method: "DELETE",
+      });
+      const json = await res.json();
+
+      if (res.ok) {
+        toast.success("Foto berhasil dihapus", { id: toastId });
+        setItem((prev) =>
+          prev
+            ? {
+                ...prev,
+                photos: (prev.photos || []).filter((p) => p.id !== photoId),
+              }
+            : prev
+        );
+      } else {
+        toast.error(json.error || "Gagal menghapus foto", { id: toastId });
+      }
+    } catch (err) {
+      console.error("Delete photo error:", err);
+      toast.error("Terjadi kesalahan saat menghapus foto", { id: toastId });
     }
   };
 
@@ -122,6 +258,8 @@ export default function DetailInventarisPage({
       </div>
     );
   }
+
+  const primaryPhoto = item.photos && item.photos.length > 0 ? item.photos[0] : null;
 
   return (
     <div className="max-w-5xl mx-auto space-y-6 pb-12">
@@ -176,14 +314,15 @@ export default function DetailInventarisPage({
       <div className="flex items-center gap-2 border-b border-border pb-1 overflow-x-auto">
         {[
           { key: "info", label: "Informasi Utama", icon: Package },
-          { key: "specs", label: `Spesifikasi (${item.specs.length})`, icon: Cpu },
-          { key: "history", label: `Riwayat (${item.history.length})`, icon: History },
+          { key: "photos", label: `Foto (${item.photos?.length || 0})`, icon: Camera },
+          { key: "specs", label: `Spesifikasi (${item.specs?.length || 0})`, icon: Cpu },
+          { key: "history", label: `Riwayat (${item.history?.length || 0})`, icon: History },
           { key: "qr", label: "QR Label", icon: QrCode },
         ].map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key as any)}
-            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shrink-0 ${
               activeTab === tab.key
                 ? "bg-primary text-primary-foreground shadow-sm"
                 : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -197,85 +336,231 @@ export default function DetailInventarisPage({
 
       {/* Tab Content: Info */}
       {activeTab === "info" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Card 1: Status & Lokasi */}
-          <div className="bg-card border border-border rounded-2xl p-6 shadow-sm space-y-4">
-            <h3 className="font-semibold text-foreground flex items-center gap-2 text-sm">
-              <MapPin className="w-4 h-4 text-primary" />
-              Status & Penempatan
-            </h3>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Kondisi Fisik</span>
-                <span className="font-semibold text-foreground">{getConditionLabel(item.condition)}</span>
+        <div className="space-y-6">
+          {/* Quick Photo Preview Card if exists */}
+          {primaryPhoto && (
+            <div className="bg-card border border-border rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+              <div
+                onClick={() => setActiveZoomPhoto(primaryPhoto)}
+                className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-xl overflow-hidden bg-muted/40 border border-border/80 shrink-0 cursor-pointer group"
+              >
+                <img
+                  src={primaryPhoto.url}
+                  alt={primaryPhoto.label || item.name}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white">
+                  <ZoomIn className="w-5 h-5" />
+                </div>
               </div>
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Status Barang</span>
-                <span className="font-semibold text-foreground">{getStatusLabel(item.status)}</span>
-              </div>
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Ruangan</span>
-                <span className="font-medium text-foreground">{item.room?.name || "-"}</span>
-              </div>
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Posisi Meja/Rak</span>
-                <span className="font-medium text-foreground">{item.position || "-"}</span>
-              </div>
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Jumlah Unit</span>
-                <span className="font-medium text-foreground">{item.quantity} Unit</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2: Pengadaan & Dokumen */}
-          <div className="bg-card border border-border rounded-2xl p-6 shadow-sm space-y-4">
-            <h3 className="font-semibold text-foreground flex items-center gap-2 text-sm">
-              <DollarSign className="w-4 h-4 text-primary" />
-              Pengadaan & Dokumen
-            </h3>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Merk & Tipe</span>
-                <span className="font-semibold text-foreground">
-                  {item.brand?.name || "-"} {item.type ? `(${item.type})` : ""}
-                </span>
-              </div>
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Serial Number</span>
-                <span className="font-mono text-foreground">{item.serialNumber || "-"}</span>
-              </div>
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Tahun Pengadaan</span>
-                <span className="font-medium text-foreground">{item.year || "-"}</span>
-              </div>
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Sumber Dana</span>
-                <span className="font-medium text-foreground">{item.source || "-"}</span>
-              </div>
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">Estimasi Harga</span>
-                <span className="font-medium text-foreground">
-                  {item.price ? `Rp ${item.price.toLocaleString("id-ID")}` : "-"}
-                </span>
-              </div>
-              <div>
-                <span className="text-xs text-muted-foreground block mb-0.5">No. Dokumen</span>
-                <span className="font-mono text-foreground">{item.documentNo || "-"}</span>
+              <div className="flex-1 text-center sm:text-left space-y-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary">
+                  <Camera className="w-3.5 h-3.5" />
+                  {primaryPhoto.label || "Foto Utama"}
+                </div>
+                <h2 className="text-base font-bold text-foreground">Dokumentasi Visual Tersedia</h2>
+                <p className="text-xs text-muted-foreground">
+                  Terdapat total {item.photos?.length || 0} foto dokumentasi untuk inventaris ini.
+                </p>
+                <button
+                  onClick={() => setActiveTab("photos")}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline pt-1"
+                >
+                  Lihat Semua Galeri Foto ({item.photos?.length || 0}) →
+                </button>
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Card 3: Catatan */}
-          {item.note && (
-            <div className="md:col-span-2 bg-card border border-border rounded-2xl p-6 shadow-sm">
-              <h3 className="font-semibold text-foreground flex items-center gap-2 text-sm mb-2">
-                <FileText className="w-4 h-4 text-primary" />
-                Catatan
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Card 1: Status & Lokasi */}
+            <div className="bg-card border border-border rounded-2xl p-6 shadow-sm space-y-4">
+              <h3 className="font-semibold text-foreground flex items-center gap-2 text-sm">
+                <MapPin className="w-4 h-4 text-primary" />
+                Status & Penempatan
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                {item.note}
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Kondisi Fisik</span>
+                  <span className="font-semibold text-foreground">{getConditionLabel(item.condition)}</span>
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Status Barang</span>
+                  <span className="font-semibold text-foreground">{getStatusLabel(item.status)}</span>
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Ruangan</span>
+                  <span className="font-medium text-foreground">{item.room?.name || "-"}</span>
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Posisi Meja/Rak</span>
+                  <span className="font-medium text-foreground">{item.position || "-"}</span>
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Jumlah Unit</span>
+                  <span className="font-medium text-foreground">{item.quantity} Unit</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Pengadaan & Dokumen */}
+            <div className="bg-card border border-border rounded-2xl p-6 shadow-sm space-y-4">
+              <h3 className="font-semibold text-foreground flex items-center gap-2 text-sm">
+                <DollarSign className="w-4 h-4 text-primary" />
+                Pengadaan & Dokumen
+              </h3>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Merk & Tipe</span>
+                  <span className="font-semibold text-foreground">
+                    {item.brand?.name || "-"} {item.type ? `(${item.type})` : ""}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Serial Number</span>
+                  <span className="font-mono text-foreground">{item.serialNumber || "-"}</span>
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Tahun Pengadaan</span>
+                  <span className="font-medium text-foreground">{item.year || "-"}</span>
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Sumber Dana</span>
+                  <span className="font-medium text-foreground">{item.source || "-"}</span>
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">Estimasi Harga</span>
+                  <span className="font-medium text-foreground">
+                    {item.price ? `Rp ${item.price.toLocaleString("id-ID")}` : "-"}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-xs text-muted-foreground block mb-0.5">No. Dokumen</span>
+                  <span className="font-mono text-foreground">{item.documentNo || "-"}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Catatan */}
+            {item.note && (
+              <div className="md:col-span-2 bg-card border border-border rounded-2xl p-6 shadow-sm">
+                <h3 className="font-semibold text-foreground flex items-center gap-2 text-sm mb-2">
+                  <FileText className="w-4 h-4 text-primary" />
+                  Catatan
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                  {item.note}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Tab Content: Photos Gallery */}
+      {activeTab === "photos" && (
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-card border border-border rounded-2xl p-5 shadow-sm">
+            <div>
+              <h3 className="text-base font-bold text-foreground flex items-center gap-2">
+                <Camera className="w-4 h-4 text-primary" />
+                Dokumentasi & Galeri Foto Barang
+              </h3>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Foto fisik, nomor seri, kondisi kerusakan, dan kelengkapan inventaris {item.code}
               </p>
+            </div>
+            {canManagePhotos && (
+              <button
+                onClick={() => setUploadModalOpen(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:brightness-110 shadow-sm transition-all shrink-0"
+              >
+                <Plus className="w-4 h-4" />
+                Unggah Foto Baru
+              </button>
+            )}
+          </div>
+
+          {/* Photos Grid */}
+          {!item.photos || item.photos.length === 0 ? (
+            <div className="bg-card border border-border border-dashed rounded-2xl p-12 text-center space-y-4">
+              <div className="w-16 h-16 rounded-2xl bg-muted/50 border border-border flex items-center justify-center mx-auto text-muted-foreground">
+                <ImageIcon className="w-8 h-8" />
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-semibold text-foreground">Belum Ada Foto Dokumentasi</p>
+                <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+                  Unggah foto fisik barang, stiker serial number, atau bukti kondisi barang untuk mempermudah identifikasi dan audit lab.
+                </p>
+              </div>
+              {canManagePhotos && (
+                <button
+                  onClick={() => setUploadModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:brightness-110 transition-all"
+                >
+                  <UploadCloud className="w-4 h-4" />
+                  Unggah Foto Sekarang
+                </button>
+              )}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+              {item.photos.map((photo) => (
+                <div
+                  key={photo.id}
+                  className="group bg-card border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col"
+                >
+                  <div className="relative aspect-4/3 bg-muted/40 overflow-hidden cursor-pointer">
+                    <img
+                      src={photo.url}
+                      alt={photo.label || item.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onClick={() => setActiveZoomPhoto(photo)}
+                    />
+                    <div
+                      onClick={() => setActiveZoomPhoto(photo)}
+                      className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white"
+                    >
+                      <ZoomIn className="w-6 h-6 drop-shadow-md" />
+                    </div>
+                    {photo.label && (
+                      <span className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-black/70 backdrop-blur-xs text-white">
+                        {photo.label}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="p-3.5 flex items-center justify-between gap-2 border-t border-border bg-card">
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold text-foreground truncate">
+                        {photo.label || "Foto Barang"}
+                      </p>
+                      <span className="text-[10px] text-muted-foreground block">
+                        {formatDate(photo.createdAt)}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1 shrink-0">
+                      <button
+                        onClick={() => setActiveZoomPhoto(photo)}
+                        title="Perbesar"
+                        className="p-1.5 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                      >
+                        <ZoomIn className="w-3.5 h-3.5" />
+                      </button>
+                      {canManagePhotos && (
+                        <button
+                          onClick={() => handleDeletePhoto(photo.id)}
+                          title="Hapus foto"
+                          className="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition-colors"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -354,7 +639,6 @@ export default function DetailInventarisPage({
             <div className="font-bold text-xs uppercase tracking-wider mb-2 text-slate-700">
               SMK LAB RPL — INVENTARIS
             </div>
-            {/* Simple simulated QR code display with barcode pattern */}
             <div className="w-44 h-44 mx-auto bg-slate-900 flex flex-col items-center justify-center p-3 rounded-lg text-white text-center">
               <QrCode className="w-28 h-28 text-white mb-1" />
               <span className="font-mono text-xs font-bold">{item.code}</span>
@@ -378,6 +662,172 @@ export default function DetailInventarisPage({
               <Printer className="w-4 h-4" />
               Cetak Stiker QR
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal: Upload Photo */}
+      {uploadModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+          <div className="bg-card border border-border w-full max-w-md rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="p-4 sm:p-5 border-b border-border flex items-center justify-between">
+              <div>
+                <h3 className="font-bold text-base text-foreground">Unggah Foto Inventaris</h3>
+                <p className="text-xs text-muted-foreground mt-0.5">Simpan dokumentasi visual ke Supabase Storage</p>
+              </div>
+              <button
+                onClick={() => {
+                  if (!uploading) {
+                    setUploadModalOpen(false);
+                    setSelectedFile(null);
+                    setFilePreview(null);
+                  }
+                }}
+                disabled={uploading}
+                className="p-1 rounded-lg text-muted-foreground hover:bg-muted transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleUploadPhoto} className="p-4 sm:p-5 space-y-4">
+              {/* File Dropzone / Picker */}
+              <div>
+                <label className="block text-xs font-semibold text-foreground mb-1.5">
+                  Pilih Berkas Foto (JPG, PNG, WebP)
+                </label>
+                {filePreview ? (
+                  <div className="relative aspect-16/9 rounded-xl overflow-hidden border border-border bg-muted/30">
+                    <img
+                      src={filePreview}
+                      alt="Preview"
+                      className="w-full h-full object-contain"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedFile(null);
+                        setFilePreview(null);
+                      }}
+                      disabled={uploading}
+                      className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/60 text-white hover:bg-black/80 transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <label className="border-2 border-dashed border-border hover:border-primary/60 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer transition-colors bg-muted/10 hover:bg-muted/30">
+                    <UploadCloud className="w-8 h-8 text-primary mb-2" />
+                    <span className="text-xs font-semibold text-foreground">Klik untuk memilih foto</span>
+                    <span className="text-[11px] text-muted-foreground mt-0.5">Maksimal ukuran file 10MB</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      disabled={uploading}
+                      className="hidden"
+                    />
+                  </label>
+                )}
+              </div>
+
+              {/* Label Selector */}
+              <div>
+                <label className="block text-xs font-semibold text-foreground mb-1.5">
+                  Label / Keterangan Foto
+                </label>
+                <div className="flex flex-wrap gap-1.5 mb-2">
+                  {PRESET_LABELS.map((lbl) => (
+                    <button
+                      key={lbl}
+                      type="button"
+                      onClick={() => setPhotoLabel(lbl)}
+                      disabled={uploading}
+                      className={`text-[11px] px-2.5 py-1 rounded-lg border transition-all ${
+                        photoLabel === lbl
+                          ? "bg-primary text-primary-foreground border-primary font-semibold"
+                          : "border-border bg-card text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {lbl}
+                    </button>
+                  ))}
+                </div>
+                <input
+                  type="text"
+                  value={photoLabel}
+                  onChange={(e) => setPhotoLabel(e.target.value)}
+                  placeholder="Ketik keterangan atau pilih label di atas"
+                  disabled={uploading}
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-border bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-border">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setUploadModalOpen(false);
+                    setSelectedFile(null);
+                    setFilePreview(null);
+                  }}
+                  disabled={uploading}
+                  className="px-4 py-2 rounded-xl border border-border text-xs font-semibold text-muted-foreground hover:bg-muted transition-colors"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  disabled={!selectedFile || uploading}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:brightness-110 disabled:opacity-50 transition-all"
+                >
+                  {uploading ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      Mengunggah...
+                    </>
+                  ) : (
+                    <>
+                      <UploadCloud className="w-3.5 h-3.5" />
+                      Mulai Unggah
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox Modal for Zooming Photos */}
+      {activeZoomPhoto && (
+        <div
+          onClick={() => setActiveZoomPhoto(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-4xl max-h-[90vh] w-full flex flex-col items-center"
+          >
+            <button
+              onClick={() => setActiveZoomPhoto(null)}
+              className="absolute -top-10 right-0 p-1.5 text-white/80 hover:text-white transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <img
+              src={activeZoomPhoto.url}
+              alt={activeZoomPhoto.label || "Foto Inventaris"}
+              className="max-h-[80vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+            />
+
+            {activeZoomPhoto.label && (
+              <div className="mt-3 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-white text-xs font-medium border border-white/20">
+                {activeZoomPhoto.label}
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -166,12 +166,26 @@ export default function DetailBarangMasukPage({ params }: { params: Promise<{ id
       {/* Main Document Content */}
       <div className="bg-card print:bg-white text-card-foreground print:text-black rounded-xl border print:border-none shadow-sm p-4 sm:p-6 lg:p-8 space-y-6 overflow-x-auto">
         {/* Kop Surat */}
-        <div className="border-b-2 border-black/80 pb-4 text-center">
-          <h2 className="text-xl font-bold uppercase tracking-wider">SMK NEGERI — PROGRAM KEAHLIAN TEKNIK KOMPUTER & INFORMATIKA</h2>
-          <h3 className="text-lg font-extrabold uppercase text-blue-600 print:text-black mt-0.5">LABORATORIUM REKAYASA PERANGKAT LUNAK (LABMUMA)</h3>
-          <p className="text-xs text-muted-foreground print:text-gray-600 mt-1">
-            Jl. Pendidikan No. 1 • Telp: (021) 12345678 • Email: lab.rpl@sekolah.sch.id
-          </p>
+        <div className="border-b-4 border-double border-black pb-3 print:pt-0 flex items-center gap-4">
+          <img
+            src="/logo.png"
+            alt="Logo SMK Muhammadiyah Majenang"
+            className="w-16 h-16 sm:w-20 sm:h-20 object-contain shrink-0"
+          />
+          <div className="flex-1 text-center">
+            <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-muted-foreground print:text-gray-700">
+              MAJELIS PENDIDIKAN DASAR MENENGAH DAN PENDIDIKAN NONFORMAL PDM CILACAP
+            </p>
+            <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight mt-0.5 text-foreground print:text-black">
+              SMK MUHAMMADIYAH MAJENANG
+            </h2>
+            <p className="text-xs sm:text-sm font-bold uppercase text-blue-600 print:text-black mt-0.5 tracking-wide">
+              LABORATORIUM REKAYASA PERANGKAT LUNAK (LABMUMA)
+            </p>
+            <p className="text-[10px] sm:text-[11px] text-muted-foreground print:text-gray-600 mt-1">
+              Jl. Padangjaya No. 1, Majenang, Kab. Cilacap, Jawa Tengah 53257 • Telp. (0280) 621123 • Email: smkmuhmajenang@gmail.com
+            </p>
+          </div>
         </div>
 
         <div className="text-center my-4">

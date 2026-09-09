@@ -80,6 +80,7 @@ export const ModelName = {
   LabAssistant: 'LabAssistant',
   InitialInventory: 'InitialInventory',
   InitialInventoryItem: 'InitialInventoryItem',
+  LabUsage: 'LabUsage',
   AuditLog: 'AuditLog'
 } as const
 
@@ -523,6 +524,28 @@ export const InitialInventoryItemScalarFieldEnum = {
 } as const
 
 export type InitialInventoryItemScalarFieldEnum = (typeof InitialInventoryItemScalarFieldEnum)[keyof typeof InitialInventoryItemScalarFieldEnum]
+
+
+export const LabUsageScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  date: 'date',
+  startPeriod: 'startPeriod',
+  endPeriod: 'endPeriod',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  subject: 'subject',
+  teacher: 'teacher',
+  className: 'className',
+  studentCount: 'studentCount',
+  activity: 'activity',
+  note: 'note',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LabUsageScalarFieldEnum = (typeof LabUsageScalarFieldEnum)[keyof typeof LabUsageScalarFieldEnum]
 
 
 export const AuditLogScalarFieldEnum = {

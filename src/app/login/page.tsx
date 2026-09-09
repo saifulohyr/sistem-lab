@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
   Monitor,
@@ -114,8 +115,15 @@ export default function LoginPage() {
         {/* Main Neobrutalism Card */}
         <div className="bg-white border-4 border-blue-900 rounded-xl p-6 sm:p-10 shadow-[8px_8px_0_0_rgba(30,64,175,1)] flex flex-col items-center">
           {/* Logo */}
-          <div className="w-16 h-16 rounded-xl border-4 border-blue-900 bg-blue-500 shadow-[4px_4px_0_0_rgba(30,64,175,1)] flex items-center justify-center mb-6">
-            <Monitor className="w-8 h-8 text-white" strokeWidth={2.5} />
+          <div className="w-20 h-20 mb-4 flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              alt="Logo SMK Muhammadiyah Majenang"
+              width={80}
+              height={80}
+              className="w-20 h-20 object-contain drop-shadow-md"
+              priority
+            />
           </div>
 
           <h1 className="text-3xl font-black text-blue-900 tracking-tight mb-2 uppercase">

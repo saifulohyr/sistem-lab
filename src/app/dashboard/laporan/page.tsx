@@ -253,18 +253,32 @@ export default function LaporanPage() {
         {/* Right Preview Card / Document */}
         <div className="lg:col-span-3">
           <div className="bg-card print:bg-white text-card-foreground print:text-black rounded-xl border print:border-none shadow-sm p-6 sm:p-8 space-y-6">
-            {/* Kop Surat Sekolah */}
-            <div className="border-b-2 border-black/80 pb-4 text-center">
-              <h2 className="text-xl font-bold uppercase tracking-wider">SMK NEGERI — PROGRAM KEAHLIAN TEKNIK KOMPUTER & INFORMATIKA</h2>
-              <h3 className="text-lg font-extrabold uppercase text-blue-600 print:text-black mt-0.5">LABORATORIUM REKAYASA PERANGKAT LUNAK (LABMUMA)</h3>
-              <p className="text-xs text-muted-foreground print:text-gray-600 mt-1">
-                Jl. Pendidikan No. 1 • Telp: (021) 12345678 • Email: lab.rpl@sekolah.sch.id
-              </p>
+            {/* Kop Surat Sekolah Resmi */}
+            <div className="border-b-4 border-double border-black pb-3 print:pt-0 flex items-center gap-4">
+              <img
+                src="/logo.png"
+                alt="Logo SMK Muhammadiyah Majenang"
+                className="w-16 h-16 sm:w-20 sm:h-20 object-contain shrink-0"
+              />
+              <div className="flex-1 text-center">
+                <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-muted-foreground print:text-gray-700">
+                  MAJELIS PENDIDIKAN DASAR MENENGAH DAN PENDIDIKAN NONFORMAL PDM CILACAP
+                </p>
+                <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight mt-0.5 text-foreground print:text-black">
+                  SMK MUHAMMADIYAH MAJENANG
+                </h2>
+                <p className="text-xs sm:text-sm font-bold uppercase text-blue-600 print:text-black mt-0.5 tracking-wide">
+                  KOMPETENSI KEAHLIAN PENGEMBANGAN PERANGKAT LUNAK DAN GIM (PPLG / RPL)
+                </p>
+                <p className="text-[10px] sm:text-[11px] text-muted-foreground print:text-gray-600 mt-1">
+                  Jl. Padangjaya No. 1, Majenang, Kab. Cilacap, Jawa Tengah 53257 • Telp. (0280) 621123 • Email: smkmuhmajenang@gmail.com
+                </p>
+              </div>
             </div>
 
             {/* Document Title & Period */}
-            <div className="text-center my-2">
-              <h1 className="text-lg sm:text-xl font-bold uppercase underline tracking-wide">
+            <div className="text-center my-3">
+              <h1 className="text-base sm:text-lg font-black uppercase underline tracking-wider">
                 {getReportTitle()}
               </h1>
               <p className="text-xs text-muted-foreground print:text-gray-700 mt-1">
@@ -581,20 +595,21 @@ export default function LaporanPage() {
             </div>
 
             {/* Official Signatures for Printed Reports */}
-            <div className="pt-8 grid grid-cols-2 gap-8 text-center text-sm">
+            <div className="pt-8 grid grid-cols-2 gap-8 text-center text-sm print:break-inside-avoid">
               <div className="flex flex-col items-center">
-                <p className="text-xs text-muted-foreground print:text-gray-700">Petugas Laboratorium (Toolman),</p>
+                <p className="text-xs text-muted-foreground print:text-gray-700">Majenang, {new Date().toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}</p>
+                <p className="text-xs font-semibold text-foreground print:text-black">Petugas / Toolman Lab RPL,</p>
                 <div className="h-20" />
-                <p className="font-bold underline uppercase">..................................................</p>
-                <p className="text-xs text-muted-foreground">NIP/NIK. .....................................</p>
+                <p className="font-bold underline uppercase text-foreground print:text-black">..................................................</p>
+                <p className="text-xs text-muted-foreground print:text-gray-600">NBM / NIP. .....................................</p>
               </div>
 
               <div className="flex flex-col items-center">
                 <p className="text-xs text-muted-foreground print:text-gray-700">Mengetahui,</p>
-                <p className="text-xs font-semibold">Toolman Laboratorium Rekayasa Perangkat Lunak</p>
-                <div className="h-16" />
-                <p className="font-bold underline uppercase">..................................................</p>
-                <p className="text-xs text-muted-foreground">NIP. .....................................</p>
+                <p className="text-xs font-semibold text-foreground print:text-black">Ketua Program Keahlian PPLG</p>
+                <div className="h-20" />
+                <p className="font-bold underline uppercase text-foreground print:text-black">..................................................</p>
+                <p className="text-xs text-muted-foreground print:text-gray-600">NBM / NIP. .....................................</p>
               </div>
             </div>
           </div>

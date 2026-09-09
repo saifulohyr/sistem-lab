@@ -426,6 +426,7 @@ export const ModelName = {
   LabAssistant: 'LabAssistant',
   InitialInventory: 'InitialInventory',
   InitialInventoryItem: 'InitialInventoryItem',
+  LabUsage: 'LabUsage',
   AuditLog: 'AuditLog'
 } as const
 
@@ -442,7 +443,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "location" | "room" | "category" | "brand" | "supplier" | "inventory" | "inventorySpec" | "inventoryPhoto" | "inventoryHistory" | "incomingGoods" | "incomingGoodsItem" | "outgoingGoods" | "outgoingGoodsItem" | "borrowing" | "borrowingItem" | "damageReport" | "repair" | "repairPart" | "maintenance" | "maintenanceSchedule" | "inspection" | "inspectionItem" | "practicumSchedule" | "software" | "softwareInstallation" | "labAssistant" | "initialInventory" | "initialInventoryItem" | "auditLog"
+    modelProps: "user" | "location" | "room" | "category" | "brand" | "supplier" | "inventory" | "inventorySpec" | "inventoryPhoto" | "inventoryHistory" | "incomingGoods" | "incomingGoodsItem" | "outgoingGoods" | "outgoingGoodsItem" | "borrowing" | "borrowingItem" | "damageReport" | "repair" | "repairPart" | "maintenance" | "maintenanceSchedule" | "inspection" | "inspectionItem" | "practicumSchedule" | "software" | "softwareInstallation" | "labAssistant" | "initialInventory" | "initialInventoryItem" | "labUsage" | "auditLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2592,6 +2593,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    LabUsage: {
+      payload: Prisma.$LabUsagePayload<ExtArgs>
+      fields: Prisma.LabUsageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LabUsageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LabUsageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload>
+        }
+        findFirst: {
+          args: Prisma.LabUsageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LabUsageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload>
+        }
+        findMany: {
+          args: Prisma.LabUsageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload>[]
+        }
+        create: {
+          args: Prisma.LabUsageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload>
+        }
+        createMany: {
+          args: Prisma.LabUsageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LabUsageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload>[]
+        }
+        delete: {
+          args: Prisma.LabUsageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload>
+        }
+        update: {
+          args: Prisma.LabUsageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload>
+        }
+        deleteMany: {
+          args: Prisma.LabUsageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LabUsageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LabUsageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload>[]
+        }
+        upsert: {
+          args: Prisma.LabUsageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LabUsagePayload>
+        }
+        aggregate: {
+          args: Prisma.LabUsageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLabUsage>
+        }
+        groupBy: {
+          args: Prisma.LabUsageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabUsageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LabUsageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LabUsageCountAggregateOutputType> | number
+        }
+      }
+    }
     AuditLog: {
       payload: Prisma.$AuditLogPayload<ExtArgs>
       fields: Prisma.AuditLogFieldRefs
@@ -3131,6 +3206,28 @@ export const InitialInventoryItemScalarFieldEnum = {
 export type InitialInventoryItemScalarFieldEnum = (typeof InitialInventoryItemScalarFieldEnum)[keyof typeof InitialInventoryItemScalarFieldEnum]
 
 
+export const LabUsageScalarFieldEnum = {
+  id: 'id',
+  roomId: 'roomId',
+  date: 'date',
+  startPeriod: 'startPeriod',
+  endPeriod: 'endPeriod',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  subject: 'subject',
+  teacher: 'teacher',
+  className: 'className',
+  studentCount: 'studentCount',
+  activity: 'activity',
+  note: 'note',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LabUsageScalarFieldEnum = (typeof LabUsageScalarFieldEnum)[keyof typeof LabUsageScalarFieldEnum]
+
+
 export const AuditLogScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -3418,6 +3515,7 @@ export type GlobalOmitConfig = {
   labAssistant?: Prisma.LabAssistantOmit
   initialInventory?: Prisma.InitialInventoryOmit
   initialInventoryItem?: Prisma.InitialInventoryItemOmit
+  labUsage?: Prisma.LabUsageOmit
   auditLog?: Prisma.AuditLogOmit
 }
 

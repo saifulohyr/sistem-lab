@@ -11,6 +11,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "LABMUMA — Manajemen Inventaris Lab RPL",
   description: "Sistem Manajemen Inventaris & Pemeliharaan Laboratorium RPL",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

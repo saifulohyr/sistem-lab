@@ -41,12 +41,13 @@ Saat pertama kali melakukan `git pull` di PC Sekolah, lakukan urutan berikut aga
 ## 🎯 3. Next Action Plan (Fase Jangka Menengah - Optimalisasi & Fitur Baru)
 *(Untuk AI: Saat menerima prompt "Lanjutkan pekerjaan", prioritaskan urutan di bawah ini!)*
 
-### A. Optimalisasi Data Fetching & Refactoring (Performance)
+### A. Optimalisasi Data Fetching & Refactoring (Performance) - *Fokus Selanjutnya*
 Saat ini, halaman utama seperti `jadwal/page.tsx` (42 KB) menggunakan `useEffect` murni yang memicu *re-render* dan *loading indicator* di setiap klik halaman.
 - **Tugas 1:** Pindahkan *Data Fetching* dari `useEffect` standar menuju pustaka *caching* **SWR** atau **React Query (TanStack)** untuk UX instan (tanpa loading saat kembali ke halaman).
 - **Tugas 2:** Pecah komponen *monolith* `jadwal/page.tsx` dan `DashboardClient.tsx` menjadi komponen-komponen yang lebih kecil (contoh: `TimelineView`, `WeekView`, `FilterBar`, dll) dengan kaidah *React Best Practices*.
-- **Tugas 3:** Implementasikan `loading.tsx` global di Next.js App Router dan `error.tsx` untuk menahan state transisi dengan elegan.
+- **Tugas 3:** `loading.tsx` global di Next.js App Router dan `error.tsx` sudah aktif menahan state transisi.
 
-### B. Penyelesaian Fitur Inti
-- **Selesaikan Upload Foto:** Supabase Storage sudah dikonfigurasi pada tahap sebelumnya, tinggal menyambungkan UI dengan API-nya.
-- **Fitur Laporan & Cetak:** Implementasikan *export* jadwal dan inventaris ke Excel / PDF (gunakan pustaka `xlsx` atau `jsPDF`).
+### B. Penyelesaian Fitur Inti - *SELESAI (Completed)* ✅
+- **Upload Foto Inventaris:** [SELESAI] Terintegrasi penuh dengan Supabase Storage bucket `lab`, API route `/api/inventaris/[id]/photos`, tab galeri foto, upload modal, lightbox viewer, dan pencatatan audit history.
+- **Fitur Laporan & Cetak:** [SELESAI] Export Excel via `xlsx` sudah aktif. Output cetak resmi dilengkapi Kop Surat Kedinasan SMK Muhammadiyah Majenang dan tanda tangan resmi.
+

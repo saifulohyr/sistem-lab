@@ -237,6 +237,7 @@ export type RoomWhereInput = {
   initialInventories?: Prisma.InitialInventoryListRelationFilter
   inspections?: Prisma.InspectionListRelationFilter
   practicumSchedules?: Prisma.PracticumScheduleListRelationFilter
+  labUsages?: Prisma.LabUsageListRelationFilter
 }
 
 export type RoomOrderByWithRelationInput = {
@@ -252,6 +253,7 @@ export type RoomOrderByWithRelationInput = {
   initialInventories?: Prisma.InitialInventoryOrderByRelationAggregateInput
   inspections?: Prisma.InspectionOrderByRelationAggregateInput
   practicumSchedules?: Prisma.PracticumScheduleOrderByRelationAggregateInput
+  labUsages?: Prisma.LabUsageOrderByRelationAggregateInput
 }
 
 export type RoomWhereUniqueInput = Prisma.AtLeast<{
@@ -270,6 +272,7 @@ export type RoomWhereUniqueInput = Prisma.AtLeast<{
   initialInventories?: Prisma.InitialInventoryListRelationFilter
   inspections?: Prisma.InspectionListRelationFilter
   practicumSchedules?: Prisma.PracticumScheduleListRelationFilter
+  labUsages?: Prisma.LabUsageListRelationFilter
 }, "id">
 
 export type RoomOrderByWithAggregationInput = {
@@ -312,6 +315,7 @@ export type RoomCreateInput = {
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateInput = {
@@ -326,6 +330,7 @@ export type RoomUncheckedCreateInput = {
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUpdateInput = {
@@ -340,6 +345,7 @@ export type RoomUpdateInput = {
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateInput = {
@@ -354,6 +360,7 @@ export type RoomUncheckedUpdateInput = {
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomCreateManyInput = {
@@ -551,6 +558,20 @@ export type RoomUpdateOneRequiredWithoutInitialInventoriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RoomUpdateToOneWithWhereWithoutInitialInventoriesInput, Prisma.RoomUpdateWithoutInitialInventoriesInput>, Prisma.RoomUncheckedUpdateWithoutInitialInventoriesInput>
 }
 
+export type RoomCreateNestedOneWithoutLabUsagesInput = {
+  create?: Prisma.XOR<Prisma.RoomCreateWithoutLabUsagesInput, Prisma.RoomUncheckedCreateWithoutLabUsagesInput>
+  connectOrCreate?: Prisma.RoomCreateOrConnectWithoutLabUsagesInput
+  connect?: Prisma.RoomWhereUniqueInput
+}
+
+export type RoomUpdateOneRequiredWithoutLabUsagesNestedInput = {
+  create?: Prisma.XOR<Prisma.RoomCreateWithoutLabUsagesInput, Prisma.RoomUncheckedCreateWithoutLabUsagesInput>
+  connectOrCreate?: Prisma.RoomCreateOrConnectWithoutLabUsagesInput
+  upsert?: Prisma.RoomUpsertWithoutLabUsagesInput
+  connect?: Prisma.RoomWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RoomUpdateToOneWithWhereWithoutLabUsagesInput, Prisma.RoomUpdateWithoutLabUsagesInput>, Prisma.RoomUncheckedUpdateWithoutLabUsagesInput>
+}
+
 export type RoomCreateWithoutLocationInput = {
   id?: string
   name: string
@@ -562,6 +583,7 @@ export type RoomCreateWithoutLocationInput = {
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateWithoutLocationInput = {
@@ -575,6 +597,7 @@ export type RoomUncheckedCreateWithoutLocationInput = {
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomCreateOrConnectWithoutLocationInput = {
@@ -627,6 +650,7 @@ export type RoomCreateWithoutInventoriesInput = {
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateWithoutInventoriesInput = {
@@ -640,6 +664,7 @@ export type RoomUncheckedCreateWithoutInventoriesInput = {
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomCreateOrConnectWithoutInventoriesInput = {
@@ -669,6 +694,7 @@ export type RoomUpdateWithoutInventoriesInput = {
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutInventoriesInput = {
@@ -682,6 +708,7 @@ export type RoomUncheckedUpdateWithoutInventoriesInput = {
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomCreateWithoutInspectionsInput = {
@@ -695,6 +722,7 @@ export type RoomCreateWithoutInspectionsInput = {
   inventories?: Prisma.InventoryCreateNestedManyWithoutRoomInput
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateWithoutInspectionsInput = {
@@ -708,6 +736,7 @@ export type RoomUncheckedCreateWithoutInspectionsInput = {
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutRoomInput
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomCreateOrConnectWithoutInspectionsInput = {
@@ -737,6 +766,7 @@ export type RoomUpdateWithoutInspectionsInput = {
   inventories?: Prisma.InventoryUpdateManyWithoutRoomNestedInput
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutInspectionsInput = {
@@ -750,6 +780,7 @@ export type RoomUncheckedUpdateWithoutInspectionsInput = {
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutRoomNestedInput
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomCreateWithoutPracticumSchedulesInput = {
@@ -763,6 +794,7 @@ export type RoomCreateWithoutPracticumSchedulesInput = {
   inventories?: Prisma.InventoryCreateNestedManyWithoutRoomInput
   initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateWithoutPracticumSchedulesInput = {
@@ -776,6 +808,7 @@ export type RoomUncheckedCreateWithoutPracticumSchedulesInput = {
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutRoomInput
   initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomCreateOrConnectWithoutPracticumSchedulesInput = {
@@ -805,6 +838,7 @@ export type RoomUpdateWithoutPracticumSchedulesInput = {
   inventories?: Prisma.InventoryUpdateManyWithoutRoomNestedInput
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutPracticumSchedulesInput = {
@@ -818,6 +852,7 @@ export type RoomUncheckedUpdateWithoutPracticumSchedulesInput = {
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutRoomNestedInput
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomCreateWithoutInitialInventoriesInput = {
@@ -831,6 +866,7 @@ export type RoomCreateWithoutInitialInventoriesInput = {
   inventories?: Prisma.InventoryCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageCreateNestedManyWithoutRoomInput
 }
 
 export type RoomUncheckedCreateWithoutInitialInventoriesInput = {
@@ -844,6 +880,7 @@ export type RoomUncheckedCreateWithoutInitialInventoriesInput = {
   inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutRoomInput
   inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
+  labUsages?: Prisma.LabUsageUncheckedCreateNestedManyWithoutRoomInput
 }
 
 export type RoomCreateOrConnectWithoutInitialInventoriesInput = {
@@ -873,6 +910,7 @@ export type RoomUpdateWithoutInitialInventoriesInput = {
   inventories?: Prisma.InventoryUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutInitialInventoriesInput = {
@@ -884,6 +922,79 @@ export type RoomUncheckedUpdateWithoutInitialInventoriesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   inventories?: Prisma.InventoryUncheckedUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUncheckedUpdateManyWithoutRoomNestedInput
+}
+
+export type RoomCreateWithoutLabUsagesInput = {
+  id?: string
+  name: string
+  capacity?: number | null
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  location: Prisma.LocationCreateNestedOneWithoutRoomsInput
+  inventories?: Prisma.InventoryCreateNestedManyWithoutRoomInput
+  initialInventories?: Prisma.InitialInventoryCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleCreateNestedManyWithoutRoomInput
+}
+
+export type RoomUncheckedCreateWithoutLabUsagesInput = {
+  id?: string
+  name: string
+  locationId: string
+  capacity?: number | null
+  note?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  inventories?: Prisma.InventoryUncheckedCreateNestedManyWithoutRoomInput
+  initialInventories?: Prisma.InitialInventoryUncheckedCreateNestedManyWithoutRoomInput
+  inspections?: Prisma.InspectionUncheckedCreateNestedManyWithoutRoomInput
+  practicumSchedules?: Prisma.PracticumScheduleUncheckedCreateNestedManyWithoutRoomInput
+}
+
+export type RoomCreateOrConnectWithoutLabUsagesInput = {
+  where: Prisma.RoomWhereUniqueInput
+  create: Prisma.XOR<Prisma.RoomCreateWithoutLabUsagesInput, Prisma.RoomUncheckedCreateWithoutLabUsagesInput>
+}
+
+export type RoomUpsertWithoutLabUsagesInput = {
+  update: Prisma.XOR<Prisma.RoomUpdateWithoutLabUsagesInput, Prisma.RoomUncheckedUpdateWithoutLabUsagesInput>
+  create: Prisma.XOR<Prisma.RoomCreateWithoutLabUsagesInput, Prisma.RoomUncheckedCreateWithoutLabUsagesInput>
+  where?: Prisma.RoomWhereInput
+}
+
+export type RoomUpdateToOneWithWhereWithoutLabUsagesInput = {
+  where?: Prisma.RoomWhereInput
+  data: Prisma.XOR<Prisma.RoomUpdateWithoutLabUsagesInput, Prisma.RoomUncheckedUpdateWithoutLabUsagesInput>
+}
+
+export type RoomUpdateWithoutLabUsagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  location?: Prisma.LocationUpdateOneRequiredWithoutRoomsNestedInput
+  inventories?: Prisma.InventoryUpdateManyWithoutRoomNestedInput
+  initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
+  inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
+  practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
+}
+
+export type RoomUncheckedUpdateWithoutLabUsagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  inventories?: Prisma.InventoryUncheckedUpdateManyWithoutRoomNestedInput
+  initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
 }
@@ -908,6 +1019,7 @@ export type RoomUpdateWithoutLocationInput = {
   initialInventories?: Prisma.InitialInventoryUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutLocationInput = {
@@ -921,6 +1033,7 @@ export type RoomUncheckedUpdateWithoutLocationInput = {
   initialInventories?: Prisma.InitialInventoryUncheckedUpdateManyWithoutRoomNestedInput
   inspections?: Prisma.InspectionUncheckedUpdateManyWithoutRoomNestedInput
   practicumSchedules?: Prisma.PracticumScheduleUncheckedUpdateManyWithoutRoomNestedInput
+  labUsages?: Prisma.LabUsageUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomUncheckedUpdateManyWithoutLocationInput = {
@@ -942,6 +1055,7 @@ export type RoomCountOutputType = {
   initialInventories: number
   inspections: number
   practicumSchedules: number
+  labUsages: number
 }
 
 export type RoomCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -949,6 +1063,7 @@ export type RoomCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   initialInventories?: boolean | RoomCountOutputTypeCountInitialInventoriesArgs
   inspections?: boolean | RoomCountOutputTypeCountInspectionsArgs
   practicumSchedules?: boolean | RoomCountOutputTypeCountPracticumSchedulesArgs
+  labUsages?: boolean | RoomCountOutputTypeCountLabUsagesArgs
 }
 
 /**
@@ -989,6 +1104,13 @@ export type RoomCountOutputTypeCountPracticumSchedulesArgs<ExtArgs extends runti
   where?: Prisma.PracticumScheduleWhereInput
 }
 
+/**
+ * RoomCountOutputType without action
+ */
+export type RoomCountOutputTypeCountLabUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LabUsageWhereInput
+}
+
 
 export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1003,6 +1125,7 @@ export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   initialInventories?: boolean | Prisma.Room$initialInventoriesArgs<ExtArgs>
   inspections?: boolean | Prisma.Room$inspectionsArgs<ExtArgs>
   practicumSchedules?: boolean | Prisma.Room$practicumSchedulesArgs<ExtArgs>
+  labUsages?: boolean | Prisma.Room$labUsagesArgs<ExtArgs>
   _count?: boolean | Prisma.RoomCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["room"]>
 
@@ -1045,6 +1168,7 @@ export type RoomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   initialInventories?: boolean | Prisma.Room$initialInventoriesArgs<ExtArgs>
   inspections?: boolean | Prisma.Room$inspectionsArgs<ExtArgs>
   practicumSchedules?: boolean | Prisma.Room$practicumSchedulesArgs<ExtArgs>
+  labUsages?: boolean | Prisma.Room$labUsagesArgs<ExtArgs>
   _count?: boolean | Prisma.RoomCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RoomIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1062,6 +1186,7 @@ export type $RoomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     initialInventories: Prisma.$InitialInventoryPayload<ExtArgs>[]
     inspections: Prisma.$InspectionPayload<ExtArgs>[]
     practicumSchedules: Prisma.$PracticumSchedulePayload<ExtArgs>[]
+    labUsages: Prisma.$LabUsagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1470,6 +1595,7 @@ export interface Prisma__RoomClient<T, Null = never, ExtArgs extends runtime.Typ
   initialInventories<T extends Prisma.Room$initialInventoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$initialInventoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InitialInventoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inspections<T extends Prisma.Room$inspectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$inspectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   practicumSchedules<T extends Prisma.Room$practicumSchedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$practicumSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticumSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  labUsages<T extends Prisma.Room$labUsagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$labUsagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LabUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2000,6 +2126,30 @@ export type Room$practicumSchedulesArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.PracticumScheduleScalarFieldEnum | Prisma.PracticumScheduleScalarFieldEnum[]
+}
+
+/**
+ * Room.labUsages
+ */
+export type Room$labUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LabUsage
+   */
+  select?: Prisma.LabUsageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LabUsage
+   */
+  omit?: Prisma.LabUsageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LabUsageInclude<ExtArgs> | null
+  where?: Prisma.LabUsageWhereInput
+  orderBy?: Prisma.LabUsageOrderByWithRelationInput | Prisma.LabUsageOrderByWithRelationInput[]
+  cursor?: Prisma.LabUsageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LabUsageScalarFieldEnum | Prisma.LabUsageScalarFieldEnum[]
 }
 
 /**

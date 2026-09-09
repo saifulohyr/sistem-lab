@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -H 0.0.0.0",
     "lint": "eslint",
     "seed": "tsx prisma/seed.ts",
     "migrate-passwords": "tsx scripts/migrate-passwords.ts",
-    "create-users": "tsx scripts/create-new-users.ts"
+    "create-users": "tsx scripts/create-new-users.ts",
+    "import-sheet": "tsx scripts/import_google_sheet.ts",
+    "seed-lab": "tsx scripts/seed-lab-usage.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

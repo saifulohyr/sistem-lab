@@ -1,6 +1,7 @@
-"use client";
+// l"use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   Monitor,
   Wrench,
@@ -17,15 +18,20 @@ export default function HomePage() {
       <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white">
-              <Monitor className="w-5 h-5" />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Logo SMK Muhammadiyah Majenang"
+              width={40}
+              height={40}
+              className="w-10 h-10 object-contain drop-shadow-sm"
+              priority
+            />
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xl font-bold text-slate-900 tracking-tight">LABMUMA</span>
               </div>
               <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
-                Internal Lab Portal
+                SMK Muhammadiyah Majenang
               </p>
             </div>
           </div>
